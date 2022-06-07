@@ -20,6 +20,9 @@ class Property(db.Model):
     listing_date = db.Column(db.Date, nullable=False)
     description = db.Column(db.String(2000))
     listing_agent_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    lat = db.Column(db.Float, nullable=False)
+    long = db.Column(db.Float, nullable=False)
+    front_img = db.Column(db.String)
 
     state = db.relationship("State", back_populates="properties")
     listing_agent = db.relationship("User", back_populates="properties")
