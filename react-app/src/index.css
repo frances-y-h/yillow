@@ -1,1 +1,26 @@
+@import url("./css/navbar.css");
+
 /* TODO Add site wide styles */
+:root {
+	--blue: #016bff;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: unset;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
