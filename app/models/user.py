@@ -18,6 +18,15 @@ class User(db.Model, UserMixin):
     broker_license = db.Column(db.String(40))
     office = db.Column(db.String(100))
 
+    properties = db.relationship("Property", back_populates="listing_agent")
+
+    user_reviews = db.relationship("Review", back_populates="user", primaryjoin="User.id == Review.user_id")
+    agent_reviews = db.relationship("Review", back_populates="agent", primaryjoin="User.id == Review.agent_id")
+
+    user_appointments = db.relationship("Appointment", back_populates="user", primaryjoin="User.id == Appointment.user_id")
+    agent_appointments = db.relationship("Appointment", back_populates="agent", primaryjoin="User.id == Appointment.agent_id")
+
+
     @property
     def password(self):
         return self.hashed_password
@@ -30,8 +39,24 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
-        return {
-            'id': self.id,
-            'username': self.username,
-            'email': self.email
-        }
+        if self.agent:
+            return {
+                'id': self.id,
+                'username': self.username,
+                'email': self.email,
+                "phone": self.phone,
+                "agent": self.agent,
+                "license_num": self.license_num,
+                "bio" : self.bio,
+                "photo": self.photo,
+                "broker_license": self.broker_license,
+                "office": self.office
+            }
+        else:
+            return {
+                'id': self.id,
+                'username': self.username,
+                'email': self.email,
+                "phone": self.phone,
+                "photo": self.photo,
+            }

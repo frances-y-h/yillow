@@ -1,0 +1,14 @@
+.nav {
+	display: grid;
+	grid-template-columns: 1fr 160px 1fr;
+	padding: 22px;
+	border-bottom: 1px solid gray;
+	align-items: center;
+	position: sticky;
+	top: 0px;
+}
+
+.nav-rt {
+	display: flex;
+	justify-content: flex-end;
+}
