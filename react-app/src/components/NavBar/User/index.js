@@ -10,7 +10,7 @@ const UserBar = () => {
 
 	return (
 		<nav className="nav">
-			<div>About</div>
+			<NavLink to="/about">About</NavLink>
 			<NavLink to="/" exact={true}>
 				<img src={logo} alt="Yillow" />
 			</NavLink>
