@@ -18,13 +18,35 @@ const Tour = ({ property }) => {
 
 	const available = () => {
 		const today = new Date();
+
+		const appointments = [];
+		property.appointments.forEach((appt) => {
+			appointments.push(new Date(appt).getTime());
+		});
+
 		const tour = {};
 
 		for (let i = 1; i < 9; i++) {
-			const thisDay = today.addDays(i);
-
-			tour[i] = thisDay;
+			let month = today.addDays(i).getMonth();
+			let day = today.addDays(i).getDate();
+			let year = today.addDays(i).getFullYear();
+			let date = `${year}-${month + 1}-${day}`;
+			const hours = [];
+			for (let h = 9; h < 19; h += 0.5) {
+				let hour;
+				if (h % 1 === 0.5) {
+					hour = `${Math.floor(h)}:30`;
+				} else {
+					hour = `${h}:00`;
+				}
+				let appt = new Date(`${date} ${hour}`);
+				if (!appointments.includes(appt.getTime())) {
+					hours.push(hour);
+				}
+			}
+			tour[date] = hours;
 		}
+
 		return tour;
 	};
 

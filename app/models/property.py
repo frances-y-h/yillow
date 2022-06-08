@@ -52,5 +52,5 @@ class Property(db.Model):
             "office": self.listing_agent.office,
             "front_img": self.front_img,
             "images": [image.id for image in self.images],
-            "appintments": [appointment.appointment.isoformat() for appointment in self.appointments]
+            "appointments": [appointment.appointment.isoformat() for appointment in self.appointments]
         }

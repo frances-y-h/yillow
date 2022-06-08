@@ -1,6 +1,7 @@
 from app.models import db, Appointment
 from datetime import datetime
 
+# Seeding in GMT, which is PDT + 7
 def seed_appointments():
     appointment1 = Appointment(agent_id=4, user_id=1, property_id=1, appointment=datetime(2022, 6, 10, 12, 0), message="I am interested to tour this house")
     appointment2 = Appointment(agent_id=5, user_id=2, property_id=2, appointment=datetime(2022, 6, 10, 12, 0), message="I am interested to tour this house")

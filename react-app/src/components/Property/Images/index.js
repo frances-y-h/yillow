@@ -7,10 +7,12 @@ const Images = ({ property, openTour }) => {
 
 	return (
 		<div className="property-imgs-ctrl">
-			<div
-				className="property-front"
-				style={{ backgroundImage: `url("${property?.front_img}")` }}
-			></div>
+			{property?.front_img && (
+				<div
+					className="property-front"
+					style={{ backgroundImage: `url("${property?.front_img}")` }}
+				></div>
+			)}
 			<div className="property-imgs-wrap">
 				{Object.values(images).map((image, idx) => (
 					<div
