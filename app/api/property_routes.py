@@ -23,7 +23,7 @@ def search():
     #     return {
     #         "properties": [property.to_dict() for property in properties],
     #         }
-    properties = Property.query.all()
+    properties = Property.query.limit(200).all()
     return {
         "properties": [property.to_dict() for property in properties],
         }

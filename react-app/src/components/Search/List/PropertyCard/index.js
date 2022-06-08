@@ -35,7 +35,7 @@ const PropertyCard = ({ property }) => {
 					{property?.st_num} {property?.st_name}, {property?.city},{" "}
 					{property?.state} {property?.zip}
 				</div>
-				<div className="card-office">{property?.office.toUpperCase()}</div>
+				{/* <div className="card-office">{property?.office.toUpperCase()}</div> */}
 			</div>
 			{showModal && (
 				<Modal onClose={onClose}>
