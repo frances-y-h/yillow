@@ -35,7 +35,7 @@ function App() {
 				<Route path="/" exact={true}>
 					<Splash />
 				</Route>
-				<Route path="/search/:searchParam">
+				<Route path="/search">
 					<Search />
 				</Route>
 				<Route path="/homedetails/:address">

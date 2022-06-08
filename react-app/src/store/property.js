@@ -11,13 +11,7 @@ const getProperties = (properties) => {
 
 // Thunks
 export const searchProperties = (search) => async (dispatch) => {
-	const response = await fetch("/api/properties/search", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ search }),
-	});
+	const response = await fetch("/api/properties/search");
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(getProperties(data.properties));
