@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 
 import LastImage from "./LastImg";
-import bg from "../../../assets/house-bg.jpeg";
 
 const Images = ({ property, openTour }) => {
 	const images = useSelector((state) => state.images);

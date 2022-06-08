@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Modal } from "../../../../context/Modal";
 import Property from "../../../Property";
 
+import PropertyTop from "./PropertyTop";
+
 const PropertyCard = ({ property }) => {
 	const [showModal, setShowModal] = useState(false);
 
@@ -14,13 +16,7 @@ const PropertyCard = ({ property }) => {
 
 	return (
 		<div className="card-ctrl" onClick={() => setShowModal(true)}>
-			<div
-				className="card-top"
-				// style={{ backgroundImage: `url("${property?.front_img}")` }}
-			>
-				<div className="card-events">Listed on {property?.listing_date}</div>
-				{/* <div className="card-top-heart">Heart</div> */}
-			</div>
+			<PropertyTop property={property} />
 			<div className="card-btm">
 				<div className="card-price">
 					{"$" +
