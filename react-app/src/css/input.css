@@ -45,6 +45,9 @@
 	font-weight: lighter;
 	border: 1px solid lightgray;
 	border-radius: 5px;
+}
+
+.label input:disabled {
 	background-color: var(--lightgray);
 }
 

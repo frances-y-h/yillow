@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import LoggedIn from "./ContactForms/LoggedIn";
 
-const Contact = ({ property, today, hour, setShowSelectDate }) => {
+const Contact = ({ property, today, hour, setShowSelectDate, setShowTour }) => {
 	const user = useSelector((state) => state.session.user);
 
 	const [username, setUsername] = useState("");
@@ -46,6 +46,7 @@ const Contact = ({ property, today, hour, setShowSelectDate }) => {
 					setMessage={setMessage}
 					today={today}
 					hour={hour}
+					setShowTour={setShowTour}
 				/>
 			) : (
 				<div></div>

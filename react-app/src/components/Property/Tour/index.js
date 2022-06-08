@@ -2,7 +2,7 @@ import { useState } from "react";
 import SelectDate from "./SelectDate";
 import Contact from "./Contact";
 
-const Tour = ({ property }) => {
+const Tour = ({ property, setShowTour }) => {
 	Date.prototype.addDays = function (days) {
 		var date = new Date(this.valueOf());
 		date.setDate(date.getDate() + days);
@@ -71,6 +71,7 @@ const Tour = ({ property }) => {
 						today={today}
 						setShowSelectDate={setShowSelectDate}
 						hour={hour}
+						setShowTour={setShowTour}
 					/>
 				)}
 			</div>

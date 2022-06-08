@@ -19,16 +19,16 @@ export const addAppointment = (appointment) => async (dispatch) => {
 		},
 		body: JSON.stringify(appointment),
 	});
-	const data = await response.json();
-	return data;
-	// if (response.ok) {
-	// 	const data = await response.json();
-	// 	if (data.errors) {
-	// 		return data;
-	// 	}
-	// } else {
-	// 	return { errors: ["Something went wrong. Please try again"] };
-	// }
+	if (response.ok) {
+		const data = await response.json();
+		if (data.errors) {
+			return data;
+		}
+		dispatch(addEditAppointment(data.appointment));
+		return data.appointment;
+	} else {
+		return { errors: ["Something went wrong. Please try again"] };
+	}
 };
 
 // Reducers

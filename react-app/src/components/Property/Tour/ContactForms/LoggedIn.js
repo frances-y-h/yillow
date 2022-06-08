@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 import * as appointmentActions from "../../../../store/appointment";
 
@@ -15,21 +16,26 @@ const LoggedIn = ({
 	setEmail,
 	message,
 	setMessage,
+	setShowTour,
 }) => {
 	const dispatch = useDispatch();
+	const [errors, setErrors] = useState([]);
 
 	const handleSubmit = async () => {
 		const appointment = {
 			property_id: property.id,
-			appointment: `${today} ${hour}`,
+			date: today,
+			time: hour,
 			message,
 		};
-		console.log(appointment);
 		const data = await dispatch(appointmentActions.addAppointment(appointment));
-		if (data.errors) {
-			console.log(data.errors);
-		} else {
+
+		if (!data.errors) {
 			// notify appointment booked
+			alert("Appointment booked. You can access it from Appointments");
+			setShowTour(false);
+		} else {
+			setErrors(data.errors);
 		}
 	};
 
@@ -75,6 +81,13 @@ const LoggedIn = ({
 					onChange={(e) => setMessage(e.target.value)}
 				/>
 			</label>
+			{errors && (
+				<div className="error-list">
+					{errors.map((err) => (
+						<div key={err}>{err}</div>
+					))}
+				</div>
+			)}
 			<button type="button" className="btn" onClick={handleSubmit}>
 				Request visit
 			</button>
