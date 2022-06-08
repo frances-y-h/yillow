@@ -49,7 +49,7 @@ class Property(db.Model):
             "listing_date": self.listing_date.isoformat(),
             "description": self.description,
             "listing_agent_id": self.listing_agent_id,
-            "office": self.listing_agent.to_dict()["office"],
+            # "office": self.listing_agent.to_dict()["office"],
             "front_img": self.front_img,
             "images": [image.id for image in self.images],
             "appintments": [appointment.appointment.isoformat() for appointment in self.appointments]
