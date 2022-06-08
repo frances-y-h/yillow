@@ -9,3 +9,11 @@ class PropertyImg(db.Model):
     description = db.Column(db.String(2000))
 
     property = db.relationship("Property", back_populates="images")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "property_id": self.property_id,
+            "img_url": self.img_url,
+            "description": self.description
+        }

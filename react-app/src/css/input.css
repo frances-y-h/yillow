@@ -1,0 +1,23 @@
+.search-label {
+	display: flex;
+	padding: 25px;
+	gap: 10px;
+	border: 1px solid lightgrey;
+	background-color: white;
+	border-radius: 5px;
+	max-width: 750px;
+	width: 80%;
+	align-items: center;
+}
+
+.search-input {
+	font-size: 18px;
+	border: none;
+	width: 100%;
+}
+
+.search-label i {
+	color: gray;
+	font-size: 24px;
+	cursor: pointer;
+}

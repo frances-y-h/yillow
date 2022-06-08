@@ -1,0 +1,29 @@
+.footer-ctrl {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 50px;
+}
+
+.footer-tech {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding: 30px;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	color: gray;
+}
+
+.footer-logo-wrap {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	font-style: italic;
+	font-weight: lighter;
+}
+
+.footer-logo {
+	width: 150px;
+}

@@ -1,0 +1,31 @@
+.modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-background,
+.modal-bg-clear {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+}
+
+.modal-background {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-bg-clear {
+	background-color: transparent;
+}
+
+.modal-content {
+	position: absolute;
+}

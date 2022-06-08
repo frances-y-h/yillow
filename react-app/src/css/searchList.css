@@ -1,0 +1,20 @@
+.search-pg-ctrl {
+	display: grid;
+	/* grid-template-columns: 3fr 2fr; */
+	grid-template-columns: 1fr;
+	width: 100vw;
+	height: calc(100vh - 83px);
+}
+
+.search-list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	padding: 20px;
+	gap: 10px;
+}
+
+@media screen and (max-width: 600px) {
+	.search-list {
+		grid-template-columns: 1fr;
+	}
+}
