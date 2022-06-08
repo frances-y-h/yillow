@@ -28,3 +28,16 @@
 .btn-font:hover {
 	color: var(--blue2);
 }
+
+.btn-font-lt {
+	color: black;
+	font-weight: lighter;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.btn-font-lt:hover {
+	color: var(--blue2);
+}
