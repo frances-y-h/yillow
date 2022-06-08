@@ -17,7 +17,7 @@ const Splash = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (search.length > 2) {
-			history.push(`/search/${search}`);
+			history.push(`/search`);
 		} else {
 			setErrors(["Please enter 3 characters or more"]);
 		}

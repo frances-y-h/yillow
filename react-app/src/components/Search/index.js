@@ -8,11 +8,11 @@ import * as propertyActions from "../../store/property";
 
 const Search = () => {
 	const dispatch = useDispatch();
-	const { searchParam } = useParams();
+	// const { searchParam } = useParams();
 
 	useEffect(() => {
-		dispatch(propertyActions.searchProperties(searchParam));
-	}, [searchParam]);
+		dispatch(propertyActions.searchProperties());
+	}, [dispatch]);
 
 	return (
 		<main className="search-pg-ctrl">
