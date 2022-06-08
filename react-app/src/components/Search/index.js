@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 import List from "./List";
 

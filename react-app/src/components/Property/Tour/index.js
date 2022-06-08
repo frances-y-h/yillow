@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import SelectDate from "./SelectDate";
 
 const Tour = ({ property }) => {
-	const user = useSelector((state) => state.session.user);
+	// const user = useSelector((state) => state.session.user);
 
-	const [startDate, setStartDate] = useState(new Date());
-	const [tourTime, setTourTime] = useState();
+	// const [startDate, setStartDate] = useState(new Date());
+	// const [tourTime, setTourTime] = useState();
 
 	const [showSelectDate, setShowSelectDate] = useState(true);
 

@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 import logo from "../../assets/logo-blue.svg";
 import footer from "../../assets/footer-art.svg";
 
-import * as propertyActions from "../../store/property";
-
 const Splash = () => {
-	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const [search, setSearch] = useState("");
