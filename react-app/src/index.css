@@ -14,6 +14,9 @@
 	--blue: #016bff;
 	--blue2: #0346a4;
 	--lightblue: #f0f9ff;
+	--error: rgb(172, 12, 12);
+
+	--lightgray: rgb(242, 242, 242);
 }
 
 * {

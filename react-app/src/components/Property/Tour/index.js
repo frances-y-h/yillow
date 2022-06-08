@@ -1,15 +1,8 @@
 import { useState } from "react";
-// import { useSelector } from "react-redux";
 import SelectDate from "./SelectDate";
+import Contact from "./Contact";
 
 const Tour = ({ property }) => {
-	// const user = useSelector((state) => state.session.user);
-
-	// const [startDate, setStartDate] = useState(new Date());
-	// const [tourTime, setTourTime] = useState();
-
-	const [showSelectDate, setShowSelectDate] = useState(true);
-
 	Date.prototype.addDays = function (days) {
 		var date = new Date(this.valueOf());
 		date.setDate(date.getDate() + days);
@@ -50,20 +43,38 @@ const Tour = ({ property }) => {
 		return tour;
 	};
 
+	const [today, setToday] = useState(Object.keys(available())[0]);
+	const [hour, setHour] = useState();
+
+	const [showSelectDate, setShowSelectDate] = useState(true);
+
 	return (
-		<div className="tour-ctrl">
+		<form className="tour-ctrl">
 			<div className="tour-top">
 				<div>Tour with a Buyer's Agent</div>
 				<i className="fa-solid fa-xmark"></i>
 			</div>
 			<div className="tour-btm">
 				{showSelectDate ? (
-					<SelectDate property={property} available={available()} />
+					<SelectDate
+						property={property}
+						available={available()}
+						hour={hour}
+						setHour={setHour}
+						today={today}
+						setToday={setToday}
+						setShowSelectDate={setShowSelectDate}
+					/>
 				) : (
-					<div>Other</div>
+					<Contact
+						property={property}
+						today={today}
+						setShowSelectDate={setShowSelectDate}
+						hour={hour}
+					/>
 				)}
 			</div>
-		</div>
+		</form>
 	);
 };
 

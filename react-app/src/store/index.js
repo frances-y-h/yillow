@@ -4,12 +4,14 @@ import session from "./session";
 import properties from "./property";
 import images from "./property_img";
 import agents from "./agent";
+import appointments from "./appointment";
 
 const rootReducer = combineReducers({
 	session,
 	properties,
 	agents,
 	images,
+	appointments,
 });
 
 let enhancer;
