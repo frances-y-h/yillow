@@ -14,3 +14,14 @@ class Appointment(db.Model):
     user = db.relationship("User", foreign_keys=[user_id], back_populates="user_appointments")
     agent = db.relationship("User", foreign_keys=[agent_id], back_populates="agent_appointments")
     property = db.relationship("Property", back_populates="appointments")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "agent_id": self.agent_id,
+            "property_id": self.property_id,
+            "appointment": self.appointment.isoformat(),
+            "message": self.message,
+            "canceled": self.canceled,
+        }

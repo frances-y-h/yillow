@@ -1,8 +1,19 @@
 @import url("./css/navbar.css");
+@import url("./css/input.css");
+@import url("./css/splash.css");
+@import url("./css/footer.css");
+@import url("./css/error.css");
+@import url("./css/searchList.css");
+@import url("./css/propertyCard.css");
+@import url("./css/modal.css");
+@import url("./css/property.css");
+@import url("./css/button.css");
+@import url("./css/tour.css");
 
-/* TODO Add site wide styles */
 :root {
 	--blue: #016bff;
+	--blue2: #0346a4;
+	--lightblue: #f0f9ff;
 }
 
 * {
@@ -23,4 +34,9 @@ li {
 body {
 	margin: 0;
 	padding: 0;
+}
+
+textarea:focus,
+input:focus {
+	outline: none;
 }

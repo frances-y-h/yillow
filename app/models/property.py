@@ -1,4 +1,5 @@
 from .db import db
+from .property_img import PropertyImg
 
 class Property(db.Model):
     __tablename__ = "properties"
@@ -36,7 +37,7 @@ class Property(db.Model):
             "st_num": self.st_num,
             "st_name": self.st_name,
             "city": self.city,
-            "state_id": self.state_id,
+            "state": self.state.state,
             "zip": self.zip,
             "type": self.type,
             "price": self.price,
@@ -48,4 +49,8 @@ class Property(db.Model):
             "listing_date": self.listing_date.isoformat(),
             "description": self.description,
             "listing_agent_id": self.listing_agent_id,
+            "office": self.listing_agent.to_dict()["office"],
+            "front_img": self.front_img,
+            "images": [image.id for image in self.images],
+            "appintments": [appointment.appointment.isoformat() for appointment in self.appointments]
         }

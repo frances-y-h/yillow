@@ -1,0 +1,26 @@
+.splash-ctrl {
+	display: flex;
+	flex-direction: column;
+}
+
+.splash-search-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100vw;
+	height: 450px;
+	background-image: url(../assets/ZillowTimberlake_2098_DT_Full.webp);
+	background-size: cover;
+	background-position: center;
+	gap: 30px;
+}
+
+.splash-search-title {
+	height: 125px;
+	color: white;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 40px;
+	font-weight: 600;
+	display: flex;
+	align-items: flex-end;
+}
