@@ -59,4 +59,5 @@ class User(db.Model, UserMixin):
                 'email': self.email,
                 "phone": self.phone,
                 "photo": self.photo,
+                "appointments": [appointment.appointment.isoformat() for appointment in self.user_appointments]
             }

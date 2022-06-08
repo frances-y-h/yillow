@@ -38,6 +38,9 @@ function App() {
 				<Route path="/search/:searchParam">
 					<Search />
 				</Route>
+				<Route path="/homedetails/:address">
+					<div>HomeDetail</div>
+				</Route>
 				<Route path="/login" exact={true}>
 					<LoginForm />
 				</Route>

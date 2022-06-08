@@ -1,4 +1,5 @@
-const SelectDate = ({ property }) => {
+const SelectDate = ({ property, available }) => {
+	console.log(available);
 	return (
 		<>
 			<div className="tour-type">In-person</div>
