@@ -26,6 +26,12 @@ class User(db.Model, UserMixin):
     user_appointments = db.relationship("Appointment", back_populates="user", primaryjoin="User.id == Appointment.user_id")
     agent_appointments = db.relationship("Appointment", back_populates="agent", primaryjoin="User.id == Appointment.agent_id")
 
+    @property
+    def appointments(self):
+        if self.agent:
+            return self.agent_appointments
+        else:
+            return self.user_appointments
 
     @property
     def password(self):

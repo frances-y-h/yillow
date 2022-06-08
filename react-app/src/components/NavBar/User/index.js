@@ -20,7 +20,14 @@ const UserBar = () => {
 						Login
 					</NavLink>
 				)}
-				{user && <LogoutButton />}
+				{user && (
+					<>
+						<NavLink to="/appointments" exact={true}>
+							Appointments
+						</NavLink>
+						<LogoutButton />
+					</>
+				)}
 			</div>
 		</nav>
 	);

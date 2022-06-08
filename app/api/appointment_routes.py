@@ -17,41 +17,46 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@appointment_routes.route("/", methods=["POST"])
+@appointment_routes.route("/", methods=["GET", "POST"])
 @login_required
 def add_appointment():
-    form = AddAppointmentForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
 
-        # Check all the appointments in property to see if it overlaps
-        property_id = form.data["property_id"]
-        date = form.data["date"]
-        time = form.data["time"]
-        message = form.data["message"]
+    if request.method == "GET":
+        return {"appointments": [appt.to_dict() for appt in current_user.appointments]}
 
-        # Check user appointment to see if overlaps
-        user_appt = Appointment.query.filter(Appointment.user_id == current_user.id,  Appointment.date == date, Appointment.time == time).first()
+    if request.method == "POST":
+        form = AddAppointmentForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
 
-        if user_appt:
-            return {"errors": ["You already have another appointment at this timeslot"]}
+            # Check all the appointments in property to see if it overlaps
+            property_id = form.data["property_id"]
+            date = form.data["date"]
+            time = form.data["time"]
+            message = form.data["message"]
 
-        # query for to see if it is not avaliable
-        exists = Appointment.query.filter(Appointment.property_id == property_id, Appointment.date == date, Appointment.time == time).first()
+            # Check user appointment to see if overlaps
+            user_appt = Appointment.query.filter(Appointment.user_id == current_user.id,  Appointment.date == date, Appointment.time == time).first()
 
-        if exists:
-            return {"errors": ["Timeslot not avaliable"]}
+            if user_appt:
+                return {"errors": ["You already have another appointment at this timeslot"]}
+
+            # query for to see if it is not avaliable
+            exists = Appointment.query.filter(Appointment.property_id == property_id, Appointment.date == date, Appointment.time == time).first()
+
+            if exists:
+                return {"errors": ["Timeslot not avaliable"]}
 
 
-        new_appointment = Appointment(
-            user_id=current_user.id,
-            date=date, time=time,
-            message=message,
-            property_id=property_id)
+            new_appointment = Appointment(
+                user_id=current_user.id,
+                date=date, time=time,
+                message=message,
+                property_id=property_id)
 
-        db.session.add(new_appointment)
-        db.session.commit()
+            db.session.add(new_appointment)
+            db.session.commit()
 
-        return {"appointment": new_appointment.to_dict()}
+            return {"appointment": new_appointment.to_dict()}
 
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
