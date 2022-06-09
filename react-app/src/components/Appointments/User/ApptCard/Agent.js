@@ -19,6 +19,7 @@ const Agent = ({ agent }) => {
 					<div>{agent.email}</div>
 					<div className="office">{agent.office.toUpperCase()}</div>
 					<span className="license">DRE# {agent.license_num}</span>
+					<div>Leave a review</div>
 				</div>
 			</div>
 		);

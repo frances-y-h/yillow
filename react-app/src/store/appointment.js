@@ -49,6 +49,26 @@ export const addAppointment = (appointment) => async (dispatch) => {
 	}
 };
 
+export const editAppointment = (appointment) => async (dispatch) => {
+	const response = await fetch(`/api/appointments/${appointment.id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(appointment),
+	});
+	if (response.ok) {
+		const data = await response.json();
+		if (data.errors) {
+			return data;
+		}
+		dispatch(addEditAppointment(data.appointment));
+		return data;
+	} else {
+		return { errors: ["Something went wrong. Please try again"] };
+	}
+};
+
 // Reducers
 const initialState = { appointments: null };
 

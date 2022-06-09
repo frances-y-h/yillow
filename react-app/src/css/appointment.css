@@ -66,6 +66,7 @@
 	flex-direction: column;
 	gap: 10px;
 	padding: 5px;
+	cursor: pointer;
 }
 
 .appt-time {
@@ -208,4 +209,11 @@
 .appt-agent-details .office {
 	font-size: 14px;
 	font-weight: lighter;
+}
+
+.appt-edit-btn-wrap {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+	width: 100%;
 }
