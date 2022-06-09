@@ -57,7 +57,9 @@ const Detail = ({ property, openTour }) => {
 					<button type="button" className="btn btn-w" onClick={openTour}>
 						Request a tour
 					</button>
-					<div className="property-detail-overview-wrap">Overview</div>
+					<div className="property-detail-overview-wrap">
+						<div className="property-detail-overview-btn">Overview</div>
+					</div>
 				</div>
 				<div className="property-detail-btm-wrap">
 					<div className="property-detail-icons">

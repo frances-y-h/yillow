@@ -11,6 +11,7 @@
 @import url("./css/tour.css");
 @import url("./css/loginSignup.css");
 @import url("./css/notification.css");
+@import url("./css/appointment.css");
 
 :root {
 	--blue: #016bff;
