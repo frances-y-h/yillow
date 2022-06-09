@@ -1,26 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../../../store/session";
-import { useNotification } from "../../../../context/Notification";
 
-import * as appointmentActions from "../../../../store/appointment";
-import * as propertyActions from "../../../../store/property";
-
-const LoginAppointment = ({
-	today,
-	hour,
-	property,
-	email,
-	setEmail,
-	message,
-	setMessage,
-	setShowTour,
-}) => {
+const LoginAppointment = ({ email, setEmail }) => {
 	const dispatch = useDispatch();
 
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState([]);
-	const [countMsg, setCountMsg] = useState(0);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -30,10 +16,6 @@ const LoginAppointment = ({
 			setErrors(data);
 		}
 	};
-
-	useEffect(() => {
-		setCountMsg(255 - message.length);
-	}, [message]);
 
 	return (
 		<>

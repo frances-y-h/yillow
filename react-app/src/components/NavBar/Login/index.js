@@ -14,8 +14,8 @@ const Login = () => {
 
 	const onDemoLogin = async (e) => {
 		e.preventDefault();
-		const email = process.env.REACT_APP_DEMO_EMAIL;
-		const password = process.env.REACT_APP_DEMO_PASSWORD;
+		const email = "demo@aa.io";
+		const password = "password";
 		await dispatch(login(email, password));
 	};
 

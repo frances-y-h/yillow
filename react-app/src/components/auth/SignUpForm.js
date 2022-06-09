@@ -9,6 +9,7 @@ const SignUpForm = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [repeatPassword, setRepeatPassword] = useState("");
+	const [matchErr, setMatchErr] = useState("");
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
 
@@ -18,6 +19,8 @@ const SignUpForm = () => {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
 				setErrors(data);
+				setPassword("");
+				setRepeatPassword("");
 			}
 		}
 	};
@@ -40,9 +43,9 @@ const SignUpForm = () => {
 
 	useEffect(() => {
 		if (password && password !== repeatPassword) {
-			setErrors(["Password does not match"]);
+			setMatchErr("Password does not match");
 		} else {
-			setErrors([]);
+			setMatchErr("");
 		}
 	}, [password, repeatPassword]);
 
@@ -112,6 +115,7 @@ const SignUpForm = () => {
 				{errors.map((error, ind) => (
 					<div key={ind}>{error}</div>
 				))}
+				{matchErr && <div>{matchErr}</div>}
 			</div>
 			<button className="btn" type="submit">
 				Sign Up
