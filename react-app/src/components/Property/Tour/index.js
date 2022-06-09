@@ -2,6 +2,8 @@ import { useState } from "react";
 import SelectDate from "./SelectDate";
 import Contact from "./Contact";
 
+import { useAppointment } from "../../../context/Appointment";
+
 const Tour = ({ property, setShowTour }) => {
 	Date.prototype.addDays = function (days) {
 		var date = new Date(this.valueOf());

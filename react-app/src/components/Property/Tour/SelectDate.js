@@ -11,6 +11,8 @@ const SelectDate = ({
 }) => {
 	const [hourList, setHourList] = useState([]);
 
+	const appointment = new Date(`${today} ${hour}`);
+
 	useEffect(() => {
 		setHourList(available[today]);
 		setHour(available[today][0]);
@@ -48,8 +50,10 @@ const SelectDate = ({
 			</div>
 
 			<button className="btn btn-w" onClick={() => setShowSelectDate(false)}>
-				{today} / {hour} <br />
-				Request this time
+				<div className="btn-desc">
+					{appointment.toDateString()} at {appointment.toLocaleTimeString()}
+				</div>
+				<div>Request this time</div>
 			</button>
 			<img className="tour-img" src={property?.front_img} alt="Property" />
 		</>

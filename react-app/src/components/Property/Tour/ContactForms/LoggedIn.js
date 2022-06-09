@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { useNotification } from "../../../../context/Notification";
 
 import * as appointmentActions from "../../../../store/appointment";
 import * as propertyActions from "../../../../store/property";
@@ -23,6 +24,8 @@ const LoggedIn = ({
 	const [errors, setErrors] = useState([]);
 	const [countMsg, setCountMsg] = useState(0);
 
+	const { setToggleNotification, setNotificationMsg } = useNotification();
+
 	const handleSubmit = async () => {
 		const appointment = {
 			property_id: property.id,
@@ -36,7 +39,15 @@ const LoggedIn = ({
 			// dispatch to update property info
 			await dispatch(propertyActions.getThisProperty(property.id));
 			// notify appointment booked
-			alert("Appointment booked. You can access it from Appointments");
+			setNotificationMsg(
+				"Appointment booked. You can access it from Appointments"
+			);
+			setToggleNotification("");
+			setTimeout(() => {
+				setToggleNotification("notification-move");
+				setNotificationMsg("");
+			}, 2000);
+
 			setShowTour(false);
 		} else {
 			setErrors(data.errors);
