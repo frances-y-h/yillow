@@ -3,7 +3,7 @@ const GET_PROPERTIES = "properties/SEARCH_PROPERTIES";
 const GET_PROPERTY = "properties/GET_PROPERTY";
 
 // Action Creators
-const getProperties = (properties) => {
+export const getProperties = (properties) => {
 	return {
 		type: GET_PROPERTIES,
 		properties,

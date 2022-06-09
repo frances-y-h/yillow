@@ -253,4 +253,17 @@
 	.property-ctrl {
 		width: 100vw;
 	}
+
+	.property-ctrl > i {
+		color: var(--blue);
+		right: 30px;
+		top: 10px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.property-ctrl {
+		display: flex;
+		flex-direction: column;
+	}
 }

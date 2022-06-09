@@ -24,7 +24,18 @@ def validation_errors_to_error_messages(validation_errors):
 def add_appointment():
 
     if request.method == "GET":
-        return {"appointments": [appt.to_dict() for appt in current_user.appointments]}
+        appointments = [appt.to_dict() for appt in current_user.appointments]
+        property_ids = [appt.property_id for appt in current_user.appointments]
+        agent_ids = [appt.agent_id for appt in current_user.appointments]
+
+        properties = Property.query.filter(Property.id.in_(property_ids)).all()
+        agents = User.query.filter(User.id.in_(agent_ids)).all()
+
+        return {
+            "appointments": appointments,
+            "agents": [agent.to_dict() for agent in agents],
+            "properties": [property.to_dict() for property in properties],
+            }
 
     if request.method == "POST":
         form = AddAppointmentForm()
@@ -72,11 +83,14 @@ def add_appointment():
                 user_id=current_user.id,
                 date=date, time=time,
                 message=message,
-                property_id=property_id)
+                property_id=property_id,
+                agent_id=4)
 
             db.session.add(new_appointment)
             db.session.commit()
 
-            return {"appointment": new_appointment.to_dict()}
+            return {
+                "appointment": new_appointment.to_dict()
+            }
 
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401

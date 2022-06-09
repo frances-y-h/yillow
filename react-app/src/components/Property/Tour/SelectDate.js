@@ -16,7 +16,7 @@ const SelectDate = ({
 	useEffect(() => {
 		setHourList(available[today]);
 		setHour(available[today][0]);
-	}, [today]);
+	}, [today, available, setHour]);
 
 	return (
 		<>

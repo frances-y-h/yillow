@@ -23,6 +23,7 @@ export const getAllAppointments = () => async (dispatch) => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(getAppointments(data.appointments));
+		return data;
 	} else {
 		return { errors: ["Something went wrong. Please try again"] };
 	}

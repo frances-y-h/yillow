@@ -1,38 +1,54 @@
+import { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+
+import SplitAppt from "../../Tools/SplitAppt";
+
+import Upcoming from "./Upcoming";
+import Past from "./Past";
 
 const User = () => {
 	const appointments = useSelector((state) => state.appointments);
+	const [showUpcoming, setShowUpcoming] = useState(true);
 
-	const now = new Date();
+	const [newAppt, pastAppt] = SplitAppt(appointments);
 
-	const apptArr = Object?.values(appointments).sort((a, b) => {
-		return (
-			new Date(`${a.date} ${a.time}`).getTime() -
-			new Date(`${b.date} ${b.time}`).getTime()
-		);
-	});
+	const upcomingRef = useRef();
+	const pastRef = useRef();
 
-	const passedAppt = [];
-
-	const newArr = apptArr?.filter((appt) => {
-		if (now.getTime() < new Date(`${appt?.date} ${appt?.time}`).getTime()) {
-			return appt;
+	useEffect(() => {
+		if (showUpcoming) {
+			upcomingRef.current.classList.add("appt-active");
+			pastRef.current.classList.remove("appt-active");
 		} else {
-			passedAppt.push(appt);
+			upcomingRef.current.classList.remove("appt-active");
+			pastRef.current.classList.add("appt-active");
 		}
-	});
-
-	console.log(passedAppt);
+	}, [showUpcoming]);
 
 	return (
 		<div className="appointment-ctrl">
 			<div>Appointments</div>
 			<div>
-				{newArr.map((appt, idx) => (
-					<div key={"appt" + idx}>
-						{appt?.date} {appt?.time}
+				<div className="appt-wrap">
+					<div
+						className="app-btn"
+						ref={upcomingRef}
+						onClick={() => setShowUpcoming(true)}
+					>
+						Upcoming Appointments
 					</div>
-				))}
+					<div
+						className="app-btn"
+						ref={pastRef}
+						onClick={() => setShowUpcoming(false)}
+					>
+						Past Appointments
+					</div>
+				</div>
+				<div className="appt-card-list">
+					{showUpcoming && <Upcoming newAppt={newAppt} />}
+					{!showUpcoming && <Past pastAppt={pastAppt} />}
+				</div>
 			</div>
 		</div>
 	);
