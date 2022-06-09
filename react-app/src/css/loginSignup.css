@@ -1,0 +1,64 @@
+.login-sign-modal {
+	background-color: white;
+	padding: 40px;
+	border-radius: 10px;
+	width: 500px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	overflow-x: hidden;
+	white-space: nowrap;
+	height: 95vh;
+}
+
+.login-sign-title {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 28px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.login-sign-toggle-wrap {
+	display: flex;
+	border-bottom: 1px solid gray;
+}
+
+.login-btn {
+	padding: 15px;
+	background-color: transparent;
+	border: none;
+	font-size: 18px;
+	font-weight: lighter;
+	cursor: pointer;
+}
+
+.ref-active {
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid var(--blue);
+}
+
+.login-sign-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.login-sign-tfu {
+	font-size: 14px;
+	display: flex;
+	justify-content: center;
+	font-weight: lighter;
+	color: gray;
+}
+
+.login-sign-connect {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: lighter;
+	font-size: 18px;
+	padding: 20px 10px 10px 10px;
+	border-top: 1px solid gray;
+}

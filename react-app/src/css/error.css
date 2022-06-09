@@ -5,3 +5,8 @@
 	backdrop-filter: blur(10px);
 	border-radius: 5px;
 }
+
+.error-ctr {
+	display: flex;
+	justify-content: center;
+}

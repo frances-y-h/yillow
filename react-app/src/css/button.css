@@ -9,6 +9,10 @@
 	cursor: pointer;
 }
 
+.btn-bl {
+	background-color: black;
+}
+
 .btn-w {
 	width: 100%;
 }

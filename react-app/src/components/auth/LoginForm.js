@@ -31,33 +31,38 @@ const LoginForm = () => {
 	}
 
 	return (
-		<form onSubmit={onLogin}>
-			<div>
+		<form className="login-sign-form" onSubmit={onLogin}>
+			<label htmlFor="email" className="label">
+				Email
+				<input
+					name="email"
+					type="text"
+					placeholder="Enter Email"
+					value={email}
+					onChange={updateEmail}
+					required
+				/>
+			</label>
+
+			<label htmlFor="password" className="label">
+				Password
+				<input
+					name="password"
+					type="password"
+					placeholder="Enter Password"
+					value={password}
+					onChange={updatePassword}
+					required
+				/>
+			</label>
+			<div className="error-list error-ctr">
 				{errors.map((error, ind) => (
 					<div key={ind}>{error}</div>
 				))}
 			</div>
-			<div>
-				<label htmlFor="email">Email</label>
-				<input
-					name="email"
-					type="text"
-					placeholder="Email"
-					value={email}
-					onChange={updateEmail}
-				/>
-			</div>
-			<div>
-				<label htmlFor="password">Password</label>
-				<input
-					name="password"
-					type="password"
-					placeholder="Password"
-					value={password}
-					onChange={updatePassword}
-				/>
-			</div>
-			<button type="submit">Login</button>
+			<button className="btn btn-w" type="submit">
+				Login
+			</button>
 		</form>
 	);
 };

@@ -47,6 +47,10 @@
 	border-radius: 5px;
 }
 
+.label input::placeholder {
+	font-weight: lighter;
+}
+
 .label input:disabled {
 	background-color: var(--lightgray);
 }
