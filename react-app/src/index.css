@@ -13,6 +13,7 @@
 @import url("./css/notification.css");
 @import url("./css/appointment.css");
 @import url("./css/stars.css");
+@import url("./css/review.css");
 
 :root {
 	--blue: #016bff;

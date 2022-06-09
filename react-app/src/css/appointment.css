@@ -78,6 +78,7 @@
 .appt-address-wrap {
 	display: flex;
 	flex-direction: column;
+	cursor: pointer;
 }
 
 .appt-address-title {
@@ -106,7 +107,7 @@
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
-	width: 500px;
+	width: 600px;
 	height: 90vh;
 }
 
@@ -153,7 +154,6 @@
 }
 
 /* Appointment Agent */
-
 .appt-no-agent-wrap {
 	border-radius: 5px;
 	padding: 20px;
@@ -234,4 +234,18 @@
 .appt-agents-write:hover {
 	color: var(--blue);
 	border-bottom: 1px dashed var(--blue);
+}
+
+.appt-visit-property {
+	font-size: 14px;
+	font-weight: lighter;
+	color: var(--blue);
+	padding: 5px 0px;
+	border-bottom: 1px dashed var(--blue);
+	width: fit-content;
+	transition: all 0.25s;
+}
+
+.appt-visit-property:hover {
+	background-color: var(--lightblue);
 }

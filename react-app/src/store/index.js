@@ -5,6 +5,7 @@ import properties from "./property";
 import images from "./property_img";
 import agents from "./agent";
 import appointments from "./appointment";
+import reviews from "./review";
 
 const rootReducer = combineReducers({
 	session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
 	agents,
 	images,
 	appointments,
+	reviews,
 });
 
 let enhancer;

@@ -5,6 +5,9 @@ import { useNotification } from "../../../../context/Notification";
 import editAvailable from "../../../Tools/EditAvailable";
 import Agent from "./Agent";
 
+import Property from "../../../Property";
+import { Modal } from "../../../../context/Modal";
+
 import * as appointmentActions from "../../../../store/appointment";
 import * as propertyActions from "../../../../store/property";
 
@@ -18,6 +21,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 	const [message, setMessage] = useState("");
 	const [hourList, setHourList] = useState([]);
 	const [errors, setErrors] = useState([]);
+	const [showProperty, setShowProperty] = useState(false);
 
 	const { setToggleNotification, setNotificationMsg } = useNotification();
 
@@ -95,16 +99,25 @@ const ApptDetail = ({ appt, past, onClose }) => {
 				<div
 					className="appt-img-detail"
 					style={{ backgroundImage: `url("${property.front_img}")` }}
+					onClick={() => setShowProperty(true)}
 				></div>
 			) : (
-				<div className="appt-img-detail">No image available</div>
+				<div className="appt-img-detail" onClick={() => setShowProperty(true)}>
+					No image available
+				</div>
 			)}
 			<div className="appt-modal-btm">
-				<div className="appt-address-wrap">
+				<div
+					className="appt-address-wrap"
+					onClick={() => setShowProperty(true)}
+				>
 					<div className="appt-label">Address</div>
 					<div className="appt-address">
 						{property?.st_num} {property?.st_name}, {property?.city},{" "}
 						{property?.state}, {property?.zip}
+					</div>
+					<div className="appt-visit-property">
+						Click here to visit property page
 					</div>
 				</div>
 				<div>
@@ -172,6 +185,14 @@ const ApptDetail = ({ appt, past, onClose }) => {
 					</>
 				)}
 			</div>
+			{showProperty && (
+				<Modal onClose={() => setShowProperty(false)}>
+					<Property
+						property={property}
+						onClose={() => setShowProperty(false)}
+					/>
+				</Modal>
+			)}
 		</form>
 	);
 };

@@ -41,10 +41,6 @@ const ApptCard = ({ appt, past }) => {
 						</div>
 					</div>
 				</div>
-				{/* <div className="appt-address-wrap">
-					<div className="appt-address-title">Message</div>
-					<div>{appt?.message}</div>
-				</div> */}
 				<div className="appt-address-wrap">
 					<div className="appt-address-title">Agent</div>
 					<div>{agent ? agent?.username : "No agent assinged yet"}</div>
