@@ -1,22 +1,56 @@
-const SelectDate = ({ property, available }) => {
-	console.log(available);
+import { useState, useEffect } from "react";
+
+const SelectDate = ({
+	property,
+	available,
+	today,
+	setToday,
+	hour,
+	setHour,
+	setShowSelectDate,
+}) => {
+	const [hourList, setHourList] = useState([]);
+
+	useEffect(() => {
+		setHourList(available[today]);
+		setHour(available[today][0]);
+	}, [today]);
+
 	return (
 		<>
 			<div className="tour-type">In-person</div>
 			<div className="tour-prefered">Select a preferred time</div>
 			<div className="tour-date-wrap">
-				<div className="tour-date-arrow">
-					<i className="fa-solid fa-chevron-left"></i>
-				</div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div className="tour-date-arrow">
-					<i className="fa-solid fa-chevron-right"></i>
-				</div>
+				<select
+					className="select-input"
+					value={today}
+					onChange={(e) => setToday(e.target.value)}
+				>
+					{Object.keys(available).map((day) => (
+						<option value={day} key={day}>
+							{day}
+						</option>
+					))}
+				</select>
 			</div>
-			<div>dropdown</div>
-			<button className="btn btn-w">Reques this time</button>
+			<div>
+				<select
+					className="select-input"
+					value={hour}
+					onChange={(e) => setHour(e.target.value)}
+				>
+					{hourList.map((hour) => (
+						<option value={hour} key={hour}>
+							{hour}
+						</option>
+					))}
+				</select>
+			</div>
+
+			<button className="btn btn-w" onClick={() => setShowSelectDate(false)}>
+				{today} / {hour} <br />
+				Request this time
+			</button>
 			<img className="tour-img" src={property?.front_img} alt="Property" />
 		</>
 	);

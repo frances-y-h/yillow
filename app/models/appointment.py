@@ -5,9 +5,10 @@ class Appointment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    agent_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    agent_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     property_id = db.Column(db.Integer, db.ForeignKey("properties.id"), nullable=False)
-    appointment = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.String(50), nullable=False)
+    time = db.Column(db.String(50), nullable=False)
     message = db.Column(db.String(255))
     canceled = db.Column(db.Boolean)
 
@@ -21,7 +22,11 @@ class Appointment(db.Model):
             "user_id": self.user_id,
             "agent_id": self.agent_id,
             "property_id": self.property_id,
-            "appointment": self.appointment.isoformat(),
+            "date": self.date,
+            "time": self.time,
             "message": self.message,
             "canceled": self.canceled,
         }
+
+    def appt(self):
+        return f"{self.date} {self.time}"

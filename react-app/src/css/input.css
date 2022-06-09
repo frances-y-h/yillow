@@ -21,3 +21,42 @@
 	font-size: 24px;
 	cursor: pointer;
 }
+
+/* Select input */
+.select-input {
+	width: 100%;
+	padding: 10px;
+	font-size: 18px;
+}
+
+/* regular input */
+
+.label {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	font-weight: bold;
+}
+
+.label input,
+.label textarea {
+	padding: 15px;
+	font-size: 18px;
+	font-weight: lighter;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+
+.label input::placeholder {
+	font-weight: lighter;
+}
+
+.label input:disabled {
+	background-color: var(--lightgray);
+}
+
+.input-error {
+	font-size: 12px;
+	font-weight: lighter;
+	color: var(--error);
+}

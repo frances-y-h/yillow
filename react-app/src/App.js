@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Splash from "./components/Splash";
 import Search from "./components/Search";
+import Appointments from "./components/Appointments";
 // import UsersList from "./components/UsersList";
 // import User from "./components/User";
 import { authenticate } from "./store/session";
@@ -52,6 +53,9 @@ function App() {
 				</Route>
 				<ProtectedRoute path="/profile" exact={true}>
 					<h1>Profile</h1>
+				</ProtectedRoute>
+				<ProtectedRoute path="/appointments" exact={true}>
+					<Appointments />
 				</ProtectedRoute>
 			</Switch>
 		</BrowserRouter>

@@ -31,7 +31,7 @@ const Property = ({ property, onClose }) => {
 			<Detail property={property} openTour={openTour} />
 			{showTour && (
 				<Modal onClose={() => setShowTour(false)}>
-					<Tour property={property} />
+					<Tour property={property} setShowTour={setShowTour} />
 				</Modal>
 			)}
 		</div>

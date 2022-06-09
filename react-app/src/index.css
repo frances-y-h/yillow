@@ -9,11 +9,15 @@
 @import url("./css/property.css");
 @import url("./css/button.css");
 @import url("./css/tour.css");
+@import url("./css/loginSignup.css");
 
 :root {
 	--blue: #016bff;
 	--blue2: #0346a4;
 	--lightblue: #f0f9ff;
+	--error: rgb(172, 12, 12);
+
+	--lightgray: rgb(242, 242, 242);
 }
 
 * {
