@@ -50,6 +50,9 @@ function App() {
 				<Route path="/sign-up" exact={true}>
 					<SignUpForm />
 				</Route>
+				<Route path={["/agents", "/agents/:agent"]}>
+					<div>Agents</div>
+				</Route>
 				<Route path="/about" exact={true}>
 					<About />
 				</Route>
@@ -59,6 +62,9 @@ function App() {
 				<ProtectedRoute path="/appointments" exact={true}>
 					<Appointments />
 				</ProtectedRoute>
+				<Route>
+					<div>404</div>
+				</Route>
 			</Switch>
 		</BrowserRouter>
 	);
