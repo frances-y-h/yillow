@@ -1,6 +1,7 @@
 // Actions
 const GET_APPOINTMENTS = "appointments/GET_APPOINTMENTS";
 const ADD_EDIT_APPOINTMENT = "appointments/ADD_EDIT_APPOINTMENT";
+const DELETE_APPOINTMENT = "appointments/DELETE_APPOINTMENT";
 
 // Action Creators
 const getAppointments = (appointments) => {
@@ -14,6 +15,13 @@ const addEditAppointment = (appointment) => {
 	return {
 		type: ADD_EDIT_APPOINTMENT,
 		appointment,
+	};
+};
+
+const deleteAppointment = (appointmentId) => {
+	return {
+		type: DELETE_APPOINTMENT,
+		appointmentId,
 	};
 };
 
@@ -69,6 +77,22 @@ export const editAppointment = (appointment) => async (dispatch) => {
 	}
 };
 
+export const deleteThisAppointment = (appointmentId) => async (dispatch) => {
+	const response = await fetch(`/api/appointments/${appointmentId}`, {
+		method: "DELETE",
+	});
+	if (response.ok) {
+		const data = await response.json();
+		if (data.errors) {
+			return data;
+		}
+		dispatch(deleteAppointment(appointmentId));
+		return data;
+	} else {
+		return { errors: ["Something went wrong. Please try again"] };
+	}
+};
+
 // Reducers
 const initialState = { appointments: null };
 
@@ -84,6 +108,10 @@ export default function reducer(state = initialState, action) {
 		case ADD_EDIT_APPOINTMENT:
 			newState = JSON.parse(JSON.stringify(state));
 			newState[action.appointment.id] = action.appointment;
+			return newState;
+		case DELETE_APPOINTMENT:
+			newState = JSON.parse(JSON.stringify(state));
+			delete newState[action.appointmentId];
 			return newState;
 		default:
 			return state;

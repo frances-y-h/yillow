@@ -96,7 +96,7 @@ def add_appointment():
 
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-@appointment_routes.route("/<int:appointment_id>", methods=["GET", "PUT"])
+@appointment_routes.route("/<int:appointment_id>", methods=["GET", "PUT", "DELETE"])
 @login_required
 def edit_appointment(appointment_id):
 
@@ -186,3 +186,13 @@ def edit_appointment(appointment_id):
 
 
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+    if request.method == "DELETE":
+        appt = Appointment.query.filter(Appointment.id == appointment_id).filter(Appointment.user_id == current_user.id).first()
+
+        if appt:
+            db.session.delete(appt)
+            db.session.commit()
+            return {"success": "success"}
+
+        return {'errors': ['Unauthorized']}, 401

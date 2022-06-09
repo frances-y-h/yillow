@@ -20,9 +20,9 @@ const Agent = ({ agent }) => {
 					<div>Tel {agent.phone}</div>
 					<div>{agent.email}</div>
 					<div className="office">{agent.office.toUpperCase()}</div>
-					<div></div>
-					<div>
-						<Stars rating={agent?.rating} /> Write a Review
+					<div className="appt-agent-reviews">
+						<Stars rating={agent?.rating} />{" "}
+						<span className="appt-agents-write">Write a Review</span>
 					</div>
 				</div>
 			</div>

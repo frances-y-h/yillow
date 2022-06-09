@@ -217,3 +217,21 @@
 	gap: 20px;
 	width: 100%;
 }
+
+.appt-agent-reviews {
+	display: flex;
+	font-size: 14px;
+	align-items: flex-end;
+	gap: 5px;
+}
+
+.appt-agents-write {
+	color: var(--blue2);
+	border-bottom: 1px dashed var(--blue2);
+	cursor: pointer;
+}
+
+.appt-agents-write:hover {
+	color: var(--blue);
+	border-bottom: 1px dashed var(--blue);
+}

@@ -8,7 +8,7 @@ import Agent from "./Agent";
 import * as appointmentActions from "../../../../store/appointment";
 import * as propertyActions from "../../../../store/property";
 
-const ApptDetail = ({ appt, past }) => {
+const ApptDetail = ({ appt, past, onClose }) => {
 	const dispatch = useDispatch();
 
 	const properties = useSelector((state) => state.properties);
@@ -57,6 +57,26 @@ const ApptDetail = ({ appt, past }) => {
 		setToday(appt.date);
 		setHour(appt.time);
 		setMessage(appt.message);
+	};
+
+	const cancel = async (e) => {
+		e.preventDefault();
+		const data = await dispatch(
+			appointmentActions.deleteThisAppointment(appt.id)
+		);
+		if (!data.errors) {
+			// after appt updated, need to dispatch to update property
+			await dispatch(propertyActions.getThisProperty(appt.property_id));
+			setNotificationMsg("Appointment Deleted");
+			setToggleNotification("");
+			setTimeout(() => {
+				setToggleNotification("notification-move");
+				setNotificationMsg("");
+			}, 2000);
+			onClose();
+		} else {
+			setErrors(data.errors);
+		}
 	};
 
 	useEffect(() => {
@@ -142,7 +162,7 @@ const ApptDetail = ({ appt, past }) => {
 							</div>
 						</button>
 						<div className="appt-edit-btn-wrap">
-							<button type="button" className="btn btn-red">
+							<button type="button" className="btn btn-red" onClick={cancel}>
 								Cancel Appointment
 							</button>
 							<button type="button" className="btn btn-bl" onClick={undo}>

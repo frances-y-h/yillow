@@ -52,7 +52,7 @@ const ApptCard = ({ appt, past }) => {
 			</div>
 			{showModal && (
 				<Modal onClose={onClose}>
-					<ApptDetail appt={appt} past={past} />
+					<ApptDetail appt={appt} past={past} onClose={onClose} />
 				</Modal>
 			)}
 		</div>
