@@ -1,0 +1,22 @@
+.notification-div {
+	position: fixed;
+	right: 10px;
+	top: 10px;
+	background-color: var(--blue);
+	padding: 30px;
+	border-radius: 3px;
+	font-size: 18px;
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+	color: white;
+	transition: all 0.5s;
+	display: flex;
+	justify-content: center;
+	z-index: 10;
+}
+.notification-div i {
+	padding-right: 5px;
+}
+
+.notification-move {
+	right: -100px;
+}

@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Splash from "./components/Splash";
 import Search from "./components/Search";
 import Appointments from "./components/Appointments";
+import Notification from "./components/Tools/Notification";
 // import UsersList from "./components/UsersList";
 // import User from "./components/User";
 import { authenticate } from "./store/session";
@@ -32,6 +33,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<NavBar />
+			<Notification />
 			<Switch>
 				<Route path="/" exact={true}>
 					<Splash />

@@ -5,15 +5,18 @@ import "./index.css";
 import App from "./App";
 import configureStore from "./store";
 import { ModalProvider } from "./context/Modal";
+import NotificationProvider from "./context/Notification";
 
 const store = configureStore();
 
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<ModalProvider>
-				<App />
-			</ModalProvider>
+			<NotificationProvider>
+				<ModalProvider>
+					<App />
+				</ModalProvider>
+			</NotificationProvider>
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById("root")
