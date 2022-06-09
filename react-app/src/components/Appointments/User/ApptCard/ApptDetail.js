@@ -75,9 +75,7 @@ const ApptDetail = ({ appt, past }) => {
 				<div
 					className="appt-img-detail"
 					style={{ backgroundImage: `url("${property.front_img}")` }}
-				>
-					Top image
-				</div>
+				></div>
 			) : (
 				<div className="appt-img-detail">No image available</div>
 			)}

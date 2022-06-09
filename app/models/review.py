@@ -11,3 +11,12 @@ class Review(db.Model):
 
     user = db.relationship("User", foreign_keys=[user_id], back_populates="user_reviews")
     agent = db.relationship("User", foreign_keys=[agent_id], back_populates="agent_reviews")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "agent_id" :self.agent_id,
+            "rating": self.rating,
+            "content": self.content
+        }

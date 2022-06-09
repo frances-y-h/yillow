@@ -1,3 +1,5 @@
+import Stars from "../../../Tools/Stars";
+
 const Agent = ({ agent }) => {
 	if (agent) {
 		return (
@@ -18,8 +20,10 @@ const Agent = ({ agent }) => {
 					<div>Tel {agent.phone}</div>
 					<div>{agent.email}</div>
 					<div className="office">{agent.office.toUpperCase()}</div>
-					<span className="license">DRE# {agent.license_num}</span>
-					<div>Leave a review</div>
+					<div></div>
+					<div>
+						<Stars rating={agent?.rating} /> Write a Review
+					</div>
 				</div>
 			</div>
 		);

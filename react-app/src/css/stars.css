@@ -1,0 +1,8 @@
+.star-wrap {
+	display: flex;
+}
+
+.star {
+	width: 16px;
+	height: 16px;
+}
