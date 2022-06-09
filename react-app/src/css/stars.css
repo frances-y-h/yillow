@@ -1,0 +1,25 @@
+.star-wrap {
+	display: flex;
+}
+
+.star {
+	width: 16px;
+	height: 16px;
+}
+
+.star-rating button {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 0px;
+	font-size: 18px;
+}
+
+.star-rating .on {
+	color: var(--blue);
+}
+
+.star-rating .off {
+	color: lightgray;
+}

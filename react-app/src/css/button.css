@@ -17,6 +17,10 @@
 	background-color: black;
 }
 
+.btn-red {
+	background-color: var(--error);
+}
+
 .btn-w {
 	width: 100%;
 }

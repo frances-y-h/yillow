@@ -46,6 +46,9 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         if self.agent:
+            avg_review_lst = [review.rating for review in self.agent_reviews]
+            avg = sum(avg_review_lst) / len(avg_review_lst)
+
             return {
                 'id': self.id,
                 'username': self.username,
@@ -56,7 +59,9 @@ class User(db.Model, UserMixin):
                 "bio" : self.bio,
                 "photo": self.photo,
                 "broker_license": self.broker_license,
-                "office": self.office
+                "office": self.office,
+                "reivews": [review.to_dict() for review in self.agent_reviews],
+                "rating": round(avg, 1)
             }
         else:
             return {

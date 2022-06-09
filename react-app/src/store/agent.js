@@ -3,12 +3,12 @@ const GET_AGENTS = "agents/GET_AGENTS";
 const GET_AGENT = "agents/GET_AGENT";
 
 // Action Creator
-// const getAgents = (agents) => {
-// 	return {
-// 		type: GET_AGENTS,
-// 		agents,
-// 	};
-// };
+export const getAgents = (agents) => {
+	return {
+		type: GET_AGENTS,
+		agents,
+	};
+};
 
 const getAgent = (agent) => {
 	return {

@@ -167,8 +167,15 @@
 .property-detail-overview-wrap {
 	border-top: 1px solid gray;
 	border-bottom: 1px solid gray;
-	padding: 25px;
 	font-weight: lighter;
+}
+
+.property-detail-overview-btn {
+	border-bottom: 5px solid var(--blue);
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	padding: 20px;
+	width: fit-content;
 }
 
 .property-detail-btm-wrap {
@@ -245,5 +252,18 @@
 @media screen and (max-width: 1126px) {
 	.property-ctrl {
 		width: 100vw;
+	}
+
+	.property-ctrl > i {
+		color: var(--blue);
+		right: 30px;
+		top: 10px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.property-ctrl {
+		display: flex;
+		flex-direction: column;
 	}
 }

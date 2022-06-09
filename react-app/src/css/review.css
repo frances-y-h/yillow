@@ -1,0 +1,19 @@
+.review-box {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	border-top: 1px solid gray;
+	padding: 20px 0px;
+}
+
+.reveiew-char {
+	font-size: 14px;
+	font-weight: lighter;
+	color: var(--error);
+}
+
+.review-rating {
+	display: flex;
+	align-items: flex-end;
+	gap: 10px;
+}
