@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../../../store/session";
 
 import LoggedIn from "./ContactForms/LoggedIn";
 import Toggle from "./ContactForms/Toggle";
@@ -7,6 +8,7 @@ import LoginAppointment from "./ContactForms/Login";
 import SignUp from "./ContactForms/SignUp";
 
 const Contact = ({ property, today, hour, setShowSelectDate, setShowTour }) => {
+	const dispatch = useDispatch();
 	const user = useSelector((state) => state.session.user);
 
 	const [username, setUsername] = useState("");
@@ -16,9 +18,16 @@ const Contact = ({ property, today, hour, setShowSelectDate, setShowTour }) => {
 		`I am interested in ${property.st_num} ${property.st_name}, ${property.city}, ${property.state} ${property.zip}.`
 	);
 
-	const [login, setLogin] = useState(true);
+	const [showLogin, setShowLogin] = useState(true);
 
 	const appointment = new Date(`${today} ${hour}`);
+
+	const onDemoLogin = async (e) => {
+		e.preventDefault();
+		const email = "demo@aa.io";
+		const password = "password";
+		await dispatch(login(email, password));
+	};
 
 	useEffect(() => {
 		if (user) {
@@ -54,8 +63,8 @@ const Contact = ({ property, today, hour, setShowSelectDate, setShowTour }) => {
 					setShowTour={setShowTour}
 				/>
 			)}
-			{!user && <Toggle setLogin={setLogin} login={login} />}
-			{!user && login && (
+			{!user && <Toggle setShowLogin={setShowLogin} showLogin={showLogin} />}
+			{!user && showLogin && (
 				<LoginAppointment
 					property={property}
 					email={email}
@@ -67,7 +76,7 @@ const Contact = ({ property, today, hour, setShowSelectDate, setShowTour }) => {
 					setShowTour={setShowTour}
 				/>
 			)}
-			{!user && !login && (
+			{!user && !showLogin && (
 				<SignUp
 					property={property}
 					username={username}
@@ -82,6 +91,11 @@ const Contact = ({ property, today, hour, setShowSelectDate, setShowTour }) => {
 					hour={hour}
 					setShowTour={setShowTour}
 				/>
+			)}
+			{!user && (
+				<button type="button" className="btn btn-bl" onClick={onDemoLogin}>
+					Continue with Demo Login
+				</button>
 			)}
 			<div className="tour-tnc">
 				By pressing Request visit, you are contacting a buyer's agent, you agree

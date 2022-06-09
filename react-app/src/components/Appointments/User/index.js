@@ -7,7 +7,7 @@ const User = () => {
 		<div>
 			<div>User appointments</div>
 			{Object?.values(appointments)?.map((appt) => (
-				<div>
+				<div key={appt}>
 					{appt?.date} {appt?.time}
 				</div>
 			))}
