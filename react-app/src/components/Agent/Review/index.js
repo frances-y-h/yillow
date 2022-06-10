@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import Stars from "../../Tools/Stars";
 import StarRating from "../../Tools/StarRating";
 
+import { Modal } from "../../../context/Modal";
+import Delete from "./Delete";
+
 import * as reviewActions from "../../../store/review";
 import * as agentActions from "../../../store/agent";
 
@@ -101,10 +104,20 @@ const Review = ({ review }) => {
 								Submit
 							</button>
 						</div>
+						{showModal && (
+							<Modal onClose={() => setShowModal(false)}>
+								<Delete review={review} />
+							</Modal>
+						)}
 					</div>
 				</>
 			) : (
 				<div>{review.content}</div>
+			)}
+			{showModal && (
+				<Modal onClose={() => setShowModal(false)}>
+					<Delete onClose={() => setShowModal(false)} review={review} />
+				</Modal>
 			)}
 		</div>
 	);
