@@ -1,4 +1,4 @@
-export default function editAvailable(property, date, time) {
+export default function editAvailable(property, originalDate, originalTime) {
 	Date.prototype.addDays = function (days) {
 		var date = new Date(this.valueOf());
 		date.setDate(date.getDate() + days);
@@ -11,7 +11,7 @@ export default function editAvailable(property, date, time) {
 		appointments.push(new Date(appt).getTime());
 	});
 
-	const tour = { [date]: [time] };
+	const tour = { [originalDate]: [originalTime] };
 
 	for (let i = 1; i < 9; i++) {
 		let month = today.addDays(i).getMonth();
@@ -28,6 +28,8 @@ export default function editAvailable(property, date, time) {
 			}
 			let appt = new Date(`${date} ${hour}`);
 			if (!appointments.includes(appt.getTime())) {
+				hours.push(hour);
+			} else if (date === originalDate && hour === originalTime) {
 				hours.push(hour);
 			}
 		}

@@ -10,9 +10,29 @@ const addEditReview = (review) => {
 };
 
 // Thunks
-export const addNewReview = (review) => async (dispatch) => {
+export const addReview = (review) => async (dispatch) => {
 	const response = await fetch("/api/reviews/", {
 		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(review),
+	});
+	if (response.ok) {
+		const data = await response.json();
+		if (data.errors) {
+			return data;
+		}
+		dispatch(addEditReview(data.review));
+		return data.review;
+	} else {
+		return { errors: ["Something went wrong. Please try again"] };
+	}
+};
+
+export const editReview = (review) => async (dispatch) => {
+	const response = await fetch(`/api/reviews/${review.id}`, {
+		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},

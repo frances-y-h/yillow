@@ -56,7 +56,7 @@
 .bio-wrap .about {
 	font-size: 26px;
 	font-weight: bold;
-	color: gray;
+	color: var(--blue2);
 }
 
 .bio-wrap .bio {
@@ -74,7 +74,6 @@
 .bio-wrap .phone {
 	font-size: 20px;
 	font-weight: lighter;
-	color: var(--blue2);
 }
 
 .agent-review-ctrl {
@@ -96,10 +95,24 @@
 	font-size: 18px;
 	font-weight: lighter;
 	line-height: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .agent-review-ctrl .review:not(:first-child) {
 	border-top: 1px solid gray;
+}
+
+.review .review-edit {
+	display: flex;
+	justify-content: space-between;
+}
+
+.review .edit-wrap {
+	display: flex;
+	gap: 10px;
+	color: var(--blue);
 }
 
 /* Agent 404 */

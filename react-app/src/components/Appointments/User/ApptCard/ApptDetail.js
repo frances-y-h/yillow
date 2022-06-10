@@ -51,6 +51,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 				setToggleNotification("notification-move");
 				setNotificationMsg("");
 			}, 2000);
+			onClose();
 		} else {
 			setErrors(data.errors);
 		}
@@ -91,6 +92,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 
 	useEffect(() => {
 		setHourList(schedule[today]);
+		console.log(hourList);
 	}, [today]);
 
 	return (

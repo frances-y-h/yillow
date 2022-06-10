@@ -35,7 +35,7 @@ const Agent = ({ agent }) => {
 				content,
 				agent_id: agent.id,
 			};
-			const data = await dispatch(reviewActions.addNewReview(newReview));
+			const data = await dispatch(reviewActions.addReview(newReview));
 			if (!data.errors) {
 				// dispatch and update agent info
 				await dispatch(agentActions.getThisAgent(agent.id));

@@ -23,9 +23,10 @@ const ApptCard = ({ appt, past }) => {
 
 	return (
 		<div className="appt-card" onClick={() => setShowModal(true)}>
-			<div className="appt-house">
-				{/* {property?.front_img && <img src={property?.front_img} alt="house" />} */}
-			</div>
+			<div
+				className="appt-house"
+				styles={{ backgroundImage: `url('${property?.front_img}')` }}
+			></div>
 			<div className="appt-detail-wrap">
 				<div className="appt-time">
 					<ApptDate date={appt?.date} time={appt?.time} />
