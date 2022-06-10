@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useNotification } from "../../../../context/Notification";
+import ReactTooltip from "react-tooltip";
 
 import Stars from "../../../Tools/Stars";
 import StarRating from "../../../Tools/StarRating";
@@ -10,6 +12,7 @@ import * as agentActions from "../../../../store/agent";
 
 const Agent = ({ agent }) => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const [write, setWrite] = useState(false);
 	const [rating, setRating] = useState(1);
@@ -18,6 +21,11 @@ const Agent = ({ agent }) => {
 	const [char, setChar] = useState(2000);
 
 	const { setToggleNotification, setNotificationMsg } = useNotification();
+
+	const navigateAgent = (e) => {
+		e.preventDefault();
+		history.push(`/agents/${agent.id}`);
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -59,12 +67,24 @@ const Agent = ({ agent }) => {
 					<div
 						className="appt-photo"
 						style={{ backgroundImage: `url("${agent.photo}")` }}
+						onClick={navigateAgent}
+						data-tip="Visit Agent Profile"
 					></div>
 				) : (
-					<div className="appt-photo">No Photo</div>
+					<div
+						className="appt-photo"
+						onClick={navigateAgent}
+						data-tip="Visit Agent Profile"
+					>
+						No Photo
+					</div>
 				)}
 				<div className="appt-agent-details">
-					<div className="name">
+					<div
+						className="name"
+						onClick={navigateAgent}
+						data-tip="Visit Agent Profile"
+					>
 						{agent.username}{" "}
 						<span className="license">DRE# {agent.license_num}</span>
 					</div>
@@ -120,6 +140,7 @@ const Agent = ({ agent }) => {
 						</div>
 					)}
 				</div>
+				<ReactTooltip />
 			</div>
 		);
 	} else {

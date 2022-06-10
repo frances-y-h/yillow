@@ -187,6 +187,7 @@
 	align-items: center;
 	background-size: cover;
 	background-position: center;
+	cursor: pointer;
 }
 
 .appt-agent-details {
@@ -199,6 +200,7 @@
 .appt-agent-details .name {
 	font-size: 20px;
 	font-weight: bold;
+	cursor: pointer;
 }
 
 .appt-agent-details .license {

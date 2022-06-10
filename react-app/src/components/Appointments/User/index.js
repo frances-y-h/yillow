@@ -6,6 +6,8 @@ import SplitAppt from "../../Tools/SplitAppt";
 import Upcoming from "./Upcoming";
 import Past from "./Past";
 
+// import Basic from "./Calendar";
+
 const User = () => {
 	const appointments = useSelector((state) => state.appointments);
 	const [showUpcoming, setShowUpcoming] = useState(true);
@@ -27,7 +29,8 @@ const User = () => {
 
 	return (
 		<div className="appointment-ctrl">
-			<div>Appointments</div>
+			{/* <Basic /> */}
+			<div></div>
 			<div>
 				<div className="appt-wrap">
 					<div

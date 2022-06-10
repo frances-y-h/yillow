@@ -19,12 +19,34 @@ const Stars = ({ rating }) => {
 
 	return (
 		<div className="star-wrap">
-			{starArr.map((num) => {
+			{starArr.map((num, idx) => {
 				if (num === 1)
-					return <img className="star" src={StarFull} alt="star" />;
+					return (
+						<img
+							key={"star" + idx}
+							className="star"
+							src={StarFull}
+							alt="star"
+						/>
+					);
 				else if (num === 0.5)
-					return <img className="star" src={StarHalf} alt="star" />;
-				else return <img className="star" src={StarOutline} alt="star" />;
+					return (
+						<img
+							key={"star" + idx}
+							className="star"
+							src={StarHalf}
+							alt="star"
+						/>
+					);
+				else
+					return (
+						<img
+							key={"star" + idx}
+							className="star"
+							src={StarOutline}
+							alt="star"
+						/>
+					);
 			})}
 		</div>
 	);

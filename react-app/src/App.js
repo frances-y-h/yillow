@@ -9,6 +9,8 @@ import Splash from "./components/Splash";
 import Search from "./components/Search";
 import Appointments from "./components/Appointments";
 import Notification from "./components/Tools/Notification";
+import Agents from "./components/Agents";
+import Agent from "./components/Agent";
 // import UsersList from "./components/UsersList";
 // import User from "./components/User";
 import { authenticate } from "./store/session";
@@ -50,6 +52,12 @@ function App() {
 				<Route path="/sign-up" exact={true}>
 					<SignUpForm />
 				</Route>
+				<Route path="/agents" exact={true}>
+					<Agents />
+				</Route>
+				<Route path="/agents/:agentId">
+					<Agent />
+				</Route>
 				<Route path="/about" exact={true}>
 					<About />
 				</Route>
@@ -59,6 +67,9 @@ function App() {
 				<ProtectedRoute path="/appointments" exact={true}>
 					<Appointments />
 				</ProtectedRoute>
+				<Route>
+					<div>404</div>
+				</Route>
 			</Switch>
 		</BrowserRouter>
 	);

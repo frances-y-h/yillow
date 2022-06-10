@@ -14,14 +14,18 @@
 @import url("./css/appointment.css");
 @import url("./css/stars.css");
 @import url("./css/review.css");
+@import url("./css/calendar.css");
+@import url("./css/agents.css");
+@import url("./css/agent.css");
 
 :root {
 	--blue: #016bff;
 	--blue2: #0346a4;
 	--lightblue: #f0f9ff;
 	--error: rgb(172, 12, 12);
-
 	--lightgray: rgb(242, 242, 242);
+	--lightbg: #f7f7fa;
+	--lightbg2: #eeedf2;
 }
 
 * {

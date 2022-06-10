@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.models import db, Review
 from flask_login import current_user, login_required
 from app.forms import ReviewForm
+from datetime import date
 
 review_routes = Blueprint("reviews", __name__)
 
@@ -34,6 +35,7 @@ def reviews():
                 agent_id=form.data["agent_id"], \
                 user_id=current_user.id, \
                 rating=form.data["rating"], \
+                date=date.today(),\
                 content=form.data["content"])
 
             db.session.add(review)

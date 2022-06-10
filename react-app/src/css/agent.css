@@ -1,0 +1,126 @@
+.agent-ctrl {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 40px;
+	gap: 40px;
+}
+
+.agent-ctrl .split {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.agent-ctrl .center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.agent-ctrl .photo {
+	width: 300px;
+	height: 300px;
+	border-radius: 100%;
+	background-color: var(--lightblue);
+	background-size: cover;
+	background-position: center center;
+}
+
+.agent-ctrl .name {
+	font-size: 40px;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	text-align: center;
+}
+
+.agent-ctrl .office {
+	color: gray;
+	font-size: 22px;
+	font-weight: lighter;
+	text-align: center;
+}
+
+.agent-ctrl .license {
+	text-align: center;
+}
+
+.agent-ctrl .bio-wrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 40px;
+}
+
+.bio-wrap .about {
+	font-size: 26px;
+	font-weight: bold;
+	color: gray;
+}
+
+.bio-wrap .bio {
+	font-weight: lighter;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+.bio-wrap .gap15 {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.bio-wrap .phone {
+	font-size: 20px;
+	font-weight: lighter;
+	color: var(--blue2);
+}
+
+.agent-review-ctrl {
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+	width: 100%;
+}
+
+.agent-review-ctrl .title {
+	font-size: 26px;
+	font-weight: bold;
+	padding: 20px;
+	border-bottom: 1px solid gray;
+}
+
+.agent-review-ctrl .review {
+	padding: 30px;
+	font-size: 18px;
+	font-weight: lighter;
+	line-height: 24px;
+}
+
+.agent-review-ctrl .review:not(:first-child) {
+	border-top: 1px solid gray;
+}
+
+/* Agent 404 */
+.agent-404-ctrl {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: calc(100vh - 85px);
+	gap: 30px;
+}
+
+.agent-404-ctrl img {
+	width: 300px;
+}
+
+.agent-404-ctrl .title {
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.agent-404-ctrl .desc {
+	font-weight: lighter;
+}

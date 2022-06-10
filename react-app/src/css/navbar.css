@@ -9,6 +9,13 @@
 	background-color: white;
 }
 
+.nav-lf {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 20px;
+}
+
 .nav-rt {
 	display: flex;
 	justify-content: flex-end;
