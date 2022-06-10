@@ -20,5 +20,5 @@ class Review(db.Model):
             "agent_id" :self.agent_id,
             "rating": self.rating,
             "content": self.content,
-            "date": self.date,
+            "date": self.date.isoformat(),
         }
