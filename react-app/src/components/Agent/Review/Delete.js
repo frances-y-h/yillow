@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNotification } from "../../../context/Notification";
 
@@ -10,7 +11,8 @@ import * as agentActions from "../../../store/agent";
 const Delete = ({ review, onClose }) => {
 	const dispatch = useDispatch();
 	const [errors, setErrors] = useState([]);
-	const agentId = review.agent_id;
+	const agentId = parseInt(useParams().agentId);
+
 	const { setNotificationMsg, setToggleNotification } = useNotification();
 
 	const deleteReview = async (e) => {
@@ -21,7 +23,7 @@ const Delete = ({ review, onClose }) => {
 			// dispatch to update agent
 			await dispatch(agentActions.getThisAgent(agentId));
 			// notification
-			setNotificationMsg("Review delete");
+			setNotificationMsg("Review deleted");
 			setToggleNotification("");
 			setTimeout(() => {
 				setToggleNotification("notification-move");
@@ -38,11 +40,11 @@ const Delete = ({ review, onClose }) => {
 		<div className="review-delete">
 			<div className="title">Would you like to delete this review?</div>
 			<div>
-				<Stars rating={review.rating} />
+				<Stars rating={review?.rating} />
 
-				<div>{review.date}</div>
+				<div>{review?.date}</div>
 			</div>
-			<div className="content">{review.content}</div>
+			<div className="content">{review?.content}</div>
 			<div className="error-list error-ctr">
 				{errors.map((err) => (
 					<div key={err}>{err}</div>

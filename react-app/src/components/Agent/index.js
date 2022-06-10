@@ -7,15 +7,18 @@ import Review from "./Review";
 import Stars from "../Tools/Stars";
 
 import * as agentActions from "../../store/agent";
+import * as reviewActions from "../../store/review";
 
 const Agent = () => {
 	const dispatch = useDispatch();
 	const { agentId } = useParams();
 	const agents = useSelector((state) => state.agents);
+	const reviews = useSelector((state) => state.reviews);
 	const agent = agents[agentId];
 
 	useEffect(() => {
 		dispatch(agentActions.getThisAgent(agentId));
+		dispatch(reviewActions.getAllReviews(agentId));
 	}, [dispatch]);
 
 	if (agent) {
@@ -51,10 +54,10 @@ const Agent = () => {
 				</div>
 				<div className="agent-review-ctrl">
 					<div className="title">Reviews</div>
-					{agent.reviews.length ? (
+					{agent && agent?.reviewIds?.length ? (
 						<>
-							{agent.reviews.map((review, idx) => (
-								<Review review={review} key={"review" + idx} />
+							{agent.reviewIds.map((id, idx) => (
+								<Review review={reviews[id]} key={"review" + idx} />
 							))}
 						</>
 					) : (

@@ -35,11 +35,11 @@ const TableRow = ({ agent }) => {
 				<img className="agents-map" src={map} alt="Locatoin" />
 			</td>
 			<td className="review">
-				<Link to={`/agents/${agent.id}`} className="more">
+				<Link to={`/agents/${agent?.id}`} className="more">
 					More Reviews
 				</Link>
-				{agent?.reviews.length > 0 ? (
-					<div>{agent?.reviews[0].content}</div>
+				{agent?.recent_review ? (
+					<div>{agent?.recent_review}</div>
 				) : (
 					<div>Be the first to write an review</div>
 				)}

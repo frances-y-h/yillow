@@ -28,7 +28,7 @@ const Review = ({ review }) => {
 			content,
 			agent_id: review.agent_id,
 		};
-		console.log(reviewToUpdate);
+
 		const data = await dispatch(reviewActions.editReview(reviewToUpdate));
 		if (!data.errors) {
 			// dispatch and update agent info
@@ -47,12 +47,12 @@ const Review = ({ review }) => {
 	};
 
 	useEffect(() => {
-		setMaxChar(2000 - content.length);
+		setMaxChar(2000 - content?.length);
 	}, [content]);
 
 	useEffect(() => {
-		setRating(review.rating);
-		setContent(review.content);
+		setRating(review?.rating);
+		setContent(review?.content);
 	}, [review]);
 
 	return (
@@ -66,12 +66,12 @@ const Review = ({ review }) => {
 								<span className="error-list">Required *</span>
 							</>
 						) : (
-							<Stars rating={review.rating} />
+							<Stars rating={review?.rating} />
 						)}
 					</div>
-					<div>{review.date}</div>
+					<div>{review?.date}</div>
 				</div>
-				{user && user?.id === review.user_id && (
+				{user && user?.id === review?.user_id && (
 					<div className="edit-wrap">
 						<i className="fa-solid fa-pen" onClick={() => setEdit(!edit)}></i>
 						<i
@@ -112,7 +112,7 @@ const Review = ({ review }) => {
 					</div>
 				</>
 			) : (
-				<div>{review.content}</div>
+				<div>{review?.content}</div>
 			)}
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>

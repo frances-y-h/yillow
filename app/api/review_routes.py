@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import db, Review
+from app.models import db, Review, User
 from flask_login import current_user, login_required
 from app.forms import ReviewForm
 from datetime import date
