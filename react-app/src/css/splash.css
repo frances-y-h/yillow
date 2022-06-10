@@ -24,3 +24,40 @@
 	display: flex;
 	align-items: flex-end;
 }
+
+.search-dd {
+	visibility: hidden;
+	position: absolute;
+	background-color: white;
+	top: 75px;
+	left: 0px;
+	width: 100%;
+	max-height: 50vh;
+	min-height: fit-content;
+	overflow-x: hidden;
+	white-space: nowrap;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+}
+
+.search-dd .div {
+	padding: 10px;
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	border-bottom: 1px solid var(--lightbg);
+}
+
+.search-dd .div:hover {
+	background-color: var(--lightbg);
+}
+
+.search-dd-term {
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.search-input:focus ~ .search-dd {
+	visibility: visible;
+}

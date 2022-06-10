@@ -8,6 +8,7 @@
 	max-width: 750px;
 	width: 80%;
 	align-items: center;
+	position: relative;
 }
 
 .search-input {
@@ -36,6 +37,7 @@
 	flex-direction: column;
 	gap: 5px;
 	font-weight: bold;
+	width: 100%;
 }
 
 .label input,

@@ -52,3 +52,9 @@ textarea:focus,
 input:focus {
 	outline: none;
 }
+
+.hidden {
+	display: none;
+	opacity: 0;
+	visibility: hidden;
+}

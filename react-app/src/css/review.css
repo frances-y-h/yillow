@@ -90,6 +90,10 @@
 	gap: 20px;
 	align-items: center;
 	width: 500px;
+	min-height: fit-content;
+	max-height: 90vh;
+	overflow-x: hidden;
+	white-space: nowrap;
 }
 
 .review-ctrl .for {

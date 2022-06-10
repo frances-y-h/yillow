@@ -129,7 +129,11 @@ const NewReview = ({ onClose, agent }) => {
 					/>
 				)}
 				<div className="login-sign-connect">Or connect with:</div>
-				<button type="button" className="btn btn-bl" onClick={onDemoLogin}>
+				<button
+					type="button"
+					className="btn btn-bl btn-w"
+					onClick={onDemoLogin}
+				>
 					Demo Login
 				</button>
 			</div>
