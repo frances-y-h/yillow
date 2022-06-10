@@ -60,3 +60,14 @@
 	font-weight: lighter;
 	color: var(--error);
 }
+
+.textarea {
+	width: 100%;
+	padding: 20px;
+	background-color: var(--lightblue);
+	border: 1px solid var(--blue2);
+	font-size: 18px;
+	font-weight: lighter;
+	border-radius: 5px;
+	line-height: 24px;
+}

@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import find_agent from "../../assets/find_agent.svg";
+import Review from "./Review";
+import Stars from "../Tools/Stars";
 
 import * as agentActions from "../../store/agent";
 
@@ -42,18 +44,17 @@ const Agent = () => {
 							<div className="phone">Tel {agent?.phone}</div>
 							<div className="phone">{agent?.email}</div>
 						</div>
-						<div>Rating</div>
+						<div>
+							Average Rating {agent?.rating} <Stars rating={agent?.rating} />
+						</div>
 					</div>
 				</div>
 				<div className="agent-review-ctrl">
 					<div className="title">Reviews</div>
 					{agent.reviews.length ? (
 						<>
-							{agent.reviews.map((review) => (
-								<div className="review">
-									<div>{review.rating}</div>
-									<div>{review.content}</div>
-								</div>
+							{agent.reviews.map((review, idx) => (
+								<Review review={review} key={"review" + idx} />
 							))}
 						</>
 					) : (

@@ -58,7 +58,10 @@
 }
 
 .appt-house {
+	width: 150px;
 	height: 150px;
+	background-position: center center;
+	background-size: cover;
 }
 
 .appt-detail-wrap {

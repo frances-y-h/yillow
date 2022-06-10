@@ -17,3 +17,32 @@
 	align-items: flex-end;
 	gap: 10px;
 }
+
+.review .edit-wrap i {
+	cursor: pointer;
+}
+
+.review .review-star {
+	height: 30px;
+	display: flex;
+	align-items: center;
+}
+
+.review .edit-textarea-wrap {
+	display: flex;
+	flex-direction: column;
+}
+
+.review .btn-wrap {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 30px;
+}
+
+.review .btn-group {
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
+}
