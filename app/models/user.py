@@ -60,7 +60,7 @@ class User(db.Model, UserMixin):
                 "photo": self.photo,
                 "broker_license": self.broker_license,
                 "office": self.office,
-                "reivews": [review.to_dict() for review in self.agent_reviews],
+                "reviews": [review.to_dict() for review in self.agent_reviews],
                 "rating": round(avg, 1)
             }
         else:

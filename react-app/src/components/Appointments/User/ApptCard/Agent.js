@@ -24,7 +24,7 @@ const Agent = ({ agent }) => {
 
 	const navigateAgent = (e) => {
 		e.preventDefault();
-		history.push(`/agents/${agent.username}`);
+		history.push(`/agents/${agent.id}`);
 	};
 
 	const handleSubmit = async (e) => {

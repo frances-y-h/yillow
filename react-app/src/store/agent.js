@@ -18,6 +18,22 @@ const getAgent = (agent) => {
 };
 
 // Thunks
+export const getAllAgents = () => async (dispatch) => {
+	const response = await fetch("/api/agents/");
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(getAgents(data.agents));
+		return data;
+	} else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data;
+		}
+	} else {
+		return { errors: ["An error occurred. Please try again."] };
+	}
+};
+
 export const getThisAgent = (agent_id) => async (dispatch) => {
 	const response = await fetch(`/api/agents/${agent_id}`);
 	if (response.ok) {
@@ -35,7 +51,7 @@ export const getThisAgent = (agent_id) => async (dispatch) => {
 };
 
 // Reducer
-const initialState = { agents: null };
+const initialState = {};
 export default function reducer(state = initialState, action) {
 	let newState;
 	switch (action.type) {

@@ -1,0 +1,152 @@
+.agents-ctrl {
+	background-color: var(--lightbg);
+	height: calc(100vh - 85px);
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	gap: 20px;
+}
+
+.agents-title {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.agents-search {
+	display: flex;
+	background-color: var(--lightbg2);
+	padding: 10px;
+}
+
+.agents-search-wrap {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.agents-search-wrap label {
+	font-weight: bold;
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+
+.agents-search-wrap span {
+	font-size: 10px;
+	font-weight: lighter;
+}
+
+.agents-search-wrap div {
+	background-color: white;
+	padding: 10px;
+	border-radius: 3px;
+	border: 1px solid gray;
+}
+
+.agents-search-wrap input {
+	border: none;
+	outline: none;
+	font-size: 16px;
+	font-weight: lighter;
+}
+
+.agents-search-wrap i {
+	color: var(--blue);
+}
+
+/* Agents table */
+table {
+	border-collapse: collapse;
+}
+.agents-table {
+	background-color: white;
+}
+
+.agents-table tr {
+	border-bottom: 1px solid gray;
+}
+
+.agents-table td,
+.agents-table th {
+	padding: 20px;
+}
+
+.agents-col {
+	display: grid;
+	grid-template-columns: 100px 220px;
+	gap: 30px;
+}
+
+.agents-photo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--lightblue);
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	color: gray;
+	font-weight: bold;
+	background-position: center;
+	background-size: cover;
+}
+
+.agents-detail {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.agents-detail .name {
+	font-weight: bold;
+	font-size: 18px;
+	color: var(--blue2);
+	border-bottom: 2px solid transparent;
+	width: fit-content;
+}
+
+.agents-detail .name:hover {
+	border-bottom: 2px solid var(--blue2);
+}
+
+.agents-detail .phone {
+	font-weight: lighter;
+	font-size: 18px;
+}
+
+.agents-detail .reviews {
+	font-weight: lighter;
+	font-size: 14px;
+	color: var(--blue);
+	width: fit-content;
+	border-bottom: 1px solid transparent;
+}
+
+.agents-detail .reviews:hover {
+	border-bottom: 1px solid var(--blue);
+}
+
+.agents-detail .office {
+	font-weight: lighter;
+	font-size: 14px;
+}
+
+.agents-map {
+	height: 120px;
+}
+
+.agents-table .review {
+	font-size: 16px;
+	font-weight: lighter;
+	line-height: 22px;
+	text-align: center;
+}
+
+.agents-table .more {
+	color: purple;
+	font-weight: bold;
+}
+
+.agents-table .more:hover {
+	border-bottom: 1px solid purple;
+}

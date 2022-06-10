@@ -28,9 +28,14 @@ const UserBar = () => {
 
 	return (
 		<nav className="nav">
-			<NavLink to="/about" className="btn-font-lt">
-				About
-			</NavLink>
+			<div className="nav-lf">
+				<NavLink to="/about" className="btn-font-lt">
+					About
+				</NavLink>
+				<NavLink to="/agents" className="btn-font-lt">
+					Agent Finder
+				</NavLink>
+			</div>
 			<NavLink to="/" exact={true}>
 				<img src={logo} alt="Yillow" />
 			</NavLink>
