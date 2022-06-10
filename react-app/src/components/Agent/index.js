@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import find_agent from "../../assets/find_agent.svg";
 import Review from "./Review";
 import Stars from "../Tools/Stars";
+
+import { Modal } from "../../context/Modal";
+import NewReview from "./Review/NewReview";
 
 import * as agentActions from "../../store/agent";
 import * as reviewActions from "../../store/review";
@@ -15,6 +18,11 @@ const Agent = () => {
 	const agents = useSelector((state) => state.agents);
 	const reviews = useSelector((state) => state.reviews);
 	const agent = agents[agentId];
+	const [showModal, setShowModal] = useState(false);
+
+	const onClose = () => {
+		setShowModal(false);
+	};
 
 	useEffect(() => {
 		dispatch(agentActions.getThisAgent(agentId));
@@ -53,7 +61,16 @@ const Agent = () => {
 					</div>
 				</div>
 				<div className="agent-review-ctrl">
-					<div className="title">Reviews</div>
+					<div className="title">
+						<div>Reviews</div>
+						<button
+							type="button"
+							className="btn"
+							onClick={() => setShowModal(true)}
+						>
+							Write a Review
+						</button>
+					</div>
 					{agent && agent?.reviewIds?.length ? (
 						<>
 							{agent.reviewIds.map((id, idx) => (
@@ -64,6 +81,11 @@ const Agent = () => {
 						<div className="review">Be te first to review</div>
 					)}
 				</div>
+				{showModal && (
+					<Modal onClose={onClose}>
+						<NewReview onClose={onClose} agent={agent} />
+					</Modal>
+				)}
 			</div>
 		);
 	} else {

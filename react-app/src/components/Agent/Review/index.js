@@ -59,6 +59,7 @@ const Review = ({ review }) => {
 		<div className="review">
 			<div className="review-edit">
 				<div>
+					<div>Review by {review?.username}</div>
 					<div className="review-star">
 						{edit ? (
 							<>
