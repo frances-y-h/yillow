@@ -17,6 +17,7 @@ class Review(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
+            "user": self.user.username,
             "agent_id" :self.agent_id,
             "rating": self.rating,
             "content": self.content,
