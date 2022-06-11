@@ -21,6 +21,12 @@ def search_by_term(term):
 
     parsedTerm = " ".join(term.split("-"))
 
+    # search by zip
+    zips = Property.query.filter(Property.zip.ilike(f"%{parsedTerm}%")).all()
+
+    if zips:
+        return {"properties": [property.to_dict() for property in zips]}
+
     results = []
 
     # search by city
@@ -28,26 +34,16 @@ def search_by_term(term):
 
     if properties:
         results.extend([property.to_dict() for property in properties])
+        return {"properties": results}
 
-    # search by zip
-    zips = Property.query.filter(Property.zip.ilike(f"%{parsedTerm}%")).all()
 
-    if zips:
-        results.extend([property.to_dict() for property in zips])
 
-    # search by state
-    states = Property.query.join(State).filter(State.long.ilike(f"%{parsedTerm}%")).all()
-
-    if states:
-        results.extend([property.to_dict() for property in states])
 
     # search by street name
     street = Property.query.filter(Property.st_name.ilike(f"%{parsedTerm}%")).all()
 
     if street:
         results.extend([property.to_dict() for property in street])
-
-    if len(results) > 200:
         return {"properties": results}
 
     # search by street or
@@ -64,10 +60,9 @@ def search_terms():
     properties = Property.query.all()
     allStates = State.query.all()
     addresses = [property.st_num+" "+property.st_name.strip() for property in properties]
-    states = [state.long for state in allStates]
     cities = [property.city for property in properties]
     zip = [property.zip for property in properties]
-    terms = set(cities + zip + states + addresses)
+    terms = set(cities + zip + addresses)
     sort = sorted(list(terms), key=str.casefold)
 
     return {"terms": sort}
