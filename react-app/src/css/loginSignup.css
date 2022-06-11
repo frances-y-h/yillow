@@ -22,6 +22,7 @@
 .login-sign-toggle-wrap {
 	display: flex;
 	border-bottom: 1px solid gray;
+	width: 100%;
 }
 
 .login-btn {
@@ -61,4 +62,5 @@
 	font-size: 18px;
 	padding: 20px 10px 10px 10px;
 	border-top: 1px solid gray;
+	width: 100%;
 }

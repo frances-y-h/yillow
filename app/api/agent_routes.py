@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from app.models import User
+from app.models import User, Review
 
 agent_routes = Blueprint('agents', __name__)
 
@@ -16,3 +16,15 @@ def get_agent(agent_id):
         return {"agent": agent.to_dict()}
     else:
         return {"errors": ["Agent does not exist"]}, 404
+
+
+@agent_routes.route("/<int:agent_id>/reviews", methods=["GET"])
+def agent_reviews(agent_id):
+    agent = User.query.get(agent_id)
+
+    if agent.agent != True:
+        return {"errors": ["Agent does not exist"]}, 404
+
+    reviews = Review.query.filter(Review.agent_id == agent_id).all()
+
+    return {"reviews": [review.to_dict() for review in reviews]}

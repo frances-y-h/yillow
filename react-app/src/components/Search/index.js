@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import List from "./List";
 
@@ -8,11 +8,14 @@ import * as propertyActions from "../../store/property";
 
 const Search = () => {
 	const dispatch = useDispatch();
-	// const { searchParam } = useParams();
+	const searchParam = useParams().searchParam;
+	const [searchTerm, setSearchTerm] = useState("");
 
 	useEffect(() => {
-		dispatch(propertyActions.searchProperties());
-	}, [dispatch]);
+		if (searchParam) {
+			dispatch(propertyActions.searchProperties(searchParam));
+		}
+	}, [dispatch, searchParam]);
 
 	return (
 		<main className="search-pg-ctrl">

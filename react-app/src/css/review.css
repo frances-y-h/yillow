@@ -79,3 +79,72 @@
 	grid-template-columns: repeat(2, 1fr);
 	gap: 20px;
 }
+
+/* Review Modal */
+.review-ctrl {
+	padding: 40px;
+	background-color: white;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	align-items: center;
+	width: 500px;
+	min-height: fit-content;
+	max-height: 90vh;
+	overflow-x: hidden;
+	white-space: nowrap;
+}
+
+.review-ctrl .for {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.review-ctrl .photo {
+	width: 120px;
+	height: 120px;
+	border-radius: 100%;
+	background-color: var(--lightblue);
+	background-position: center;
+	background-size: cover;
+}
+
+.review-ctrl .agent-name {
+	font-size: 26px;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+}
+
+.review-ctrl .stars-wrap,
+.review-ctrl .content-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+	width: 100%;
+}
+
+.review-ctrl .stars-how,
+.review-ctrl .content-how {
+	font-size: 14px;
+	font-weight: lighter;
+}
+
+.content-wrap .textarea {
+	padding: 20px;
+	background-color: var(--lightblue);
+	border-radius: 10px;
+	border: 1px solid var(--blue2);
+}
+
+.review-ctrl .errors {
+	font-size: 12px;
+	font-weight: lighter;
+	color: var(--error);
+}
+.review-ctrl .btn-wrap {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+}

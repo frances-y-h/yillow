@@ -49,6 +49,9 @@ class User(db.Model, UserMixin):
             avg_review_lst = [review.rating for review in self.agent_reviews]
             avg = sum(avg_review_lst) / len(avg_review_lst)
 
+            reviews = [review.to_dict() for review in self.agent_reviews]
+            recent_review = reviews[-1] or ""
+
             return {
                 'id': self.id,
                 'username': self.username,
@@ -60,7 +63,8 @@ class User(db.Model, UserMixin):
                 "photo": self.photo,
                 "broker_license": self.broker_license,
                 "office": self.office,
-                "reviews": [review.to_dict() for review in self.agent_reviews],
+                "recent_review": recent_review["content"],
+                "reviewIds" : [review.id for review in self.agent_reviews],
                 "rating": round(avg, 1)
             }
         else:

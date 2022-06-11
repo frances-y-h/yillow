@@ -85,3 +85,7 @@
 	line-height: 14px;
 	text-align: justify;
 }
+
+.fa-xmark {
+	cursor: pointer;
+}

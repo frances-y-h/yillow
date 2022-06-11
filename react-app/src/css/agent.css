@@ -88,6 +88,9 @@
 	font-weight: bold;
 	padding: 20px;
 	border-bottom: 1px solid gray;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
 }
 
 .agent-review-ctrl .review {
