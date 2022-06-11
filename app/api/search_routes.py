@@ -1,4 +1,4 @@
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 from flask import Blueprint, jsonify, request
 from app.models import Property, State
 
@@ -13,7 +13,7 @@ def search_by_term(term):
     split = term.split("-")
     st_num = split[0]
     st_name = " ".join(split[1:])
-    streets = Property.query.filter(Property.st_num.ilike(f"{st_num}%"),Property.st_num.ilike(f"{st_name}%")).all()
+    streets = Property.query.filter(Property.st_num.ilike(f"%{st_num}%"), Property.st_name.ilike(f"%{st_name}%")).all()
 
     if streets:
         return {"properties": [street.to_dict() for street in streets]}
@@ -49,6 +49,12 @@ def search_by_term(term):
 
     if len(results) > 200:
         return {"properties": results}
+
+    # search by street or
+    streets_or = Property.query.filter(or_(Property.st_num.ilike(f"%{st_num}%"), Property.st_name.ilike(f"%{st_name}%"))).all()
+
+    if streets_or:
+        results.extend([property.to_dict() for property in streets_or])
 
     return {"properties": results}
 
