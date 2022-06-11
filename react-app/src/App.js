@@ -40,9 +40,9 @@ function App() {
 				<Route path="/" exact={true}>
 					<Splash />
 				</Route>
-				<Route path="/search" exact={true}>
+				{/* <Route path="/search" exact={true}>
 					<div>another page</div>
-				</Route>
+				</Route> */}
 				<Route path="/search/:searchParam" exact={true}>
 					<Search />
 				</Route>
