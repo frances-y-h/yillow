@@ -14,6 +14,8 @@
 	border-top: 1px solid gray;
 	border-bottom: 1px solid gray;
 	color: gray;
+	font-weight: lighter;
+	font-size: 13px;
 }
 
 .footer-logo-wrap {
