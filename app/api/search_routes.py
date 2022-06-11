@@ -53,13 +53,6 @@ def search_by_term(term):
     return {"properties": results}
 
 
-@search_routes.route("/")
-def search():
-    properties = Property.query.limit(200).all()
-    return {
-        "properties": [property.to_dict() for property in properties],
-        }
-
 @search_routes.route("/terms", methods=["GET"])
 def search_terms():
     properties = Property.query.all()
