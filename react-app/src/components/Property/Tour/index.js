@@ -16,7 +16,7 @@ const Tour = ({ property, setShowTour }) => {
 		<form className="tour-ctrl">
 			<div className="tour-top">
 				<div>Tour with a Buyer's Agent</div>
-				<i className="fa-solid fa-xmark"></i>
+				<i className="fa-solid fa-xmark" onClick={() => setShowTour(false)}></i>
 			</div>
 			<div className="tour-btm">
 				{showSelectDate ? (
