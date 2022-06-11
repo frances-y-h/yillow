@@ -46,16 +46,21 @@
 	gap: 10px;
 	align-items: center;
 	border-bottom: 1px solid var(--lightbg);
+	cursor: pointer;
 }
 
 .search-dd .div:hover {
-	background-color: var(--lightbg);
+	background-color: var(--lightblue);
 }
 
 .search-dd-term {
 	width: 100%;
 	display: flex;
 	align-items: center;
+}
+
+.search-dd .div i {
+	color: var(--blue);
 }
 
 .search-input:focus ~ .search-dd {

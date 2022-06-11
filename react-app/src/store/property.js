@@ -18,8 +18,8 @@ const getProperty = (property) => {
 };
 
 // Thunks
-export const searchProperties = (search) => async (dispatch) => {
-	const response = await fetch("/api/properties/search");
+export const searchProperties = (term) => async (dispatch) => {
+	const response = await fetch(`/api/search/${term}`);
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(getProperties(data.properties));
