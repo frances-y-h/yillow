@@ -10,7 +10,7 @@ import NotificationProvider from "./context/Notification";
 const store = configureStore();
 
 ReactDOM.render(
-	<React.StrictMode>
+	<React.Fragment>
 		<Provider store={store}>
 			<NotificationProvider>
 				<ModalProvider>
@@ -18,6 +18,6 @@ ReactDOM.render(
 				</ModalProvider>
 			</NotificationProvider>
 		</Provider>
-	</React.StrictMode>,
+	</React.Fragment>,
 	document.getElementById("root")
 );

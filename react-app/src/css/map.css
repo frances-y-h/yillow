@@ -1,0 +1,10 @@
+.map-ctnr {
+	height: calc(100vh - 85px);
+	width: 50vw;
+}
+
+@media screen and (max-width: 650px) {
+	.map-ctnr {
+		display: none;
+	}
+}

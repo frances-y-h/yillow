@@ -2,12 +2,7 @@ import React, { Fragment, useMemo, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import moment from "moment";
-import {
-	Calendar,
-	Views,
-	DateLocalizer,
-	momentLocalizer,
-} from "react-big-calendar";
+import { Calendar, DateLocalizer, momentLocalizer } from "react-big-calendar";
 
 import { Modal } from "../../../../context/Modal";
 import ApptDetail from "../ApptCard/ApptDetail";
