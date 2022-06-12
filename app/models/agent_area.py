@@ -6,3 +6,5 @@ class AgentArea(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     agent_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     zip = db.Column(db.Integer, nullable=False)
+
+    agent = db.relationship("User", back_populates="areas")

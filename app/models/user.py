@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     office = db.Column(db.String(100))
 
     properties = db.relationship("Property", back_populates="listing_agent")
+    areas = db.relationship("AgentArea", back_populates="agent")
 
     user_reviews = db.relationship("Review", back_populates="user", primaryjoin="User.id == Review.user_id")
     agent_reviews = db.relationship("Review", back_populates="agent", primaryjoin="User.id == Review.agent_id")
@@ -65,7 +66,8 @@ class User(db.Model, UserMixin):
                 "office": self.office,
                 "recent_review": recent_review["content"],
                 "reviewIds" : [review.id for review in self.agent_reviews],
-                "rating": round(avg, 1)
+                "rating": round(avg, 1),
+                "areas": [area.zip for area in self.areas],
             }
         else:
             return {
