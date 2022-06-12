@@ -283,6 +283,13 @@ button.rbc-input::-moz-focus-inner {
 	width: 100%;
 	text-align: left;
 }
+
+.rbc-event:hover {
+	background-color: rgb(188, 222, 188);
+	color: rgb(61, 92, 61);
+	border-left: 2px solid rgb(61, 92, 61);
+}
+
 .rbc-slot-selecting .rbc-event,
 .rbc-slot-selecting .rbc-day-slot .rbc-background-event,
 .rbc-day-slot .rbc-slot-selecting .rbc-background-event {
@@ -291,14 +298,13 @@ button.rbc-input::-moz-focus-inner {
 }
 .rbc-event.rbc-selected,
 .rbc-day-slot .rbc-selected.rbc-background-event {
-	/* background-color: #265985; */
 	background-color: rgb(255, 216, 144);
 	border-left: 2px solid orange;
 	color: rgb(255, 128, 0);
 }
-.rbc-event:focus,
+/* .rbc-event:focus, */
 .rbc-day-slot .rbc-background-event:focus {
-	outline: 5px auto #3b99fc;
+	outline: 5px auto red;
 }
 
 .rbc-event-label {
