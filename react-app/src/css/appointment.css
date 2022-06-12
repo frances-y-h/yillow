@@ -45,7 +45,7 @@
 	padding: 10px;
 	overflow-x: hidden;
 	white-space: nowrap;
-	height: calc(100vh - 100px);
+	height: calc(100vh - 170px);
 }
 
 .appt-card {

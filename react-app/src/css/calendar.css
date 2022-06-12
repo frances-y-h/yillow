@@ -1,4 +1,11 @@
 @charset "UTF-8";
+
+.calendar-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .rbc-btn {
 	color: inherit;
 	font: inherit;
@@ -24,7 +31,7 @@ button.rbc-input::-moz-focus-inner {
 .rbc-calendar {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	height: 100%;
+	height: calc(100vh - 150px);
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
