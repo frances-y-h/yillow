@@ -9,7 +9,6 @@ import * as propertyActions from "../../store/property";
 const Search = () => {
 	const dispatch = useDispatch();
 	const searchParam = useParams().searchParam;
-	const [searchTerm, setSearchTerm] = useState("");
 
 	useEffect(() => {
 		if (searchParam) {
