@@ -11,11 +11,19 @@
 	flex-direction: column;
 }
 
+.search-bar-wrap {
+	display: grid;
+	grid-template-columns: auto 600px;
+	border-bottom: 1px solid lightgray;
+	width: 100vw;
+	white-space: nowrap;
+	overflow-y: hidden;
+}
+
 .search-bar {
 	display: flex;
 	padding: 10px;
-	border-bottom: 1px solid lightgray;
-	width: 100%;
+
 	gap: 10px;
 	align-items: center;
 }
@@ -61,5 +69,9 @@
 @media screen and (max-width: 650px) {
 	.search-list {
 		grid-template-columns: 1fr;
+	}
+	.search-bar-wrap {
+		display: flex;
+		flex-direction: column;
 	}
 }

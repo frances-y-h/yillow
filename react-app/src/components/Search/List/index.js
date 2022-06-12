@@ -59,25 +59,25 @@ const List = () => {
 
 	useEffect(() => {
 		let arr = Object.values(properties)
-			.filter((prop) => prop.price > min)
-			.filter((prop) => prop.price < max)
-			.filter((prop) => prop.type.includes(type))
+			.filter((prop) => prop?.price > min)
+			.filter((prop) => prop?.price < max)
+			.filter((prop) => prop?.type.includes(type))
 			.filter((prop) => {
 				if (bed === 0) {
 					return prop;
 				} else if (bed === 4) {
-					return prop.bed >= 4;
+					return prop?.bed >= 4;
 				} else {
-					return prop.bed === bed;
+					return prop?.bed === bed;
 				}
 			})
 			.filter((prop) => {
 				if (bath === 0) {
 					return prop;
 				} else if (bath === 4) {
-					return prop.bath >= 4;
+					return prop?.bath >= 4;
 				} else {
-					return prop.bath === bath || prop.bath - 0.5 == bath;
+					return prop?.bath === bath || prop?.bath - 0.5 == bath;
 				}
 			});
 		setPropArr(arr);
@@ -85,8 +85,8 @@ const List = () => {
 
 	return (
 		<div className="search-wrap">
-			<div className="search-bar">
-				<form onSubmit={handleSubmit}>
+			<div className="search-bar-wrap">
+				<form className="search-bar" onSubmit={handleSubmit}>
 					<label className="search-label-sm">
 						<input
 							type="text"
@@ -114,99 +114,106 @@ const List = () => {
 						</div>
 					</label>
 				</form>
-				<div classname="filters">Filters</div>
-				<div className="wrap">
-					Price
-					<label className="sh-label">
-						Min
-						<select
-							value={min}
-							onChange={(e) => setMin(parseInt(e.target.value, 10))}
-						>
-							<option value="0">$0+</option>
-							<option value="100000">$100,000+</option>
-							<option value="200000">$200,000+</option>
-							<option value="300000">$300,000+</option>
-							<option value="400000">$400,000+</option>
-							<option value="500000">$500,000+</option>
-							<option value="600000">$600,000+</option>
-							<option value="700000">$700,000+</option>
-							<option value="800000">$800,000+</option>
-							<option value="900000">$900,000+</option>
-						</select>
-					</label>
-					<label className="sh-label">
-						Max
-						<select
-							value={max}
-							onChange={(e) => setMax(parseInt(e.target.value, 10))}
-						>
-							<option value="500000">$500,000+</option>
-							<option value="600000">$600,000+</option>
-							<option value="700000">$700,000+</option>
-							<option value="800000">$800,000+</option>
-							<option value="900000">$900,000+</option>
-							<option value="1000000">$1M</option>
-							<option value="1250000">$1.25M</option>
-							<option value="1500000">$1.5M</option>
-							<option value="1750000">$1.75M</option>
-							<option value="99999999999">Any Price</option>
-						</select>
-					</label>
-				</div>
-				<div className="wrap">
-					<label className="sh-label">
-						Home type
-						<select value={type} onChange={(e) => setType(e.target.value)}>
-							<option value="">All</option>
-							<option value="Single Family">Single Family</option>
-							<option value="Condominium">Condominium</option>
-							<option value="Townhouse">Townhouse</option>
-							<option value="Manufactured Home">Manufactured Home</option>
-							<option value="Cabin">Cabin</option>
-						</select>
-					</label>
-				</div>
-				<div className="wrap">
-					<label className="sh-label">
-						Bed
-						<select
-							value={bed}
-							onChange={(e) => setBed(parseInt(e.target.value, 10))}
-						>
-							<option value="0">Any</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4+</option>
-						</select>
-					</label>
-				</div>
-				<div className="wrap">
-					<label className="sh-label">
-						Bath
-						<select
-							value={bath}
-							onChange={(e) => setBath(parseInt(e.target.value, 10))}
-						>
-							<option value="0">Any</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4+</option>
-						</select>
-					</label>
+				<div className="search-bar">
+					<div classname="filters">Filters</div>
+					<div className="wrap">
+						Price
+						<label className="sh-label">
+							Min
+							<select
+								value={min}
+								onChange={(e) => setMin(parseInt(e.target.value, 10))}
+							>
+								<option value="0">$0+</option>
+								<option value="100000">$100,000+</option>
+								<option value="200000">$200,000+</option>
+								<option value="300000">$300,000+</option>
+								<option value="400000">$400,000+</option>
+								<option value="500000">$500,000+</option>
+								<option value="600000">$600,000+</option>
+								<option value="700000">$700,000+</option>
+								<option value="800000">$800,000+</option>
+								<option value="900000">$900,000+</option>
+							</select>
+						</label>
+						<label className="sh-label">
+							Max
+							<select
+								value={max}
+								onChange={(e) => setMax(parseInt(e.target.value, 10))}
+							>
+								<option value="500000">$500,000+</option>
+								<option value="600000">$600,000+</option>
+								<option value="700000">$700,000+</option>
+								<option value="800000">$800,000+</option>
+								<option value="900000">$900,000+</option>
+								<option value="1000000">$1M</option>
+								<option value="1250000">$1.25M</option>
+								<option value="1500000">$1.5M</option>
+								<option value="1750000">$1.75M</option>
+								<option value="99999999999">Any Price</option>
+							</select>
+						</label>
+					</div>
+					<div className="wrap">
+						<label className="sh-label">
+							Home type
+							<select value={type} onChange={(e) => setType(e.target.value)}>
+								<option value="">All</option>
+								<option value="Single Family">Single Family</option>
+								<option value="Condominium">Condominium</option>
+								<option value="Townhouse">Townhouse</option>
+								<option value="Manufactured Home">Manufactured Home</option>
+								<option value="Cabin">Cabin</option>
+							</select>
+						</label>
+					</div>
+					<div className="wrap">
+						<label className="sh-label">
+							Bed
+							<select
+								value={bed}
+								onChange={(e) => setBed(parseInt(e.target.value, 10))}
+							>
+								<option value="0">Any</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4+</option>
+							</select>
+						</label>
+					</div>
+					<div className="wrap">
+						<label className="sh-label">
+							Bath
+							<select
+								value={bath}
+								onChange={(e) => setBath(parseInt(e.target.value, 10))}
+							>
+								<option value="0">Any</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4+</option>
+							</select>
+						</label>
+					</div>
 				</div>
 			</div>
-			<div className="search-list">
-				{propArr.length ? (
-					propArr?.map((property, idx) => (
+			{propArr.length ? (
+				<div className="search-list">
+					{propArr?.map((property, idx) => (
 						<PropertyCard key={"property" + idx} property={property} />
-					))
-				) : (
-					<div>No results</div>
-				)}
-			</div>
+					))}
+				</div>
+			) : (
+				<div>
+					<div>Sorry no results are found</div>
+					<div>
+						Please search different city or filter with different criteria
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };
