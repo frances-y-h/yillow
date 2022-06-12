@@ -56,7 +56,7 @@ const Agents = () => {
 						<input
 							type="text"
 							placeholder="ZIP CODE"
-							maxlength="5"
+							maxLength="5"
 							value={zip}
 							onChange={(e) => setZip(e.target.value, 10)}
 						/>

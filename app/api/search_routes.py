@@ -10,25 +10,29 @@ def search_by_term(term):
 
     parsedTerm = " ".join(term.split("-"))
 
+    results = []
+
     # search by street
     streets = Property.query.filter(Property.street.ilike(f"%{parsedTerm}%")).all()
 
     if streets:
-        return {"properties": [street.to_dict() for street in streets]}
-
-    # search by zip
-    zips = Property.query.filter(Property.zip.ilike(f"%{parsedTerm}%")).all()
-
-    if zips:
-        return {"properties": [property.to_dict() for property in zips]}
+        results.extend([street.to_dict() for street in streets])
 
 
     # search by city
     properties = Property.query.filter(Property.city.ilike(f"%{parsedTerm}%")).all()
 
     if properties:
-        return {"properties": [property.to_dict() for property in properties]}
+        results.extend([street.to_dict() for street in properties])
 
+    if results:
+        return {"properties": results}
+
+    # search by zip
+    zips = Property.query.filter(Property.zip.ilike(f"%{parsedTerm}%")).all()
+
+    if zips:
+        return {"properties": [property.to_dict() for property in zips]}
 
     return {"properties": []}
 
