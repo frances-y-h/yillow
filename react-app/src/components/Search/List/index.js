@@ -25,6 +25,11 @@ const List = () => {
 	const searchDivRef = useRef();
 	const searchDDRef = useRef();
 
+	const directSearch = (term) => {
+		const searchTerm = term.split(" ").join("-");
+		history.push(`/search/${searchTerm}`);
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -99,7 +104,7 @@ const List = () => {
 									key={term}
 									onMouseDown={(e) => {
 										setSearch(term);
-										handleSubmit(e);
+										directSearch(term);
 									}}
 								>
 									<i className="fa-solid fa-magnifying-glass"></i>
@@ -110,7 +115,7 @@ const List = () => {
 					</label>
 				</form>
 				<div className="search-bar">
-					<div classname="filters">Filters</div>
+					<div className="filters">Filters</div>
 					<div className="wrap">
 						Price
 						<label className="sh-label">

@@ -10,19 +10,19 @@ const Splash = () => {
 	const [search, setSearch] = useState("");
 	const [searchList, setSearchList] = useState([]);
 	const [searchFiltered, setSearchFiltered] = useState([]);
-	const [errors, setErrors] = useState([]);
 
 	const searchDivRef = useRef();
 	const searchDDRef = useRef();
 
+	const directSearch = (term) => {
+		const searchTerm = term.split(" ").join("-");
+		history.push(`/search/${searchTerm}`);
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (search.length > 2) {
-			const searchTerm = search.split(" ").join("-");
-			history.push(`/search/${searchTerm}`);
-		} else {
-			setErrors(["Please enter 3 characters or more"]);
-		}
+		const searchTerm = search.split(" ").join("-");
+		history.push(`/search/${searchTerm}`);
 	};
 
 	useEffect(() => {
@@ -38,12 +38,6 @@ const Splash = () => {
 		);
 		setSearchFiltered(filtered);
 	}, [search, searchList]);
-
-	useEffect(() => {
-		if (search.length > 2) {
-			setErrors([]);
-		}
-	}, [search]);
 
 	return (
 		<>
@@ -71,7 +65,7 @@ const Splash = () => {
 									key={term}
 									onMouseDown={(e) => {
 										setSearch(term);
-										handleSubmit(e);
+										directSearch(term);
 									}}
 								>
 									<i className="fa-solid fa-magnifying-glass"></i>
@@ -80,13 +74,6 @@ const Splash = () => {
 							))}
 						</div>
 					</label>
-					{errors && (
-						<div className="error-list">
-							{errors.map((err) => (
-								<div key={err}>{err}</div>
-							))}
-						</div>
-					)}
 				</form>
 			</main>
 			<footer className="footer-ctrl">

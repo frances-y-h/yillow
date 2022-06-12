@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import List from "./List";
+import MyMap from "./Map";
 
 import * as propertyActions from "../../store/property";
 
@@ -16,7 +17,13 @@ const Search = () => {
 
 	return (
 		<main className="search-pg-ctrl">
-			{/* <div>Map</div> */}
+			<MyMap
+				isMarkerShown
+				googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+				loadingElement={<div style={{ height: `100%` }} />}
+				containerElement={<div className="map-ctnr" />}
+				mapElement={<div style={{ height: `100%` }} />}
+			/>
 			<List />
 		</main>
 	);

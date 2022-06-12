@@ -10,6 +10,12 @@ def search_by_term(term):
 
     parsedTerm = " ".join(term.split("-"))
 
+    # exact matche
+    street = Property.query.filter(Property.street.ilike(f"{parsedTerm}")).all()
+
+    if street:
+        return {"properties": [prop.to_dict() for prop in street]}
+
     results = []
 
     # search by street
@@ -25,14 +31,15 @@ def search_by_term(term):
     if properties:
         results.extend([street.to_dict() for street in properties])
 
-    if results:
-        return {"properties": results}
 
     # search by zip
     zips = Property.query.filter(Property.zip.ilike(f"%{parsedTerm}%")).all()
 
     if zips:
-        return {"properties": [property.to_dict() for property in zips]}
+        results.extend([property.to_dict() for property in zips])
+
+    if results:
+        return {"properties": results}
 
     return {"properties": []}
 

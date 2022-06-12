@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 import Stars from "../../Tools/Stars";
-import map from "../../../assets/staticmap.png";
 
 const TableRow = ({ agent }) => {
 	return (
