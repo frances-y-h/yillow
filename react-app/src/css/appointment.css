@@ -282,3 +282,10 @@
 .appt-visit-property:hover {
 	background-color: var(--lightblue);
 }
+
+@media screen and (max-width: 1024px) {
+	.appointment-ctrl {
+		display: flex;
+		width: 100%;
+	}
+}
