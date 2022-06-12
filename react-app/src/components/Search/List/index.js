@@ -14,7 +14,6 @@ const List = () => {
 	const [search, setSearch] = useState("");
 	const [searchList, setSearchList] = useState([]);
 	const [searchFiltered, setSearchFiltered] = useState([]);
-	const [errors, setErrors] = useState([]);
 	const [min, setMin] = useState(0);
 	const [max, setMax] = useState(99999999999);
 	const [type, setType] = useState("");
@@ -28,12 +27,9 @@ const List = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (search.length > 2) {
-			const searchTerm = search.split(" ").join("-");
-			history.push(`/search/${searchTerm}`);
-		} else {
-			setErrors(["Please enter 3 characters or more"]);
-		}
+
+		const searchTerm = search.split(" ").join("-");
+		history.push(`/search/${searchTerm}`);
 	};
 
 	useEffect(() => {
@@ -52,12 +48,6 @@ const List = () => {
 		);
 		setSearchFiltered(filtered);
 	}, [search, searchList]);
-
-	useEffect(() => {
-		if (search.length > 2) {
-			setErrors([]);
-		}
-	}, [search]);
 
 	useEffect(() => {
 		let arr = Object.values(properties)
