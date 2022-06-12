@@ -47,7 +47,7 @@ export default function Basic({
 			},
 			defaultDate: new Date(),
 			max: dates.add(new Date(), 14, "day"),
-			views: Object.keys(Views).map((k) => Views[k]),
+			views: { month: true, agenda: true },
 		}),
 		[]
 	);
@@ -57,13 +57,16 @@ export default function Basic({
 			const start = new Date(`${appt?.date} ${appt?.time}`);
 			const end = dates.add(start, 30, "minutes");
 			return {
-				id: appt.id,
+				id: appt?.id,
 				start,
 				end,
-				title: properties[appt.property_id].street,
+				title: `${properties[appt.property_id].street}, ${
+					properties[appt.property_id].city
+				}`,
 			};
 		});
 		arr.push({
+			id: 0,
 			title: "Today",
 			allDay: true,
 			start: new Date(new Date().setHours(new Date().getHours())),
@@ -84,6 +87,7 @@ export default function Basic({
 					showMultiDayTimes
 					step={60}
 					views={views}
+					popup
 				/>
 			</div>
 		</Fragment>

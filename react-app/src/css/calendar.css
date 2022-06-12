@@ -4,6 +4,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 30px;
 }
 
 .rbc-btn {
@@ -32,6 +33,7 @@ button.rbc-input::-moz-focus-inner {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	height: calc(100vh - 150px);
+	width: 100%;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -131,7 +133,7 @@ button.rbc-input::-moz-focus-inner {
 	-ms-user-select: none;
 	user-select: none;
 	-webkit-user-select: none;
-	z-index: 4;
+	z-index: 1;
 }
 
 .rbc-row-content-scrollable {
@@ -274,7 +276,7 @@ button.rbc-input::-moz-focus-inner {
 	background-color: #3174ad;
 	border-radius: 5px;
 	color: #fff;
-	cursor: pointer;
+	/* cursor: pointer; */
 	width: 100%;
 	text-align: left;
 }
@@ -341,7 +343,7 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-show-more {
 	background-color: rgba(255, 255, 255, 0.3);
-	z-index: 4;
+	z-index: 1;
 	font-weight: bold;
 	font-size: 85%;
 	height: auto;
@@ -452,7 +454,7 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-overlay {
 	position: absolute;
-	z-index: 5;
+	z-index: 2;
 	border: 1px solid #e5e5e5;
 	background-color: #fff;
 	-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
@@ -637,7 +639,7 @@ button.rbc-input::-moz-focus-inner {
 	left: 0;
 	background-color: white;
 	border-right: 1px solid #ddd;
-	z-index: 10;
+	z-index: 2;
 	margin-right: -1px;
 }
 .rbc-time-view-resources .rbc-time-header {
@@ -685,7 +687,7 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-slot-selection {
-	z-index: 10;
+	z-index: 2;
 	position: absolute;
 	background-color: rgba(0, 0, 0, 0.5);
 	color: white;
@@ -729,7 +731,7 @@ button.rbc-input::-moz-focus-inner {
 }
 .rbc-time-view .rbc-allday-events {
 	position: relative;
-	z-index: 4;
+	z-index: 1;
 }
 .rbc-time-view .rbc-row {
 	-webkit-box-sizing: border-box;
@@ -828,7 +830,7 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-current-time-indicator {
 	position: absolute;
-	z-index: 3;
+	z-index: 1;
 	left: 0;
 	right: 0;
 	height: 1px;
