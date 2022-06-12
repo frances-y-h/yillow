@@ -1,4 +1,12 @@
 @charset "UTF-8";
+
+.calendar-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 30px;
+}
+
 .rbc-btn {
 	color: inherit;
 	font: inherit;
@@ -24,7 +32,8 @@ button.rbc-input::-moz-focus-inner {
 .rbc-calendar {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	height: 100%;
+	height: calc(100vh - 150px);
+	width: 100%;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -73,7 +82,7 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-off-range-bg {
-	background: #e6e6e6;
+	background-color: rgb(245, 245, 245);
 }
 
 .rbc-header {
@@ -83,7 +92,7 @@ button.rbc-input::-moz-focus-inner {
 	flex: 1 0 0%;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	padding: 0 3px;
+	padding: 10px 0px;
 	text-align: center;
 	vertical-align: middle;
 	font-weight: bold;
@@ -106,7 +115,8 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-button-link {
-	color: inherit;
+	color: gray;
+	font-weight: lighter;
 	background: none;
 	margin: 0;
 	padding: 0;
@@ -124,7 +134,7 @@ button.rbc-input::-moz-focus-inner {
 	-ms-user-select: none;
 	user-select: none;
 	-webkit-user-select: none;
-	z-index: 4;
+	z-index: 1;
 }
 
 .rbc-row-content-scrollable {
@@ -152,7 +162,8 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-today {
-	background-color: #eaf6ff;
+	background-color: #f9fcff;
+	/* background-color: red; */
 }
 
 .rbc-toolbar {
@@ -263,14 +274,22 @@ button.rbc-input::-moz-focus-inner {
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	margin: 0;
-	padding: 2px 5px;
-	background-color: #3174ad;
-	border-radius: 5px;
-	color: #fff;
+	padding: 3px 7px;
+	background-color: var(--lightblue);
+	border-left: 2px solid var(--blue2);
+	color: var(--blue2);
+	font-weight: lighter;
 	cursor: pointer;
 	width: 100%;
 	text-align: left;
 }
+
+.rbc-event:hover {
+	background-color: rgb(188, 222, 188);
+	color: rgb(61, 92, 61);
+	border-left: 2px solid rgb(61, 92, 61);
+}
+
 .rbc-slot-selecting .rbc-event,
 .rbc-slot-selecting .rbc-day-slot .rbc-background-event,
 .rbc-day-slot .rbc-slot-selecting .rbc-background-event {
@@ -279,11 +298,13 @@ button.rbc-input::-moz-focus-inner {
 }
 .rbc-event.rbc-selected,
 .rbc-day-slot .rbc-selected.rbc-background-event {
-	background-color: #265985;
+	background-color: rgb(255, 216, 144);
+	border-left: 2px solid orange;
+	color: rgb(255, 128, 0);
 }
-.rbc-event:focus,
+/* .rbc-event:focus, */
 .rbc-day-slot .rbc-background-event:focus {
-	outline: 5px auto #3b99fc;
+	outline: 5px auto red;
 }
 
 .rbc-event-label {
@@ -334,12 +355,13 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-show-more {
 	background-color: rgba(255, 255, 255, 0.3);
-	z-index: 4;
+	z-index: 1;
 	font-weight: bold;
 	font-size: 85%;
 	height: auto;
 	line-height: normal;
 	color: #3174ad;
+	/* color: gray; */
 }
 .rbc-show-more:hover,
 .rbc-show-more:focus {
@@ -349,6 +371,7 @@ button.rbc-input::-moz-focus-inner {
 .rbc-month-view {
 	position: relative;
 	border: 1px solid #ddd;
+	border-radius: 5px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -403,7 +426,7 @@ button.rbc-input::-moz-focus-inner {
 	-ms-flex: 1 1 0px;
 	flex: 1 1 0;
 	min-width: 0;
-	padding-right: 5px;
+	padding: 5px 7px 0px 0px;
 	text-align: right;
 }
 .rbc-date-cell.rbc-now {
@@ -445,7 +468,7 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-overlay {
 	position: absolute;
-	z-index: 5;
+	z-index: 2;
 	border: 1px solid #e5e5e5;
 	background-color: #fff;
 	-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
@@ -459,7 +482,7 @@ button.rbc-input::-moz-focus-inner {
 .rbc-overlay-header {
 	border-bottom: 1px solid #e5e5e5;
 	margin: -10px -10px 5px -10px;
-	padding: 2px 10px;
+	padding: 5px 10px;
 }
 
 .rbc-agenda-view {
@@ -501,9 +524,8 @@ button.rbc-input::-moz-focus-inner {
 	border-top: 1px solid #ddd;
 }
 .rbc-agenda-view table.rbc-agenda-table thead > tr > th {
-	padding: 3px 5px;
+	padding: 5px 5px;
 	text-align: left;
-	border-bottom: 1px solid #ddd;
 }
 .rbc-rtl .rbc-agenda-view table.rbc-agenda-table thead > tr > th {
 	text-align: right;
@@ -522,10 +544,18 @@ button.rbc-input::-moz-focus-inner {
 .rbc-agenda-date-cell,
 .rbc-agenda-time-cell {
 	white-space: nowrap;
+	font-weight: lighter;
 }
 
 .rbc-agenda-event-cell {
 	width: 100%;
+	background-color: var(--lightblue);
+	color: var(--blue2);
+	cursor: pointer;
+}
+
+.rbc-agenda-event-cell:hover {
+	color: var(--blue);
 }
 
 .rbc-time-column {
@@ -584,7 +614,7 @@ button.rbc-input::-moz-focus-inner {
 }
 .rbc-day-slot .rbc-event,
 .rbc-day-slot .rbc-background-event {
-	border: 1px solid #265985;
+	/* border: 1px solid #265985; */
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -630,7 +660,7 @@ button.rbc-input::-moz-focus-inner {
 	left: 0;
 	background-color: white;
 	border-right: 1px solid #ddd;
-	z-index: 10;
+	z-index: 2;
 	margin-right: -1px;
 }
 .rbc-time-view-resources .rbc-time-header {
@@ -678,7 +708,7 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-slot-selection {
-	z-index: 10;
+	z-index: 2;
 	position: absolute;
 	background-color: rgba(0, 0, 0, 0.5);
 	color: white;
@@ -722,7 +752,7 @@ button.rbc-input::-moz-focus-inner {
 }
 .rbc-time-view .rbc-allday-events {
 	position: relative;
-	z-index: 4;
+	z-index: 1;
 }
 .rbc-time-view .rbc-row {
 	-webkit-box-sizing: border-box;
@@ -821,12 +851,18 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-current-time-indicator {
 	position: absolute;
-	z-index: 3;
+	z-index: 1;
 	left: 0;
 	right: 0;
 	height: 1px;
 	background-color: #74ad31;
 	pointer-events: none;
+}
+
+@media screen and (max-width: 1024px) {
+	.calendar-wrap {
+		display: none;
+	}
 }
 
 /*# sourceMappingURL=react-big-calendar.css.map */

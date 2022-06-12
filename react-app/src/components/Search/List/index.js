@@ -4,6 +4,8 @@ import { useHistory, useParams } from "react-router-dom";
 
 import PropertyCard from "./PropertyCard";
 
+import noproperty from "../../../assets/no-property-nobg.svg";
+
 const List = () => {
 	const history = useHistory();
 	const properties = useSelector((state) => state.properties);
@@ -105,7 +107,10 @@ const List = () => {
 								<div
 									className="div"
 									key={term}
-									onMouseDown={(e) => setSearch(term)}
+									onMouseDown={(e) => {
+										setSearch(term);
+										handleSubmit(e);
+									}}
 								>
 									<i className="fa-solid fa-magnifying-glass"></i>
 									<div className="term">{term}</div>
@@ -207,9 +212,10 @@ const List = () => {
 					))}
 				</div>
 			) : (
-				<div>
-					<div>Sorry no results are found</div>
-					<div>
+				<div className="search-no-results">
+					<img className="img" src={noproperty} alt="No property" />
+					<div className="title">Sorry no results are found</div>
+					<div className="desc">
 						Please search different city or filter with different criteria
 					</div>
 				</div>

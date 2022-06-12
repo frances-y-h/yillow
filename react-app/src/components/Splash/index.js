@@ -69,7 +69,10 @@ const Splash = () => {
 								<div
 									className="div"
 									key={term}
-									onMouseDown={() => setSearch(term)}
+									onMouseDown={(e) => {
+										setSearch(term);
+										handleSubmit(e);
+									}}
 								>
 									<i className="fa-solid fa-magnifying-glass"></i>
 									<div className="term">{term}</div>

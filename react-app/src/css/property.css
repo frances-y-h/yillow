@@ -31,6 +31,7 @@
 	padding-top: 100%;
 	background-size: cover;
 	background-position: center;
+	cursor: pointer;
 }
 
 .property-imgs-wrap {
@@ -44,6 +45,7 @@
 	padding-top: 100%;
 	background-size: cover;
 	background-position: center;
+	cursor: pointer;
 }
 
 .property-img-bottom {
@@ -247,6 +249,18 @@
 .property-detail-mls {
 	font-weight: lighter;
 	line-height: 24px;
+}
+
+@media screen and (orientation: landscape) {
+	.property-img-lg {
+		height: 90vh;
+	}
+}
+
+@media screen and (orientation: portrait) {
+	.property-img-lg {
+		width: 90vw;
+	}
 }
 
 @media screen and (max-width: 1126px) {
