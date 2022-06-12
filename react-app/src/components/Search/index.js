@@ -19,7 +19,7 @@ const Search = () => {
 		<main className="search-pg-ctrl">
 			<MyMap
 				isMarkerShown
-				googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+				googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV1aH4qqDr2uUEG4I9FKeB6scau4FWuWw&v=3.exp&libraries=geometry,drawing,places"
 				loadingElement={<div style={{ height: `100%` }} />}
 				containerElement={<div className="map-ctnr" />}
 				mapElement={<div style={{ height: `100%` }} />}
