@@ -23,7 +23,7 @@ const Agents = () => {
 					agent?.username.toLowerCase().includes(search.toLowerCase())
 				)
 				.filter((agent) => {
-					return agent?.areas.some((area) => {
+					return agent?.areas?.some((area) => {
 						return area.toString().includes(zip);
 					});
 				});
