@@ -77,11 +77,11 @@ const List = () => {
 				} else if (bath === 4) {
 					return prop?.bath >= 4;
 				} else {
-					return prop?.bath === bath || prop?.bath - 0.5 == bath;
+					return prop?.bath === bath || prop?.bath - 0.5 === bath;
 				}
 			});
 		setPropArr(arr);
-	}, [min, max, type, bed, bath, search]);
+	}, [min, max, type, bed, bath, search, properties]);
 
 	return (
 		<div className="search-wrap">
