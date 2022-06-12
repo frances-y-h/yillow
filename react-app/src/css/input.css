@@ -23,6 +23,19 @@
 	cursor: pointer;
 }
 
+.search-label-sm {
+	display: flex;
+	padding: 10px;
+	gap: 10px;
+	border: 1px solid lightgrey;
+	background-color: white;
+	border-radius: 5px;
+	width: 100%;
+	min-width: 300px;
+	align-items: center;
+	position: relative;
+}
+
 /* Select input */
 .select-input {
 	width: 100%;

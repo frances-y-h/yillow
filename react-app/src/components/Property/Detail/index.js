@@ -34,8 +34,8 @@ const Detail = ({ property, openTour }) => {
 						</div>
 					</div>
 					<div className="property-detail-address">
-						{property?.st_num} {property?.st_name}, {property?.city},{" "}
-						{property?.state} {property?.zip}
+						{property?.street}, {property?.city}, {property?.state}{" "}
+						{property?.zip}
 					</div>
 					<div className="property-detail-status">
 						{property?.status === "Active" && (
@@ -73,7 +73,7 @@ const Detail = ({ property, openTour }) => {
 							<div className="property-detail-icon-box">
 								<i className="fa-regular fa-calendar-days"></i>
 							</div>
-							Built in
+							Built in {property?.built}
 						</div>
 						<div className="property-detail-icon">
 							<div className="property-detail-icon-box">
@@ -91,7 +91,7 @@ const Detail = ({ property, openTour }) => {
 							<div className="property-detail-icon-box">
 								<i className="fa-solid fa-square-parking"></i>
 							</div>
-							2 Car Garage
+							{property?.garage} Car Garage
 						</div>
 						<div className="property-detail-icon">
 							<div className="property-detail-icon-box">

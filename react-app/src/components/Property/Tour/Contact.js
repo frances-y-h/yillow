@@ -15,7 +15,7 @@ const Contact = ({ property, today, hour, setShowSelectDate, setShowTour }) => {
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState(
-		`I am interested in ${property.st_num} ${property.st_name}, ${property.city}, ${property.state} ${property.zip}.`
+		`I am interested in ${property.street}, ${property.city}, ${property.state} ${property.zip}.`
 	);
 
 	const [showLogin, setShowLogin] = useState(true);

@@ -92,7 +92,6 @@ const ApptDetail = ({ appt, past, onClose }) => {
 
 	useEffect(() => {
 		setHourList(schedule[today]);
-		console.log(hourList);
 	}, [today]);
 
 	return (
@@ -102,7 +101,31 @@ const ApptDetail = ({ appt, past, onClose }) => {
 					className="appt-img-detail"
 					style={{ backgroundImage: `url("${property.front_img}")` }}
 					onClick={() => setShowProperty(true)}
-				></div>
+				>
+					<div className="appt-img-prop-detail">
+						{property?.status === "Active" && (
+							<div>
+								<i className="fa-solid fa-circle for-sale"></i>For sale
+							</div>
+						)}
+						{property?.status === "Pending" && (
+							<div>
+								<i className="fa-solid fa-circle pending"></i>Pending
+							</div>
+						)}
+						{property?.status === "Sold" && (
+							<div>
+								<i className="fa-solid fa-circle sold"></i>Sold
+							</div>
+						)}
+						<div>
+							$
+							{property?.price
+								.toFixed()
+								.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
+						</div>
+					</div>
+				</div>
 			) : (
 				<div className="appt-img-detail" onClick={() => setShowProperty(true)}>
 					No image available
@@ -115,8 +138,8 @@ const ApptDetail = ({ appt, past, onClose }) => {
 				>
 					<div className="appt-label">Address</div>
 					<div className="appt-address">
-						{property?.st_num} {property?.st_name}, {property?.city},{" "}
-						{property?.state}, {property?.zip}
+						{property?.street}, {property?.city}, {property?.state},{" "}
+						{property?.zip}
 					</div>
 					<div className="appt-visit-property">
 						Click here to visit property page

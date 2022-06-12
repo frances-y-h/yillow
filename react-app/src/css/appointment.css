@@ -127,6 +127,33 @@
 	background-size: cover;
 	background-position: center;
 	cursor: pointer;
+	position: relative;
+}
+
+.appt-img-details {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: lightgray;
+	color: white;
+	font-size: 24px;
+	border-radius: 10px 10px 0px 0px;
+	background-size: cover;
+	background-position: center;
+	cursor: pointer;
+	position: relative;
+}
+
+.appt-img-prop-detail {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 5px 10px;
+	font-size: 28px;
+	display: flex;
+	gap: 30px;
 }
 
 .appt-modal-btm {

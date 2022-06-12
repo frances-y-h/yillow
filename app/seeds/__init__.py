@@ -5,6 +5,7 @@ from .properties import seed_properties, undo_properties
 from .property_imgs import seed_property_imgs, undo_property_imgs
 from .reviews import seed_reviews, undo_reviews
 from .appointments import seed_appointments, undo_appointments
+from .agent_area import seed_aa, undo_aa
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -20,12 +21,14 @@ def seed():
     seed_property_imgs()
     seed_reviews()
     seed_appointments()
+    seed_aa()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_aa()
     undo_property_imgs()
     undo_properties()
     undo_reviews()

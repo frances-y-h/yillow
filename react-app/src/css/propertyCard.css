@@ -40,6 +40,7 @@
 
 .card-address {
 	font-size: 14px;
+	white-space: normal;
 }
 
 .card-office {

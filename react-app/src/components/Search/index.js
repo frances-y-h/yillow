@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -9,12 +9,9 @@ import * as propertyActions from "../../store/property";
 const Search = () => {
 	const dispatch = useDispatch();
 	const searchParam = useParams().searchParam;
-	const [searchTerm, setSearchTerm] = useState("");
 
 	useEffect(() => {
-		if (searchParam) {
-			dispatch(propertyActions.searchProperties(searchParam));
-		}
+		dispatch(propertyActions.searchProperties(searchParam));
 	}, [dispatch, searchParam]);
 
 	return (

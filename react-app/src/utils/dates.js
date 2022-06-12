@@ -80,10 +80,10 @@ export function range(start, end, unit = "day") {
 }
 
 export function merge(date, time) {
-	if (time == null && date == null) return null;
+	if (time === null && date === null) return null;
 
-	if (time == null) time = new Date();
-	if (date == null) date = new Date();
+	if (time === null) time = new Date();
+	if (date === null) date = new Date();
 
 	date = dates.startOf(date, "day");
 	date = dates.hours(date, dates.hours(time));
