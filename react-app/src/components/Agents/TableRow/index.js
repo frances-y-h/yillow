@@ -31,9 +31,7 @@ const TableRow = ({ agent }) => {
 					<div className="office">Agent License #: {agent?.license_num}</div>
 				</div>
 			</td>
-			<td>
-				<img className="agents-map" src={map} alt="Locatoin" />
-			</td>
+			<td className="area">{agent?.areas.join(", ")}</td>
 			<td className="review">
 				<Link to={`/agents/${agent?.id}`} className="more">
 					More Reviews

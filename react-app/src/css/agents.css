@@ -16,6 +16,7 @@
 	display: flex;
 	background-color: var(--lightbg2);
 	padding: 10px;
+	gap: 20px;
 }
 
 .agents-search-wrap {
@@ -133,6 +134,12 @@ table {
 
 .agents-map {
 	height: 120px;
+}
+
+.agents-table .area {
+	text-align: center;
+	font-size: 16px;
+	font-weight: lighter;
 }
 
 .agents-table .review {
