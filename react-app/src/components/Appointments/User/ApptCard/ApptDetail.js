@@ -115,8 +115,8 @@ const ApptDetail = ({ appt, past, onClose }) => {
 				>
 					<div className="appt-label">Address</div>
 					<div className="appt-address">
-						{property?.st_num} {property?.st_name}, {property?.city},{" "}
-						{property?.state}, {property?.zip}
+						{property?.street}, {property?.city}, {property?.state},{" "}
+						{property?.zip}
 					</div>
 					<div className="appt-visit-property">
 						Click here to visit property page

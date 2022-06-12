@@ -36,9 +36,7 @@ const ApptCard = ({ appt, past }) => {
 				<div className="appt-address-wrap">
 					<div className="appt-address-title">Address</div>
 					<div className="appt-address">
-						<div>
-							{property?.st_num} {property?.st_name},
-						</div>
+						<div>{property?.street},</div>
 						<div>
 							{property?.city}, {property?.state}, {property?.zip}
 						</div>
