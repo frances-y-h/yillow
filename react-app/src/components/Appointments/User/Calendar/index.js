@@ -9,6 +9,9 @@ import {
 	momentLocalizer,
 } from "react-big-calendar";
 
+import { Modal } from "../../../../context/Modal";
+import ApptDetail from "../ApptCard/ApptDetail";
+
 import * as dates from "../../../../utils/dates";
 
 const mLocalizer = momentLocalizer(moment);
@@ -31,6 +34,9 @@ export default function Basic({
 }) {
 	const appointments = useSelector((state) => state.appointments);
 	const properties = useSelector((state) => state.properties);
+	const [showModal, setShowModal] = useState(false);
+	const [appt, setAppt] = useState();
+	const [past, setPast] = useState(false);
 	const [events, setEvents] = useState([
 		{
 			title: "Today",
@@ -52,6 +58,22 @@ export default function Basic({
 		[]
 	);
 
+	const onClose = () => {
+		setShowModal(false);
+	};
+
+	const onSelect = (e) => {
+		if (e.id) {
+			const appointment = appointments[e.id];
+			const today = new Date();
+			if (e.start < today) {
+				setPast(true);
+			} else setPast(false);
+			setAppt(appointment);
+			setShowModal(true);
+		}
+	};
+
 	useEffect(() => {
 		const arr = Object.values(appointments).map((appt) => {
 			const start = new Date(`${appt?.date} ${appt?.time}`);
@@ -60,8 +82,8 @@ export default function Basic({
 				id: appt?.id,
 				start,
 				end,
-				title: `${properties[appt.property_id].street}, ${
-					properties[appt.property_id].city
+				title: `${properties[appt?.property_id].street}, ${
+					properties[appt?.property_id].city
 				}`,
 			};
 		});
@@ -85,11 +107,17 @@ export default function Basic({
 					localizer={localizer}
 					max={max}
 					showMultiDayTimes
-					step={60}
+					onSelectEvent={onSelect}
+					step={15}
 					views={views}
 					popup
 				/>
 			</div>
+			{showModal && (
+				<Modal onClose={onClose}>
+					<ApptDetail appt={appt} past={past} onClose={onClose} />
+				</Modal>
+			)}
 		</Fragment>
 	);
 }
