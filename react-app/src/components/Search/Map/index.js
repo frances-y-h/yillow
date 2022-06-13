@@ -77,7 +77,9 @@ const MyMap = withScriptjs(
 
 		// Fit bounds on mount, and when the markers change
 		useEffect(() => {
-			fitBounds();
+			if (props.markers.length) {
+				fitBounds();
+			}
 		}, [props.markers]);
 
 		useEffect(() => {
@@ -87,11 +89,12 @@ const MyMap = withScriptjs(
 		return (
 			<GoogleMap
 				ref={mapRef}
-				defaultZoom={12}
+				defaultZoom={4}
 				defaultCenter={{
 					lat: props.center.lat,
 					lng: props.center.lng,
 				}}
+				defaultOptions={{ fullscreenControl: false, streetViewControl: false }}
 			>
 				{props.markers.map((marker) => {
 					const label = priceLabel(marker?.price);

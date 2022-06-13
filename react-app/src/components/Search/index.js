@@ -58,7 +58,7 @@ const Search = () => {
 			const centerLat = latArr.reduce((acc, el) => acc + el) / latArr.length;
 			const centerLng = lngArr.reduce((acc, el) => acc + el) / lngArr.length;
 			setCenter({ lat: centerLat, lng: centerLng });
-		} else setCenter({ lat: 37.0903, lon: 95.7129 });
+		} else setCenter({ lat: 39.5, lng: -98.35 });
 	}, [propArr]);
 
 	return (
