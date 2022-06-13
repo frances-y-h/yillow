@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { set } from "date-fns/esm";
+import { useRef, useEffect, useState } from "react";
 import {
 	withScriptjs,
 	withGoogleMap,
@@ -7,17 +8,16 @@ import {
 	InfoWindow,
 } from "react-google-maps";
 
-import dot from "../../../assets/map/map-dot.svg";
-
 const MyMap = withScriptjs(
 	withGoogleMap((props) => {
 		const mapRef = useRef(null);
+		// const [isOpen, setIsOpen] = useState(false);
 
 		const iconPin = {
 			path: "M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z",
 			fillColor: "#ef3d4d",
-			stroke: "#ffffff",
-			strokeWidth: "2px",
+			strokeColor: "#ffffff",
+			strokeWeight: 2,
 			fillOpacity: 1,
 			scale: 0.03, //to reduce the size of icons
 		};
@@ -59,14 +59,36 @@ const MyMap = withScriptjs(
 			>
 				{props.markers.map((marker) => {
 					const label = priceLabel(marker?.price);
+					const [isOpen, setIsOpen] = useState(false);
 					return (
 						<Marker
 							position={{ lat: marker?.lat, lng: marker?.lng }}
 							key={marker?.id}
 							icon={iconPin}
-							onClick={() => alert(marker)}
+							onClick={() => alert(marker.street)}
+							onMouseOver={() => setIsOpen(true)}
+							onMouseOut={() => setIsOpen(false)}
 							label={label}
-						></Marker>
+						>
+							{isOpen && (
+								<InfoWindow>
+									<div className="gm-div">
+										<img
+											className="gm-img"
+											src={marker.front_img}
+											alt="House"
+										/>
+										<div className="gm-desc">
+											<div className="price">${label}</div>
+											<div>
+												{marker.bed} bd, {marker.bath} ba
+											</div>
+											<div>{marker.sqft} sqft</div>
+										</div>
+									</div>
+								</InfoWindow>
+							)}
+						</Marker>
 					);
 				})}
 			</GoogleMap>
