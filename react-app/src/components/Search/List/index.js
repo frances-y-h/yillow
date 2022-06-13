@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
 import PropertyCard from "./PropertyCard";
@@ -177,6 +176,7 @@ const List = ({
 							</select>
 						</label>
 					</div>
+					<div className="results">{propArr.length} results</div>
 				</div>
 			</div>
 			{propArr.length ? (
