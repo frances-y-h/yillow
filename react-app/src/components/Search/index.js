@@ -18,7 +18,6 @@ const Search = () => {
 	const [bed, setBed] = useState(0);
 	const [bath, setBath] = useState(0);
 	const [center, setCenter] = useState({ lat: 37.0903, lon: 95.7129 });
-
 	const [propArr, setPropArr] = useState([]);
 
 	useEffect(() => {
