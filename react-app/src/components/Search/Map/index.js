@@ -98,9 +98,6 @@ const MyMap = withScriptjs(
 					let icon;
 					if (props.over.id === marker.id) {
 						icon = iconOver;
-						// setIsOver({
-						// 	openInfoWindowMarkerId: marker.id,
-						// });
 					} else {
 						icon = iconPin;
 					}
@@ -112,6 +109,7 @@ const MyMap = withScriptjs(
 							onClick={() => handleShowModal(marker?.id)}
 							onMouseOver={() => handleToggleOpen(marker?.id)}
 							onMouseOut={() => handleToggleOpen(0)}
+							zIndex={props.over.id === marker.id ? 9999 : 0}
 						>
 							{isOpen.openInfoWindowMarkerId === marker.id && (
 								<InfoWindow>
