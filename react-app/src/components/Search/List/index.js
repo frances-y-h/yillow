@@ -6,21 +6,25 @@ import PropertyCard from "./PropertyCard";
 
 import noproperty from "../../../assets/no-property-nobg.svg";
 
-const List = () => {
+const List = ({
+	min,
+	setMin,
+	max,
+	setMax,
+	type,
+	setType,
+	bed,
+	setBed,
+	bath,
+	setBath,
+	propArr,
+}) => {
 	const history = useHistory();
-	const properties = useSelector((state) => state.properties);
 	const searchParam = useParams().searchParam;
 
 	const [search, setSearch] = useState("");
 	const [searchList, setSearchList] = useState([]);
 	const [searchFiltered, setSearchFiltered] = useState([]);
-	const [min, setMin] = useState(0);
-	const [max, setMax] = useState(99999999999);
-	const [type, setType] = useState("");
-	const [bed, setBed] = useState(0);
-	const [bath, setBath] = useState(0);
-
-	const [propArr, setPropArr] = useState([]);
 
 	const searchDivRef = useRef();
 	const searchDDRef = useRef();
@@ -53,32 +57,6 @@ const List = () => {
 		);
 		setSearchFiltered(filtered);
 	}, [search, searchList]);
-
-	useEffect(() => {
-		let arr = Object.values(properties)
-			.filter((prop) => prop?.price > min)
-			.filter((prop) => prop?.price < max)
-			.filter((prop) => prop?.type.includes(type))
-			.filter((prop) => {
-				if (bed === 0) {
-					return prop;
-				} else if (bed === 4) {
-					return prop?.bed >= 4;
-				} else {
-					return prop?.bed === bed;
-				}
-			})
-			.filter((prop) => {
-				if (bath === 0) {
-					return prop;
-				} else if (bath === 4) {
-					return prop?.bath >= 4;
-				} else {
-					return prop?.bath === bath || prop?.bath - 0.5 === bath;
-				}
-			});
-		setPropArr(arr);
-	}, [min, max, type, bed, bath, search, properties]);
 
 	return (
 		<div className="search-wrap">
