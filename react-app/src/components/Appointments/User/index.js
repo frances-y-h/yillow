@@ -11,8 +11,9 @@ import Basic from "./Calendar";
 const User = () => {
 	const appointments = useSelector((state) => state.appointments);
 	const [showUpcoming, setShowUpcoming] = useState(true);
-
-	const [newAppt, pastAppt] = SplitAppt(appointments);
+	const [newAppt, setNewAppt] = useState([]);
+	const [pastAppt, setPastAppt] = useState([]);
+	// const [newAppt, pastAppt] = SplitAppt(appointments);
 
 	const upcomingRef = useRef();
 	const pastRef = useRef();
@@ -26,6 +27,13 @@ const User = () => {
 			pastRef.current.classList.add("appt-active");
 		}
 	}, [showUpcoming]);
+
+	useEffect(() => {
+		if (appointments) {
+			setNewAppt(SplitAppt(appointments)[0]);
+			setPastAppt(SplitAppt(appointments)[1]);
+		}
+	}, [appointments]);
 
 	return (
 		<div className="appointment-ctrl">

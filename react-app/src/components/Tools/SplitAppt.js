@@ -3,8 +3,8 @@ export default function SplitAppt(appointments) {
 
 	const apptArr = Object?.values(appointments).sort((a, b) => {
 		return (
-			new Date(`${a.date} ${a.time}`).getTime() -
-			new Date(`${b.date} ${b.time}`).getTime()
+			new Date(`${a?.date} ${a?.time}`).getTime() -
+			new Date(`${b?.date} ${b?.time}`).getTime()
 		);
 	});
 

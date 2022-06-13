@@ -3,6 +3,45 @@
 	width: 50vw;
 }
 
+.gm-style .gm-style-iw-c {
+	padding-right: 5px !important;
+	padding-bottom: 5px !important;
+	max-width: 200px !important;
+	max-height: 70px !important;
+	min-width: 0px !important;
+	position: absolute;
+	box-sizing: border-box;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	transform: translate(-50%, -100%);
+	background-color: white;
+	border-radius: 0px;
+	box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.3);
+}
+
+.gm-div {
+	display: grid;
+	grid-template-columns: 50px 75px;
+	gap: 5px;
+}
+
+.gm-img {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+}
+
+.gm-desc {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.gm-desc .price {
+	font-weight: bold;
+}
+
 @media screen and (max-width: 650px) {
 	.map-ctnr {
 		display: none;
