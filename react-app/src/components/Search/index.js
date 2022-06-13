@@ -17,6 +17,7 @@ const Search = () => {
 	const [type, setType] = useState("");
 	const [bed, setBed] = useState(0);
 	const [bath, setBath] = useState(0);
+	const [center, setCenter] = useState({ lat: 37.0903, lon: 95.7129 });
 
 	const [propArr, setPropArr] = useState([]);
 
@@ -50,6 +51,16 @@ const Search = () => {
 		setPropArr(arr);
 	}, [min, max, type, bed, bath, properties]);
 
+	useEffect(() => {
+		if (propArr.length) {
+			const latArr = propArr.map((prop) => prop.lat);
+			const lngArr = propArr.map((prop) => prop.lng);
+			const centerLat = latArr.reduce((acc, el) => acc + el) / latArr.length;
+			const centerLng = lngArr.reduce((acc, el) => acc + el) / lngArr.length;
+			setCenter({ lat: centerLat, lng: centerLng });
+		} else setCenter({ lat: 37.0903, lon: 95.7129 });
+	}, [propArr]);
+
 	return (
 		<main className="search-pg-ctrl">
 			<MyMap
@@ -59,6 +70,7 @@ const Search = () => {
 				containerElement={<div className="map-ctnr" />}
 				mapElement={<div style={{ height: `100%` }} />}
 				markers={propArr}
+				center={center}
 			/>
 			<List
 				min={min}
