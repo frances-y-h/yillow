@@ -12,15 +12,15 @@ const MyMap = withScriptjs(
 		<GoogleMap
 			defaultZoom={12}
 			defaultCenter={{
-				lat: props?.markers[0].lat,
-				lng: props?.markers[0].lng,
+				lat: props?.markers[0]?.lat,
+				lng: props?.markers[0]?.lng,
 			}}
 		>
 			{props.markers.map((marker) => (
 				<Marker
 					position={{ lat: marker?.lat, lng: marker?.lng }}
 					key={marker?.id}
-					// icon={{ url: dot }}
+					icon={{ url: dot }}
 					onClick={() => alert(marker)}
 				></Marker>
 			))}
