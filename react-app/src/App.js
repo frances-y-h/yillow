@@ -11,8 +11,7 @@ import Appointments from "./components/Appointments";
 import Notification from "./components/Tools/Notification";
 import Agents from "./components/Agents";
 import Agent from "./components/Agent";
-// import UsersList from "./components/UsersList";
-// import User from "./components/User";
+import NotFound from "./components/NotFound";
 import { authenticate } from "./store/session";
 
 import About from "./components/About";
@@ -71,7 +70,7 @@ function App() {
 					<Appointments />
 				</ProtectedRoute>
 				<Route>
-					<div>404</div>
+					<NotFound />
 				</Route>
 			</Switch>
 		</BrowserRouter>

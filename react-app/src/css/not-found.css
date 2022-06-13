@@ -1,0 +1,35 @@
+.not-found-ctrl {
+	background-color: #e0f2ff;
+	background-image: url("../assets/notFound/stairs.svg");
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 100vh;
+	padding: 60px 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	position: relative;
+	z-index: 0;
+}
+
+.not-found-ctrl .title {
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	font-size: 60px;
+	color: #0d4599;
+}
+
+.not-found-ctrl .error {
+	font-size: 20px;
+	font-weight: bold;
+	color: #0d4599;
+	z-index: 1;
+}
+
+.not-found-ctrl .cat {
+	width: 250px;
+	position: absolute;
+	left: 40%;
+	bottom: 100px;
+}
