@@ -54,5 +54,7 @@ class Property(db.Model):
             "office": self.listing_agent.office,
             "front_img": self.front_img,
             "images": [image.id for image in self.images],
-            "appointments": [appointment.appt() for appointment in self.appointments]
+            "appointments": [appointment.appt() for appointment in self.appointments],
+            "lat": self.lat,
+            "lng": self.long,
         }
