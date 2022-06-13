@@ -11,7 +11,7 @@
 	transition: all 0.5s;
 	display: flex;
 	justify-content: center;
-	z-index: 10;
+	z-index: 99;
 }
 .notification-div i {
 	padding-right: 5px;

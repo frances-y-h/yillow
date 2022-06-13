@@ -77,8 +77,8 @@ export default function Basic({
 				id: appt?.id,
 				start,
 				end,
-				title: `${properties[appt?.property_id].street}, ${
-					properties[appt?.property_id].city
+				title: `${properties[appt?.property_id]?.street}, ${
+					properties[appt?.property_id]?.city
 				}`,
 			};
 		});
