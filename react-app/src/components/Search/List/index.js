@@ -18,6 +18,7 @@ const List = ({
 	bath,
 	setBath,
 	propArr,
+	setOver,
 }) => {
 	const history = useHistory();
 	const searchParam = useParams().searchParam;
@@ -181,7 +182,11 @@ const List = ({
 			{propArr.length ? (
 				<div className="search-list">
 					{propArr?.map((property, idx) => (
-						<PropertyCard key={"property" + idx} property={property} />
+						<PropertyCard
+							key={"property" + idx}
+							property={property}
+							setOver={setOver}
+						/>
 					))}
 				</div>
 			) : (

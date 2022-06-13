@@ -17,11 +17,23 @@ const MyMap = withScriptjs(
 		const [isOpen, setIsOpen] = useState({
 			openInfoWindowMarkerId: 0,
 		});
+		const [isOver, setIsOver] = useState({
+			id: 0,
+		});
 		const [showModal, setShowModal] = useState(false);
 
 		const iconPin = {
 			path: "M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z",
 			fillColor: "#ef3d4d",
+			strokeColor: "#ffffff",
+			strokeWeight: 2,
+			fillOpacity: 1,
+			scale: 0.03, //to reduce the size of icons
+		};
+
+		const iconOver = {
+			path: "M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z",
+			fillColor: "green",
 			strokeColor: "#ffffff",
 			strokeWeight: 2,
 			fillOpacity: 1,
@@ -68,6 +80,10 @@ const MyMap = withScriptjs(
 			fitBounds();
 		}, [props.markers]);
 
+		useEffect(() => {
+			setIsOver({ id: props.over.id });
+		}, [props.over]);
+
 		return (
 			<GoogleMap
 				ref={mapRef}
@@ -79,18 +95,43 @@ const MyMap = withScriptjs(
 			>
 				{props.markers.map((marker) => {
 					const label = priceLabel(marker?.price);
-
+					let icon;
+					if (props.over.id === marker.id) {
+						icon = iconOver;
+						// setIsOver({
+						// 	openInfoWindowMarkerId: marker.id,
+						// });
+					} else {
+						icon = iconPin;
+					}
 					return (
 						<Marker
 							position={{ lat: marker?.lat, lng: marker?.lng }}
 							key={marker?.id}
-							icon={iconPin}
+							icon={icon}
 							onClick={() => handleShowModal(marker?.id)}
 							onMouseOver={() => handleToggleOpen(marker?.id)}
 							onMouseOut={() => handleToggleOpen(0)}
-							// label={label}
 						>
 							{isOpen.openInfoWindowMarkerId === marker.id && (
+								<InfoWindow>
+									<div className="gm-div">
+										<img
+											className="gm-img"
+											src={marker.front_img}
+											alt="House"
+										/>
+										<div className="gm-desc">
+											<div className="price">${label}</div>
+											<div>
+												{marker.bed} bd, {marker.bath} ba
+											</div>
+											<div>{marker.sqft} sqft</div>
+										</div>
+									</div>
+								</InfoWindow>
+							)}
+							{isOver.id === marker.id && (
 								<InfoWindow>
 									<div className="gm-div">
 										<img

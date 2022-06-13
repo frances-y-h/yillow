@@ -19,6 +19,7 @@ const Search = () => {
 	const [bath, setBath] = useState(0);
 	const [center, setCenter] = useState({ lat: 37.0903, lon: 95.7129 });
 	const [propArr, setPropArr] = useState([]);
+	const [over, setOver] = useState({ id: 0 });
 
 	useEffect(() => {
 		dispatch(propertyActions.searchProperties(searchParam));
@@ -70,6 +71,7 @@ const Search = () => {
 				mapElement={<div style={{ height: `100%` }} />}
 				markers={propArr}
 				center={center}
+				over={over}
 			/>
 			<List
 				min={min}
@@ -83,6 +85,7 @@ const Search = () => {
 				bath={bath}
 				setBath={setBath}
 				propArr={propArr}
+				setOver={setOver}
 			/>
 		</main>
 	);

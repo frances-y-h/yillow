@@ -5,7 +5,7 @@ import Property from "../../../Property";
 
 import PropertyTop from "./PropertyTop";
 
-const PropertyCard = ({ property }) => {
+const PropertyCard = ({ property, setOver }) => {
 	const [showModal, setShowModal] = useState(false);
 
 	const onClose = () => {
@@ -15,7 +15,12 @@ const PropertyCard = ({ property }) => {
 	};
 
 	return (
-		<div className="card-ctrl" onClick={() => setShowModal(true)}>
+		<div
+			className="card-ctrl"
+			onClick={() => setShowModal(true)}
+			onMouseOver={() => setOver({ id: property.id })}
+			onMouseOut={() => setOver({ id: 0 })}
+		>
 			<PropertyTop property={property} />
 			<div className="card-btm">
 				<div className="card-price">
