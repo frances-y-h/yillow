@@ -14,6 +14,10 @@ import Property from "../../Property";
 const MyMap = withScriptjs(
 	withGoogleMap((props) => {
 		const mapRef = useRef(null);
+		const [isOpen, setIsOpen] = useState({
+			openInfoWindowMarkerId: 0,
+		});
+		const [showModal, setShowModal] = useState(false);
 
 		const iconPin = {
 			path: "M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z",
@@ -22,6 +26,20 @@ const MyMap = withScriptjs(
 			strokeWeight: 2,
 			fillOpacity: 1,
 			scale: 0.03, //to reduce the size of icons
+		};
+
+		const handleToggleOpen = (markerId) => {
+			setIsOpen({
+				openInfoWindowMarkerId: markerId,
+			});
+		};
+
+		const handleShowModal = (markerId) => {
+			setShowModal({ show: markerId });
+		};
+
+		const onClose = () => {
+			setShowModal({ show: 0 });
 		};
 
 		const priceLabel = (price) => {
@@ -61,20 +79,18 @@ const MyMap = withScriptjs(
 			>
 				{props.markers.map((marker) => {
 					const label = priceLabel(marker?.price);
-					const [isOpen, setIsOpen] = useState(false);
-					const [showModal, setShowModal] = useState(false);
 
 					return (
 						<Marker
 							position={{ lat: marker?.lat, lng: marker?.lng }}
 							key={marker?.id}
 							icon={iconPin}
-							onClick={() => setShowModal(true)}
-							onMouseOver={() => setIsOpen(true)}
-							onMouseOut={() => setIsOpen(false)}
-							label={label}
+							onClick={() => handleShowModal(marker?.id)}
+							onMouseOver={() => handleToggleOpen(marker?.id)}
+							onMouseOut={() => handleToggleOpen(0)}
+							// label={label}
 						>
-							{isOpen && (
+							{isOpen.openInfoWindowMarkerId === marker.id && (
 								<InfoWindow>
 									<div className="gm-div">
 										<img
@@ -92,12 +108,9 @@ const MyMap = withScriptjs(
 									</div>
 								</InfoWindow>
 							)}
-							{showModal && (
-								<Modal onClose={() => setShowModal(false)}>
-									<Property
-										property={marker}
-										onClose={() => setShowModal(false)}
-									/>
+							{showModal.show === marker.id && (
+								<Modal onClose={onClose}>
+									<Property property={marker} onClose={onClose} />
 								</Modal>
 							)}
 						</Marker>
