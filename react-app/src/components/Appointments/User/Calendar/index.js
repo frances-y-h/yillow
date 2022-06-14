@@ -70,27 +70,30 @@ export default function Basic({
 	};
 
 	useEffect(() => {
-		const arr = Object.values(appointments).map((appt) => {
-			const start = new Date(`${appt?.date} ${appt?.time}`);
-			const end = dates.add(start, 30, "minutes");
-			return {
-				id: appt?.id,
-				start,
-				end,
-				title: `${properties[appt?.property_id]?.street}, ${
-					properties[appt?.property_id]?.city
-				}`,
-			};
-		});
-		arr.push({
-			id: 0,
-			title: "Today",
-			allDay: true,
-			start: new Date(new Date().setHours(new Date().getHours())),
-			end: new Date(new Date().setHours(new Date().getHours() + 1)),
-		});
-		setEvents(arr);
-	}, [appointments]);
+		if (appointments && properties) {
+			const arr = Object.values(appointments).map((appt) => {
+				const start = new Date(`${appt?.date} ${appt?.time}`);
+				const end = dates.add(start, 30, "minutes");
+				return {
+					id: appt?.id,
+					start,
+					end,
+					title: `${properties[appt?.property_id]?.street}, ${
+						properties[appt?.property_id]?.city
+					}`,
+				};
+			});
+			arr.push({
+				id: 0,
+				title: "Today",
+				allDay: true,
+				start: new Date(new Date().setHours(new Date().getHours())),
+				end: new Date(new Date().setHours(new Date().getHours() + 1)),
+			});
+
+			setEvents(arr);
+		}
+	}, [appointments, properties]);
 
 	return (
 		<Fragment>
