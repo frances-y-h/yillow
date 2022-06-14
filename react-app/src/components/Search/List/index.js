@@ -42,13 +42,15 @@ const List = ({
 	};
 
 	useEffect(() => {
-		fetch("/api/search/terms")
-			.then((res) => res.json())
-			.then((res) => setSearchList(res.terms))
-			.catch((err) => console.log(err));
+		if (searchParam) {
+			fetch("/api/search/terms")
+				.then((res) => res.json())
+				.then((res) => setSearchList(res.terms))
+				.catch((err) => console.log(err));
 
-		const param = searchParam.split("-").join(" ");
-		setSearch(param);
+			const param = searchParam.split("-").join(" ");
+			setSearch(param);
+		}
 	}, []);
 
 	useEffect(() => {

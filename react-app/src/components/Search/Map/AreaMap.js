@@ -12,7 +12,7 @@ import {
 import { Modal } from "../../../context/Modal";
 import Property from "../../Property";
 
-const MyMap = withScriptjs(
+const AreaMap = withScriptjs(
 	withGoogleMap((props) => {
 		const history = useHistory();
 		const { areaParam } = useParams();
@@ -68,22 +68,13 @@ const MyMap = withScriptjs(
 			}
 		};
 
-		// Fit bounds function
-		const fitBounds = () => {
-			const bounds = new window.google.maps.LatLngBounds();
-			props.markers.map((marker) => {
-				bounds.extend(new window.google.maps.LatLng(marker.lat, marker.lng));
-				return marker.id;
-			});
-			mapRef.current.fitBounds(bounds);
-		};
+		const searchArea = () => {
+			let ne = mapRef.current.getBounds().getNorthEast();
+			let sw = mapRef.current.getBounds().getSouthWest();
+			const url = `/area/neLat=${ne.lat()}&neLng=${ne.lng()}&swLat=${sw.lat()}&swLng=${sw.lng()}`;
 
-		// Fit bounds on mount, and when the markers change
-		useEffect(() => {
-			if (props.markers.length) {
-				fitBounds();
-			}
-		}, [props.markers]);
+			history.push(url);
+		};
 
 		useEffect(() => {
 			setIsOver({ id: props.over.id });
@@ -101,6 +92,9 @@ const MyMap = withScriptjs(
 					defaultOptions={{
 						fullscreenControl: false,
 						streetViewControl: false,
+					}}
+					onIdle={(e) => {
+						if (areaParam) searchArea();
 					}}
 				>
 					{props.markers.map((marker) => {
@@ -170,4 +164,4 @@ const MyMap = withScriptjs(
 		);
 	})
 );
-export default MyMap;
+export default AreaMap;

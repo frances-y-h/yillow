@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Splash from "./components/Splash";
 import Search from "./components/Search";
+import SearchArea from "./components/Search/SearchArea";
 import Appointments from "./components/Appointments";
 import Notification from "./components/Tools/Notification";
 import Agents from "./components/Agents";
@@ -39,14 +40,11 @@ function App() {
 				<Route path="/" exact={true}>
 					<Splash />
 				</Route>
-				{/* <Route path="/search" exact={true}>
-					<div>another page</div>
-				</Route> */}
 				<Route path="/search/:searchParam" exact={true}>
 					<Search />
 				</Route>
-				<Route path="/homedetails/:address">
-					<div>HomeDetail</div>
+				<Route path="/area/:areaParam" exact={true}>
+					<SearchArea />
 				</Route>
 				<Route path="/login" exact={true}>
 					<LoginForm />
@@ -63,9 +61,6 @@ function App() {
 				<Route path="/about" exact={true}>
 					<About />
 				</Route>
-				<ProtectedRoute path="/profile" exact={true}>
-					<h1>Profile</h1>
-				</ProtectedRoute>
 				<ProtectedRoute path="/appointments" exact={true}>
 					<Appointments />
 				</ProtectedRoute>

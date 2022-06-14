@@ -5,6 +5,19 @@ from app.models import Property, State
 search_routes = Blueprint('search', __name__)
 
 
+@search_routes.route("/areas", methods=["POST"])
+def search_by_area():
+    neLat = float(request.json["neLat"]) # Max lat
+    neLng = float(request.json["neLng"]) # Max lng
+    swLat = float(request.json["swLat"]) # Min lat
+    swLng = float(request.json["swLng"]) # Min lng
+
+    properties = Property.query.filter(Property.lat < neLat, Property.long < neLng, Property.lat > swLat, Property.long > swLng).limit(500).all()
+
+    return {
+        "properties": [property.to_dict() for property in properties],
+    }
+
 @search_routes.route("/<term>")
 def search_by_term(term):
 

@@ -34,6 +34,28 @@ export const searchProperties = (term) => async (dispatch) => {
 	}
 };
 
+export const areaProperties = (payload) => async (dispatch) => {
+	const response = await fetch("/api/search/areas", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(payload),
+	});
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(getProperties(data.properties));
+		return data;
+	} else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data;
+		}
+	} else {
+		return { errors: ["An error occurred. Please try again."] };
+	}
+};
+
 export const getThisProperty = (property_id) => async (dispatch) => {
 	const response = await fetch(`/api/properties/${property_id}`);
 	if (response.ok) {
