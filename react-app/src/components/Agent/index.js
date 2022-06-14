@@ -51,6 +51,10 @@ const Agent = () => {
 							<div className="bio">{agent?.bio}</div>
 						</div>
 						<div className="gap15">
+							<div className="about">Service Areas</div>
+							<div className="bio">{(agent?.areas).join(", ")}</div>
+						</div>
+						<div className="gap15">
 							<div className="about">Contact</div>
 							<div className="phone">Tel {agent?.phone}</div>
 							<div className="phone">{agent?.email}</div>
