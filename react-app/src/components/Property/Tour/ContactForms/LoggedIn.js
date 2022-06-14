@@ -95,11 +95,14 @@ const LoggedIn = ({
 			<label className="label" htmlFor="message">
 				Message
 				<textarea
+					maxLength="255"
 					name="message"
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
 				/>
-				<div className="input-error">{countMsg} characters left (max 255)</div>
+				<div className="input-error">
+					(Optional) {countMsg} characters left (max 255)
+				</div>
 			</label>
 			{errors && (
 				<div className="error-list">
