@@ -63,7 +63,7 @@ const AreaMap = withScriptjs(
 				newPrice = (price / 1000000).toFixed(2);
 				return `${newPrice}M`;
 			} else {
-				newPrice = price / 1000;
+				newPrice = (price / 1000).toFixed(0);
 				return `${newPrice}K`;
 			}
 		};

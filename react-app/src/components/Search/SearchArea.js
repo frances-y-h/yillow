@@ -29,10 +29,10 @@ const SearchArea = () => {
 			const [neLat, neLng, swLat, swLng, zoom] = areaParam
 				.split("&")
 				.map((each) => each.split("=")[1]);
-
+			console.log(zoom);
 			const payload = { neLat, neLng, swLat, swLng };
 			dispatch(propertyActions.areaProperties(payload));
-			setZoom(zoom);
+			setZoom(parseInt(zoom, 10));
 		}
 	}, [dispatch, areaParam]);
 

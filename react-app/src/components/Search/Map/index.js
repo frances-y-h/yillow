@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef, useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+// import { useParams, useHistory } from "react-router-dom";
 import {
 	withScriptjs,
 	withGoogleMap,
@@ -62,7 +62,7 @@ const MyMap = withScriptjs(
 				newPrice = (price / 1000000).toFixed(2);
 				return `${newPrice}M`;
 			} else {
-				newPrice = price / 1000;
+				newPrice = (price / 1000).toFixed(0);
 				return `${newPrice}K`;
 			}
 		};
@@ -72,7 +72,7 @@ const MyMap = withScriptjs(
 			let sw = mapRef.current.getBounds().getSouthWest();
 			let zoom = mapRef.current.getZoom();
 			const url = `/area/neLat=${ne.lat()}&neLng=${ne.lng()}&swLat=${sw.lat()}&swLng=${sw.lng()}&zoom=${zoom}`;
-			console.log(zoom);
+
 			props.setUrl(url);
 		};
 
