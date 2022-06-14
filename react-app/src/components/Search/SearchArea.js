@@ -32,7 +32,7 @@ const SearchArea = () => {
 
 			const payload = { neLat, neLng, swLat, swLng };
 			dispatch(propertyActions.areaProperties(payload));
-			setZoom(zoom);
+			setZoom(parseInt(zoom), 10);
 		}
 	}, [dispatch, areaParam]);
 
