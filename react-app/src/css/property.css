@@ -251,6 +251,10 @@
 	line-height: 24px;
 }
 
+.property-img-lg {
+	cursor: pointer;
+}
+
 @media screen and (orientation: landscape) {
 	.property-img-lg {
 		height: 90vh;

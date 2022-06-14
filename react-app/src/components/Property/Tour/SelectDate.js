@@ -15,8 +15,7 @@ const SelectDate = ({
 
 	useEffect(() => {
 		setHourList(available[today]);
-		setHour(available[today][0]);
-	}, [today, available, setHour]);
+	}, [today]);
 
 	return (
 		<>
@@ -39,7 +38,9 @@ const SelectDate = ({
 				<select
 					className="select-input"
 					value={hour}
-					onChange={(e) => setHour(e.target.value)}
+					onChange={(e) => {
+						setHour(e.target.value);
+					}}
 				>
 					{hourList.map((hour) => (
 						<option value={hour} key={hour}>
