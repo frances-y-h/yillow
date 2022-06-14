@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import List from "./List";
-import AreaMap from "./Map/AreaMap";
+import MyMap from "./Map";
 
 import * as propertyActions from "../../store/property";
 
@@ -29,7 +29,6 @@ const SearchArea = () => {
 			const [neLat, neLng, swLat, swLng, zoom] = areaParam
 				.split("&")
 				.map((each) => each.split("=")[1]);
-			console.log(zoom);
 			const payload = { neLat, neLng, swLat, swLng };
 			dispatch(propertyActions.areaProperties(payload));
 			setZoom(parseInt(zoom, 10));
@@ -74,7 +73,7 @@ const SearchArea = () => {
 
 	return (
 		<main className="search-pg-ctrl">
-			<AreaMap
+			<MyMap
 				isMarkerShown
 				googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV1aH4qqDr2uUEG4I9FKeB6scau4FWuWw&v=3.exp&libraries=geometry,drawing,places"
 				loadingElement={<div style={{ height: `100%` }} />}
