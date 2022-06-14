@@ -80,9 +80,9 @@ const MyMap = withScriptjs(
 				history.push(url);
 			}
 		};
-		// /area/neLat=32.77198037741682&neLng=-117.05423536450193&swLat=32.652388092139866&swLng=-117.3052042976074&zoom=12
+
 		// Fit bounds function
-		const areaFitBounds = ({ neLat, neLng, swLat, swLng }) => {
+		const areaFitBounds = (neLat, neLng, swLat, swLng) => {
 			const bounds = new window.google.maps.LatLngBounds();
 
 			bounds.extend(new window.google.maps.LatLng(neLat, neLng));
@@ -114,7 +114,7 @@ const MyMap = withScriptjs(
 				const [neLat, neLng, swLat, swLng] = areaParam
 					.split("&")
 					.map((each) => each.split("=")[1]);
-				areaFitBounds({ neLat, neLng, swLat, swLng });
+				areaFitBounds(neLat, neLng, swLat, swLng);
 			}
 		}, []);
 
