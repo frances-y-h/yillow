@@ -19,6 +19,7 @@
 @import url("./css/agent.css");
 @import url("./css/about.css");
 @import url("./css/map.css");
+@import url("./css/not-found.css");
 
 :root {
 	--blue: #016bff;

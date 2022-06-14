@@ -22,10 +22,21 @@
 	padding: 10px;
 	gap: 10px;
 	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .search-bar i {
 	cursor: pointer;
+}
+
+.search-bar .results {
+	font-size: 12px;
+	font-weight: lighter;
+	background-color: var(--blue2);
+	color: white;
+	padding: 5px 10px;
+	border-radius: 20px;
 }
 
 .search-list {
@@ -90,14 +101,17 @@
 	font-weight: lighter;
 }
 
+@media screen and (max-width: 1024px) {
+	.search-list {
+		grid-template-columns: 1fr;
+	}
+}
+
 @media screen and (max-width: 650px) {
 	.search-pg-ctrl {
 		grid-template-columns: 1fr;
 	}
 
-	.search-list {
-		grid-template-columns: 1fr;
-	}
 	.search-bar-wrap {
 		display: flex;
 		flex-direction: column;

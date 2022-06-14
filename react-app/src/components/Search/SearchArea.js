@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import List from "./List";
-import MyMap from "./Map";
+import AreaMap from "./Map/AreaMap";
 
 import * as propertyActions from "../../store/property";
 
-const Search = () => {
+const SearchArea = () => {
 	const dispatch = useDispatch();
-	const searchParam = useParams().searchParam;
+	// param format /neLat=34.03411175190029&neLng=-117.58240595947267&swLat=33.91424721998569&swLng=-117.82341853271485
+	const { areaParam } = useParams();
+
 	const properties = useSelector((state) => state.properties);
 
 	const [min, setMin] = useState(0);
@@ -17,14 +19,22 @@ const Search = () => {
 	const [type, setType] = useState("");
 	const [bed, setBed] = useState(0);
 	const [bath, setBath] = useState(0);
-	const [center, setCenter] = useState({ lat: 34.0522, lng: 118.2437 });
+	const [center, setCenter] = useState({ lat: 37.0903, lon: 95.7129 });
 	const [propArr, setPropArr] = useState([]);
 	const [over, setOver] = useState({ id: 0 });
-	const [url, setUrl] = useState("");
+	const [zoom, setZoom] = useState(10);
 
 	useEffect(() => {
-		dispatch(propertyActions.searchProperties(searchParam));
-	}, [dispatch, searchParam]);
+		if (areaParam) {
+			const [neLat, neLng, swLat, swLng, zoom] = areaParam
+				.split("&")
+				.map((each) => each.split("=")[1]);
+
+			const payload = { neLat, neLng, swLat, swLng };
+			dispatch(propertyActions.areaProperties(payload));
+			setZoom(zoom);
+		}
+	}, [dispatch, areaParam]);
 
 	useEffect(() => {
 		let arr = Object.values(properties)
@@ -59,12 +69,12 @@ const Search = () => {
 			const centerLat = latArr.reduce((acc, el) => acc + el) / latArr.length;
 			const centerLng = lngArr.reduce((acc, el) => acc + el) / lngArr.length;
 			setCenter({ lat: centerLat, lng: centerLng });
-		} else setCenter({ lat: 34.0522, lng: 118.2437 });
+		} else setCenter({ lat: 39.5, lng: -98.35 });
 	}, [propArr]);
 
 	return (
 		<main className="search-pg-ctrl">
-			<MyMap
+			<AreaMap
 				isMarkerShown
 				googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV1aH4qqDr2uUEG4I9FKeB6scau4FWuWw&v=3.exp&libraries=geometry,drawing,places"
 				loadingElement={<div style={{ height: `100%` }} />}
@@ -73,7 +83,7 @@ const Search = () => {
 				markers={propArr}
 				center={center}
 				over={over}
-				setUrl={setUrl}
+				zoom={zoom}
 			/>
 			<List
 				min={min}
@@ -88,9 +98,9 @@ const Search = () => {
 				setBath={setBath}
 				propArr={propArr}
 				setOver={setOver}
-				url={url}
 			/>
 		</main>
 	);
 };
-export default Search;
+
+export default SearchArea;

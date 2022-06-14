@@ -13,7 +13,6 @@ const User = () => {
 	const [showUpcoming, setShowUpcoming] = useState(true);
 	const [newAppt, setNewAppt] = useState([]);
 	const [pastAppt, setPastAppt] = useState([]);
-	// const [newAppt, pastAppt] = SplitAppt(appointments);
 
 	const upcomingRef = useRef();
 	const pastRef = useRef();

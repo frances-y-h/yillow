@@ -30,10 +30,10 @@
 	border: 1px solid lightgrey;
 	background-color: white;
 	border-radius: 5px;
-	width: 100%;
-	min-width: 300px;
+
 	align-items: center;
 	position: relative;
+	flex: 2 1 auto;
 }
 
 /* Select input */

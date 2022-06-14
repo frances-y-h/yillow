@@ -1,7 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { useRef, useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {
 	withScriptjs,
 	withGoogleMap,
@@ -13,13 +12,11 @@ import {
 import { Modal } from "../../../context/Modal";
 import Property from "../../Property";
 
-import SearchByArea from "../Button/SearchByArea";
-
-const MyMap = withScriptjs(
+const AreaMap = withScriptjs(
 	withGoogleMap((props) => {
 		const history = useHistory();
-		const { areaParam } = useParams();
 		const mapRef = useRef(null);
+		const areaParam = useParams().areaParam;
 		const [isOpen, setIsOpen] = useState({
 			openInfoWindowMarkerId: 0,
 		});
@@ -71,31 +68,34 @@ const MyMap = withScriptjs(
 			}
 		};
 
-		const searchArea = () => {
+		const searchArea = (e) => {
 			let ne = mapRef.current.getBounds().getNorthEast();
 			let sw = mapRef.current.getBounds().getSouthWest();
 			let zoom = mapRef.current.getZoom();
 			const url = `/area/neLat=${ne.lat()}&neLng=${ne.lng()}&swLat=${sw.lat()}&swLng=${sw.lng()}&zoom=${zoom}`;
-			console.log(zoom);
-			props.setUrl(url);
+
+			history.push(url);
 		};
 
 		// Fit bounds function
-		const fitBounds = () => {
+		const fitBounds = ({ neLat, neLng, swLat, swLng }) => {
 			const bounds = new window.google.maps.LatLngBounds();
-			props.markers.map((marker) => {
-				bounds.extend(new window.google.maps.LatLng(marker.lat, marker.lng));
-				return marker.id;
-			});
+
+			bounds.extend(new window.google.maps.LatLng(neLat, neLng));
+			bounds.extend(new window.google.maps.LatLng(swLat, swLng));
+
 			mapRef.current.fitBounds(bounds);
 		};
 
 		// Fit bounds on mount, and when the markers change
 		useEffect(() => {
-			if (props.markers.length) {
-				fitBounds();
+			if (areaParam) {
+				const [neLat, neLng, swLat, swLng] = areaParam
+					.split("&")
+					.map((each) => each.split("=")[1]);
+				fitBounds({ neLat, neLng, swLat, swLng });
 			}
-		}, [props.markers]);
+		}, []);
 
 		useEffect(() => {
 			setIsOver({ id: props.over.id });
@@ -105,7 +105,7 @@ const MyMap = withScriptjs(
 			<>
 				<GoogleMap
 					ref={mapRef}
-					defaultZoom={4}
+					defaultZoom={props.zoom}
 					defaultCenter={{
 						lat: props.center.lat,
 						lng: props.center.lng,
@@ -118,7 +118,6 @@ const MyMap = withScriptjs(
 						searchArea();
 					}}
 				>
-					<div></div>
 					{props.markers.map((marker) => {
 						const label = priceLabel(marker?.price);
 						let icon;
@@ -186,4 +185,4 @@ const MyMap = withScriptjs(
 		);
 	})
 );
-export default MyMap;
+export default AreaMap;
