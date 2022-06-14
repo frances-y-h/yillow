@@ -54,10 +54,11 @@ const Delete = ({ review, onClose }) => {
 			</div>
 			<div>
 				<Stars rating={review?.rating} />
-
 				<div>{review?.date}</div>
 			</div>
-			<div className="content">{review?.content}</div>
+			<div className="content">
+				{review?.content ? review?.content : <span>No content</span>}
+			</div>
 		</div>
 	);
 };
