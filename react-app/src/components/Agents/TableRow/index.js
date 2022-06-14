@@ -42,7 +42,7 @@ const TableRow = ({ agent }) => {
 					More Reviews
 				</Link>
 				{agent?.recent_review ? (
-					<div>{agent?.recent_review}</div>
+					<div className="recent-review">{agent?.recent_review}</div>
 				) : (
 					<div>Be the first to write an review</div>
 				)}

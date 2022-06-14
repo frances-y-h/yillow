@@ -52,7 +52,20 @@ class User(db.Model, UserMixin):
             avg = sum(avg_review_lst) / len(avg_review_lst)
 
             reviews = [review.to_dict() for review in self.agent_reviews]
-            recent_review = reviews[-1] or ""
+
+            if len(reviews) > 0:
+                recent_review = reviews[-1]["content"]
+
+                if not recent_review:
+
+                    i = len(reviews) - 2
+                    for i in range(len(reviews)):
+                        if reviews[i]["content"] != "":
+                            recent_review = reviews[i]["content"]
+                            break
+                        else:
+                            i -= 1
+
 
             areas = [area.city() for area in self.areas]
 
@@ -67,7 +80,7 @@ class User(db.Model, UserMixin):
                 "photo": self.photo,
                 "broker_license": self.broker_license,
                 "office": self.office,
-                "recent_review": recent_review["content"],
+                "recent_review": recent_review or "",
                 "reviewIds" : [review.id for review in self.agent_reviews],
                 "rating": round(avg, 1),
                 "areas": areas,

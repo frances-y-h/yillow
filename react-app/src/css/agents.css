@@ -127,6 +127,15 @@ table {
 	border-bottom: 1px solid var(--blue);
 }
 
+.review .recent-review {
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	max-width: 500px;
+	text-overflow: ellipsis;
+}
+
 .agents-detail .office {
 	font-weight: lighter;
 	font-size: 14px;
