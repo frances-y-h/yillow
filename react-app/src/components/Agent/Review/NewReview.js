@@ -89,6 +89,7 @@ const NewReview = ({ onClose, agent }) => {
 						Would you like to share your experience?
 					</div>
 					<textarea
+						maxLength="2000"
 						className="textarea"
 						placeholder="Write a review"
 						value={content}

@@ -1,4 +1,5 @@
 from .db import db
+
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -53,6 +54,8 @@ class User(db.Model, UserMixin):
             reviews = [review.to_dict() for review in self.agent_reviews]
             recent_review = reviews[-1] or ""
 
+            areas = [area.city() for area in self.areas]
+
             return {
                 'id': self.id,
                 'username': self.username,
@@ -67,7 +70,7 @@ class User(db.Model, UserMixin):
                 "recent_review": recent_review["content"],
                 "reviewIds" : [review.id for review in self.agent_reviews],
                 "rating": round(avg, 1),
-                "areas": [area.zip for area in self.areas],
+                "areas": areas,
             }
         else:
             return {

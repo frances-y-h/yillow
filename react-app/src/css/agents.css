@@ -137,9 +137,15 @@ table {
 }
 
 .agents-table .area {
-	text-align: center;
+	text-align: left;
 	font-size: 16px;
 	font-weight: lighter;
+}
+
+.agents-table .area .zip,
+.bio .zip {
+	color: var(--blue2);
+	font-weight: bold;
 }
 
 .agents-table .review {

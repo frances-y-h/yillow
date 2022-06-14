@@ -30,7 +30,13 @@ const TableRow = ({ agent }) => {
 					<div className="office">Agent License #: {agent?.license_num}</div>
 				</div>
 			</td>
-			<td className="area">{agent?.areas.join(", ")}</td>
+			<td className="area">
+				{agent?.areas.map((each) => (
+					<div key={agent.id + each.zip}>
+						<span className="zip">{each.zip}</span> - {each.cities.join(", ")}
+					</div>
+				))}
+			</td>
 			<td className="review">
 				<Link to={`/agents/${agent?.id}`} className="more">
 					More Reviews

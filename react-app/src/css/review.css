@@ -53,10 +53,13 @@
 	background-color: white;
 	padding: 40px;
 	border-radius: 10px;
-	width: 500px;
+	width: 600px;
+	max-height: 90vh;
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	overflow-x: hidden;
+	white-space: nowrap;
 }
 
 .review-delete .title {
@@ -72,6 +75,7 @@
 	background-color: var(--lightblue);
 	border-radius: 10px;
 	border: 1px solid var(--blue);
+	white-space: normal;
 }
 
 .review-delete .btn-wrap {

@@ -22,6 +22,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 	const [hourList, setHourList] = useState([]);
 	const [errors, setErrors] = useState([]);
 	const [showProperty, setShowProperty] = useState(false);
+	const [maxChar, setMaxChar] = useState(255);
 
 	const { setToggleNotification, setNotificationMsg } = useNotification();
 
@@ -53,7 +54,9 @@ const ApptDetail = ({ appt, past, onClose }) => {
 			}, 2000);
 			onClose();
 		} else {
-			setErrors(data.errors);
+			setTimeout(() => {
+				setErrors(data.errors);
+			}, 1);
 		}
 	};
 
@@ -93,6 +96,10 @@ const ApptDetail = ({ appt, past, onClose }) => {
 	useEffect(() => {
 		setHourList(schedule[today]);
 	}, [today]);
+
+	useEffect(() => {
+		setMaxChar(255 - message.length);
+	});
 
 	return (
 		<form className="appt-detail-modal" onSubmit={update}>
@@ -177,11 +184,17 @@ const ApptDetail = ({ appt, past, onClose }) => {
 				<label className="label">
 					Message
 					<textarea
+						maxLength="255"
 						className="appt-input"
 						value={message}
 						onChange={(e) => setMessage(e.target.value)}
 						disabled={past}
 					/>
+					{!past && (
+						<div className="error-list">
+							(Optional) {maxChar} characters left (max 255)
+						</div>
+					)}
 				</label>
 				<Agent agent={agent} />
 				{errors && (

@@ -52,7 +52,14 @@ const Agent = () => {
 						</div>
 						<div className="gap15">
 							<div className="about">Service Areas</div>
-							<div className="bio">{(agent?.areas).join(", ")}</div>
+							<div className="bio">
+								{agent?.areas.map((each) => (
+									<div key={each.zip}>
+										<span className="zip">{each.zip}</span> -{" "}
+										{each.cities?.join(", ")}
+									</div>
+								))}
+							</div>
 						</div>
 						<div className="gap15">
 							<div className="about">Contact</div>

@@ -45,13 +45,15 @@ export const addAppointment = (appointment) => async (dispatch) => {
 		},
 		body: JSON.stringify(appointment),
 	});
+	const data = await response.json();
 	if (response.ok) {
-		const data = await response.json();
 		if (data.errors) {
 			return data;
 		}
 		dispatch(addEditAppointment(data.appointment));
 		return data.appointment;
+	} else if (response.status < 500) {
+		return data;
 	} else {
 		return { errors: ["Something went wrong. Please try again"] };
 	}
@@ -65,12 +67,14 @@ export const editAppointment = (appointment) => async (dispatch) => {
 		},
 		body: JSON.stringify(appointment),
 	});
+	const data = await response.json();
 	if (response.ok) {
-		const data = await response.json();
 		if (data.errors) {
 			return data;
 		}
 		dispatch(addEditAppointment(data.appointment));
+		return data;
+	} else if (response.status < 500) {
 		return data;
 	} else {
 		return { errors: ["Something went wrong. Please try again"] };

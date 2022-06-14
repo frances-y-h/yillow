@@ -36,7 +36,9 @@ const Review = ({ review }) => {
 
 			setEdit(false);
 		} else {
-			setErrors(data.errors);
+			setTimeout(() => {
+				setErrors(data.errors);
+			}, 1);
 		}
 	};
 
@@ -44,6 +46,7 @@ const Review = ({ review }) => {
 		setEdit(false);
 		setRating(review.rating);
 		setContent(review.content);
+		setErrors([]);
 	};
 
 	useEffect(() => {
@@ -86,6 +89,7 @@ const Review = ({ review }) => {
 				<>
 					<div className="edit-textarea-wrap">
 						<textarea
+							maxLength="2000"
 							className="textarea"
 							value={content}
 							onChange={(e) => setContent(e.target.value)}
@@ -94,7 +98,7 @@ const Review = ({ review }) => {
 					<div className="btn-wrap">
 						<div className="error-list">
 							(Optional) You have {maxChar} characters left (Max 2000)
-							{errors &
+							{errors &&
 								errors.map((err, idx) => <div key={"err" + idx}>{err}</div>)}
 						</div>
 						<div className="btn-group">

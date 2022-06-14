@@ -24,7 +24,7 @@ const Agents = () => {
 				)
 				.filter((agent) => {
 					return agent?.areas?.some((area) => {
-						return area.toString().includes(zip);
+						return area.zip.includes(zip);
 					});
 				});
 

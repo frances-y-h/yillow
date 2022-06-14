@@ -72,7 +72,6 @@ def edit_review(review_id):
             db.session.commit()
 
             return {"review": review_to_update.to_dict()}
-
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
     if request.method == "DELETE":
