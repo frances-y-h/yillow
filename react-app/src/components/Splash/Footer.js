@@ -39,8 +39,8 @@ const Footer = () => {
 				</a>
 			</div>
 			<div className="footer-logo-wrap">
-				<img className="footer-logo" src={logo} alt="Yillow" /> © 2006-2022
-				Frances (Huang) Lau
+				<img className="footer-logo" src={logo} alt="Yillow" /> © 2022 Frances
+				(Huang) Lau
 			</div>
 
 			<img src={footer} alt="Footer" />

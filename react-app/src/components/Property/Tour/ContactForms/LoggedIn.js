@@ -12,8 +12,8 @@ const LoggedIn = ({
 	property,
 	username,
 	setUsername,
-	phone,
-	setPhone,
+	// phone,
+	// setPhone,
 	email,
 	setEmail,
 	message,
@@ -71,7 +71,7 @@ const LoggedIn = ({
 					required
 				/>
 			</label>
-			<label className="label" htmlFor="phone">
+			{/* <label className="label" htmlFor="phone">
 				Phone
 				<input
 					type="text"
@@ -80,7 +80,7 @@ const LoggedIn = ({
 					onChange={(e) => setPhone(e.target.value)}
 					disabled={user}
 				/>
-			</label>
+			</label> */}
 			<label className="label" htmlFor="email">
 				Email
 				<input
