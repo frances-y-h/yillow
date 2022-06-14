@@ -13,15 +13,6 @@ const SelectDate = ({
 }) => {
 	const [appointment, setAppointment] = useState(new Date());
 
-	// useEffect(() => {
-	// 	setHourList(available[today]);
-	// 	setHour(available[today][0]);
-	// }, [today]);
-
-	// useEffect(() => {
-	// 	setHour(available[today][0]);
-	// }, []);
-
 	useEffect(() => {
 		if (today && hour) {
 			setAppointment(new Date(`${today} ${hour}`));
