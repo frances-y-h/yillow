@@ -17,9 +17,10 @@ const Search = () => {
 	const [type, setType] = useState("");
 	const [bed, setBed] = useState(0);
 	const [bath, setBath] = useState(0);
-	const [center, setCenter] = useState({ lat: 37.0903, lon: 95.7129 });
+	const [center, setCenter] = useState({ lat: 34.0522, lng: 118.2437 });
 	const [propArr, setPropArr] = useState([]);
 	const [over, setOver] = useState({ id: 0 });
+	const [url, setUrl] = useState("");
 
 	useEffect(() => {
 		dispatch(propertyActions.searchProperties(searchParam));
@@ -58,7 +59,7 @@ const Search = () => {
 			const centerLat = latArr.reduce((acc, el) => acc + el) / latArr.length;
 			const centerLng = lngArr.reduce((acc, el) => acc + el) / lngArr.length;
 			setCenter({ lat: centerLat, lng: centerLng });
-		} else setCenter({ lat: 39.5, lng: -98.35 });
+		} else setCenter({ lat: 34.0522, lng: 118.2437 });
 	}, [propArr]);
 
 	return (
@@ -72,6 +73,7 @@ const Search = () => {
 				markers={propArr}
 				center={center}
 				over={over}
+				setUrl={setUrl}
 			/>
 			<List
 				min={min}
@@ -86,6 +88,7 @@ const Search = () => {
 				setBath={setBath}
 				propArr={propArr}
 				setOver={setOver}
+				url={url}
 			/>
 		</main>
 	);

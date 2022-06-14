@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef, useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {
 	withScriptjs,
 	withGoogleMap,
@@ -15,8 +15,8 @@ import Property from "../../Property";
 const AreaMap = withScriptjs(
 	withGoogleMap((props) => {
 		const history = useHistory();
-		const { areaParam } = useParams();
 		const mapRef = useRef(null);
+		const areaParam = useParams().areaParam;
 		const [isOpen, setIsOpen] = useState({
 			openInfoWindowMarkerId: 0,
 		});
@@ -68,13 +68,34 @@ const AreaMap = withScriptjs(
 			}
 		};
 
-		const searchArea = () => {
+		const searchArea = (e) => {
 			let ne = mapRef.current.getBounds().getNorthEast();
 			let sw = mapRef.current.getBounds().getSouthWest();
-			const url = `/area/neLat=${ne.lat()}&neLng=${ne.lng()}&swLat=${sw.lat()}&swLng=${sw.lng()}`;
+			let zoom = mapRef.current.getZoom();
+			const url = `/area/neLat=${ne.lat()}&neLng=${ne.lng()}&swLat=${sw.lat()}&swLng=${sw.lng()}&zoom=${zoom}`;
 
 			history.push(url);
 		};
+
+		// Fit bounds function
+		const fitBounds = ({ neLat, neLng, swLat, swLng }) => {
+			const bounds = new window.google.maps.LatLngBounds();
+
+			bounds.extend(new window.google.maps.LatLng(neLat, neLng));
+			bounds.extend(new window.google.maps.LatLng(swLat, swLng));
+
+			mapRef.current.fitBounds(bounds);
+		};
+
+		// Fit bounds on mount, and when the markers change
+		useEffect(() => {
+			if (areaParam) {
+				const [neLat, neLng, swLat, swLng] = areaParam
+					.split("&")
+					.map((each) => each.split("=")[1]);
+				fitBounds({ neLat, neLng, swLat, swLng });
+			}
+		}, []);
 
 		useEffect(() => {
 			setIsOver({ id: props.over.id });
@@ -84,7 +105,7 @@ const AreaMap = withScriptjs(
 			<>
 				<GoogleMap
 					ref={mapRef}
-					defaultZoom={4}
+					defaultZoom={props.zoom}
 					defaultCenter={{
 						lat: props.center.lat,
 						lng: props.center.lng,
@@ -94,7 +115,7 @@ const AreaMap = withScriptjs(
 						streetViewControl: false,
 					}}
 					onIdle={(e) => {
-						if (areaParam) searchArea();
+						searchArea();
 					}}
 				>
 					{props.markers.map((marker) => {

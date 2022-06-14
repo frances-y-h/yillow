@@ -18,9 +18,11 @@ const List = ({
 	setBath,
 	propArr,
 	setOver,
+	url,
 }) => {
 	const history = useHistory();
 	const searchParam = useParams().searchParam;
+	const areaParam = useParams().areaParam;
 
 	const [search, setSearch] = useState("");
 	const [searchList, setSearchList] = useState([]);
@@ -41,13 +43,18 @@ const List = ({
 		history.push(`/search/${searchTerm}`);
 	};
 
-	useEffect(() => {
-		if (searchParam) {
-			fetch("/api/search/terms")
-				.then((res) => res.json())
-				.then((res) => setSearchList(res.terms))
-				.catch((err) => console.log(err));
+	const searchByArea = (e) => {
+		e.preventDefault();
 
+		history.push(url);
+	};
+
+	useEffect(() => {
+		fetch("/api/search/terms")
+			.then((res) => res.json())
+			.then((res) => setSearchList(res.terms))
+			.catch((err) => console.log(err));
+		if (searchParam) {
 			const param = searchParam.split("-").join(" ");
 			setSearch(param);
 		}
@@ -93,6 +100,11 @@ const List = ({
 							))}
 						</div>
 					</label>
+					{!areaParam && (
+						<button className="btn" type="button" onClick={searchByArea}>
+							Search by Map Area
+						</button>
+					)}
 				</form>
 				<div className="search-bar">
 					<div className="filters">Filters</div>

@@ -22,15 +22,17 @@ const SearchArea = () => {
 	const [center, setCenter] = useState({ lat: 37.0903, lon: 95.7129 });
 	const [propArr, setPropArr] = useState([]);
 	const [over, setOver] = useState({ id: 0 });
+	const [zoom, setZoom] = useState(10);
 
 	useEffect(() => {
 		if (areaParam) {
-			const [neLat, neLng, swLat, swLng] = areaParam
+			const [neLat, neLng, swLat, swLng, zoom] = areaParam
 				.split("&")
 				.map((each) => each.split("=")[1]);
 
 			const payload = { neLat, neLng, swLat, swLng };
 			dispatch(propertyActions.areaProperties(payload));
+			setZoom(zoom);
 		}
 	}, [dispatch, areaParam]);
 
@@ -81,6 +83,7 @@ const SearchArea = () => {
 				markers={propArr}
 				center={center}
 				over={over}
+				zoom={zoom}
 			/>
 			<List
 				min={min}

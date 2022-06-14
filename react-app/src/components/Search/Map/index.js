@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { useRef, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import {
@@ -11,6 +12,8 @@ import {
 
 import { Modal } from "../../../context/Modal";
 import Property from "../../Property";
+
+import SearchByArea from "../Button/SearchByArea";
 
 const MyMap = withScriptjs(
 	withGoogleMap((props) => {
@@ -68,6 +71,15 @@ const MyMap = withScriptjs(
 			}
 		};
 
+		const searchArea = () => {
+			let ne = mapRef.current.getBounds().getNorthEast();
+			let sw = mapRef.current.getBounds().getSouthWest();
+			let zoom = mapRef.current.getZoom();
+			const url = `/area/neLat=${ne.lat()}&neLng=${ne.lng()}&swLat=${sw.lat()}&swLng=${sw.lng()}&zoom=${zoom}`;
+			console.log(zoom);
+			props.setUrl(url);
+		};
+
 		// Fit bounds function
 		const fitBounds = () => {
 			const bounds = new window.google.maps.LatLngBounds();
@@ -102,7 +114,11 @@ const MyMap = withScriptjs(
 						fullscreenControl: false,
 						streetViewControl: false,
 					}}
+					onIdle={(e) => {
+						searchArea();
+					}}
 				>
+					<div></div>
 					{props.markers.map((marker) => {
 						const label = priceLabel(marker?.price);
 						let icon;

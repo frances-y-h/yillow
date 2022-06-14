@@ -22,6 +22,7 @@
 	padding: 10px;
 	gap: 10px;
 	align-items: center;
+	justify-content: space-between;
 	flex-wrap: wrap;
 }
 
