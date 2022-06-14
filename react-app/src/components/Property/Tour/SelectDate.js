@@ -8,14 +8,25 @@ const SelectDate = ({
 	hour,
 	setHour,
 	setShowSelectDate,
+	hourList,
+	setHourList,
 }) => {
-	const [hourList, setHourList] = useState([]);
+	const [appointment, setAppointment] = useState(new Date());
 
-	const appointment = new Date(`${today} ${hour}`);
+	// useEffect(() => {
+	// 	setHourList(available[today]);
+	// 	setHour(available[today][0]);
+	// }, [today]);
+
+	// useEffect(() => {
+	// 	setHour(available[today][0]);
+	// }, []);
 
 	useEffect(() => {
-		setHourList(available[today]);
-	}, [today]);
+		if (today && hour) {
+			setAppointment(new Date(`${today} ${hour}`));
+		}
+	}, [today, hour]);
 
 	return (
 		<>
@@ -25,7 +36,11 @@ const SelectDate = ({
 				<select
 					className="select-input"
 					value={today}
-					onChange={(e) => setToday(e.target.value)}
+					onChange={(e) => {
+						setToday(e.target.value);
+						setHourList(available[today]);
+						setHour(available[today][0]);
+					}}
 				>
 					{Object.keys(available).map((day) => (
 						<option value={day} key={day}>
