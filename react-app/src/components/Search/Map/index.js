@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { useRef, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import {
@@ -13,12 +12,9 @@ import {
 import { Modal } from "../../../context/Modal";
 import Property from "../../Property";
 
-import SearchByArea from "../Button/SearchByArea";
-
 const MyMap = withScriptjs(
 	withGoogleMap((props) => {
-		const history = useHistory();
-		const { areaParam } = useParams();
+		// const { areaParam } = useParams();
 		const mapRef = useRef(null);
 		const [isOpen, setIsOpen] = useState({
 			openInfoWindowMarkerId: 0,
