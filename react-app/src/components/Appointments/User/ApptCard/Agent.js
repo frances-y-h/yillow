@@ -27,6 +27,14 @@ const Agent = ({ agent }) => {
 		history.push(`/agents/${agent.id}`);
 	};
 
+	const cancel = (e) => {
+		e.preventDefault();
+		setWrite(false);
+		setErrors([]);
+		setRating(1);
+		setContent("");
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (rating && rating < 6) {
@@ -108,6 +116,7 @@ const Agent = ({ agent }) => {
 							</div>
 							<div>
 								<textarea
+									maxLength="2000"
 									rows="5"
 									className="appt-input"
 									value={content}
@@ -126,11 +135,7 @@ const Agent = ({ agent }) => {
 								</div>
 							)}
 							<div className="appt-edit-btn-wrap">
-								<button
-									type="button"
-									className="btn btn-bl"
-									onClick={() => setWrite(false)}
-								>
+								<button type="button" className="btn btn-bl" onClick={cancel}>
 									Cancel
 								</button>
 								<button type="submit" className="btn" onClick={handleSubmit}>

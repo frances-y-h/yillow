@@ -28,13 +28,15 @@ const deleteReview = (reviewId) => {
 // Thunks
 export const getAllReviews = (agentId) => async (dispatch) => {
 	const response = await fetch(`/api/agents/${agentId}/reviews`);
+	const data = await response.json();
 	if (response.ok) {
-		const data = await response.json();
 		if (data.errors) {
 			return data;
 		}
 		dispatch(getReviews(data.reviews));
 		return data.review;
+	} else if (response.status < 500) {
+		return data;
 	} else {
 		return { errors: ["Something went wrong. Please try again"] };
 	}
@@ -48,13 +50,15 @@ export const addReview = (review) => async (dispatch) => {
 		},
 		body: JSON.stringify(review),
 	});
+	const data = await response.json();
 	if (response.ok) {
-		const data = await response.json();
 		if (data.errors) {
 			return data;
 		}
 		dispatch(addEditReview(data.review));
 		return data.review;
+	} else if (response.status < 500) {
+		return data;
 	} else {
 		return { errors: ["Something went wrong. Please try again"] };
 	}
@@ -68,13 +72,15 @@ export const editReview = (review) => async (dispatch) => {
 		},
 		body: JSON.stringify(review),
 	});
+	const data = await response.json();
 	if (response.ok) {
-		const data = await response.json();
 		if (data.errors) {
 			return data;
 		}
 		dispatch(addEditReview(data.review));
 		return data.review;
+	} else if (response.status < 500) {
+		return data;
 	} else {
 		return { errors: ["Something went wrong. Please try again"] };
 	}

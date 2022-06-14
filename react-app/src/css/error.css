@@ -2,10 +2,10 @@
 	font-size: 14px;
 	color: var(--error);
 	padding: 10px;
-	/* backdrop-filter: blur(10px); */
 	border-radius: 5px;
 	display: flex;
 	flex-direction: column;
+	font-weight: lighter;
 }
 
 .error-ctr {

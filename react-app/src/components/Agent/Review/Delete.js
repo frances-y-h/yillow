@@ -39,12 +39,6 @@ const Delete = ({ review, onClose }) => {
 	return (
 		<div className="review-delete">
 			<div className="title">Would you like to delete this review?</div>
-			<div>
-				<Stars rating={review?.rating} />
-
-				<div>{review?.date}</div>
-			</div>
-			<div className="content">{review?.content}</div>
 			<div className="error-list error-ctr">
 				{errors.map((err) => (
 					<div key={err}>{err}</div>
@@ -58,6 +52,12 @@ const Delete = ({ review, onClose }) => {
 					Delete
 				</button>
 			</div>
+			<div>
+				<Stars rating={review?.rating} />
+
+				<div>{review?.date}</div>
+			</div>
+			<div className="content">{review?.content}</div>
 		</div>
 	);
 };
