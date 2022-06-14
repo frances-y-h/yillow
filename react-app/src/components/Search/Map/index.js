@@ -68,7 +68,7 @@ const MyMap = withScriptjs(
 			}
 		};
 
-		const searchArea = () => {
+		const setArea = () => {
 			let ne = mapRef.current.getBounds().getNorthEast();
 			let sw = mapRef.current.getBounds().getSouthWest();
 			let zoom = mapRef.current.getZoom();
@@ -76,7 +76,16 @@ const MyMap = withScriptjs(
 
 			if (!areaParam) {
 				props.setUrl(url);
-			} else {
+			}
+		};
+
+		const searchArea = () => {
+			let ne = mapRef.current.getBounds().getNorthEast();
+			let sw = mapRef.current.getBounds().getSouthWest();
+			let zoom = mapRef.current.getZoom();
+			const url = `/area/neLat=${ne.lat()}&neLng=${ne.lng()}&swLat=${sw.lat()}&swLng=${sw.lng()}&zoom=${zoom}`;
+
+			if (areaParam) {
 				history.push(url);
 			}
 		};
@@ -136,6 +145,9 @@ const MyMap = withScriptjs(
 						streetViewControl: false,
 					}}
 					onIdle={(e) => {
+						setArea();
+					}}
+					onDragEnd={(e) => {
 						searchArea();
 					}}
 				>
