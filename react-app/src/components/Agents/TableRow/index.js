@@ -37,7 +37,7 @@ const TableRow = ({ agent }) => {
 					</div>
 				))}
 			</td>
-			<td className="review">
+			<td className="agents-review-wrap">
 				<Link to={`/agents/${agent?.id}`} className="more">
 					More Reviews
 				</Link>
