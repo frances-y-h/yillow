@@ -74,7 +74,7 @@ const SignUpForm = () => {
 					Email <span className="input-error">Required *</span>
 				</div>
 				<input
-					type="text"
+					type="email"
 					name="email"
 					onChange={updateEmail}
 					value={email}

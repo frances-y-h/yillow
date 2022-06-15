@@ -27,20 +27,26 @@ const List = ({
 	const [search, setSearch] = useState("");
 	const [searchList, setSearchList] = useState([]);
 	const [searchFiltered, setSearchFiltered] = useState([]);
+	const [error, setError] = useState("");
 
 	const searchDivRef = useRef();
 	const searchDDRef = useRef();
 
 	const directSearch = (term) => {
+		setError("");
 		const searchTerm = term.split(" ").join("-");
 		history.push(`/search/${searchTerm}`);
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
-		const searchTerm = search.split(" ").join("-");
-		history.push(`/search/${searchTerm}`);
+		if (search.length > 0) {
+			setError("");
+			const searchTerm = search.split(" ").join("-");
+			history.push(`/search/${searchTerm}`);
+		} else {
+			setError("Please enter address, city, or zip code to search");
+		}
 	};
 
 	const searchByArea = (e) => {
@@ -84,6 +90,7 @@ const List = ({
 							className="fa-solid fa-magnifying-glass"
 							onClick={handleSubmit}
 						></i>
+						{error && <div className="search-error">{error}</div>}
 						<div className="search-dd search-dd-sm" ref={searchDDRef}>
 							{searchFiltered.map((term) => (
 								<div
