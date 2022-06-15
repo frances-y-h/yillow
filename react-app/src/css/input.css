@@ -86,3 +86,13 @@
 	border-radius: 5px;
 	line-height: 24px;
 }
+
+/* Agent Porfile Inputs */
+.agent-tel-input {
+	border: 1px solid var(--blue2);
+	background-color: var(--lightblue);
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 18px;
+	font-weight: lighter;
+}

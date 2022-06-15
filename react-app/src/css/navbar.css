@@ -1,3 +1,5 @@
+/* User Navbar */
+
 .nav {
 	display: grid;
 	grid-template-columns: 1fr 160px 1fr;
@@ -22,4 +24,18 @@
 	justify-content: flex-end;
 	align-items: center;
 	gap: 20px;
+}
+
+/* Agent Navbar */
+.nav-agent {
+	background-color: var(--blue2);
+	color: white;
+}
+
+.nav-agent .btn-font-lt {
+	color: white;
+}
+
+.nav-agent .btn-font-lt:hover {
+	color: var(--lightblue);
 }

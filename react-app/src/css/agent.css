@@ -9,6 +9,7 @@
 .agent-ctrl .split {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+	width: 100%;
 }
 
 .agent-ctrl .center {
@@ -51,6 +52,7 @@
 	flex-direction: column;
 	justify-content: center;
 	gap: 40px;
+	width: 100%;
 }
 
 .bio-wrap .about {

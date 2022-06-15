@@ -59,3 +59,9 @@
 	font-weight: lighter;
 	color: var(--lightblue);
 }
+
+.btn-wrap-rt {
+	display: flex;
+	justify-content: flex-end;
+	gap: 20px;
+}

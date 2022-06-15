@@ -13,6 +13,7 @@ import Notification from "./components/Tools/Notification";
 import Agents from "./components/Agents";
 import Agent from "./components/Agent";
 import NotFound from "./components/NotFound";
+import Profile from "./components/Profile";
 import { authenticate } from "./store/session";
 
 import About from "./components/About";
@@ -63,6 +64,9 @@ function App() {
 				</Route>
 				<ProtectedRoute path="/appointments" exact={true}>
 					<Appointments />
+				</ProtectedRoute>
+				<ProtectedRoute path="/profile" exact={true}>
+					<Profile />
 				</ProtectedRoute>
 				<Route>
 					<NotFound />
