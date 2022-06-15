@@ -127,13 +127,15 @@ table {
 	border-bottom: 1px solid var(--blue);
 }
 
-.review .recent-review {
+.agents-review-wrap .recent-review {
 	display: -webkit-box;
 	-webkit-line-clamp: 5;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
-	max-width: 500px;
+	max-width: 45vw;
+	min-width: 100px;
 	text-overflow: ellipsis;
+	text-align: center;
 }
 
 .agents-detail .office {
@@ -157,11 +159,11 @@ table {
 	font-weight: bold;
 }
 
-.agents-table .review {
-	font-size: 16px;
-	font-weight: lighter;
-	line-height: 22px;
+.agents-review-wrap {
 	text-align: center;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .agents-table .more {
