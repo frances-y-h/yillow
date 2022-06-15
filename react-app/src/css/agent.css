@@ -10,6 +10,7 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	width: 100%;
+	gap: 40px;
 }
 
 .agent-ctrl .center {
@@ -27,6 +28,14 @@
 	background-color: var(--lightblue);
 	background-size: cover;
 	background-position: center center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 24px;
+	font-weight: bold;
+	color: var(--blue2);
+	border: 5px dashed lightgray;
+	position: relative;
 }
 
 .agent-ctrl .name {
@@ -71,6 +80,12 @@
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
+}
+
+.bio-wrap .gap5 {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 }
 
 .bio-wrap .phone {

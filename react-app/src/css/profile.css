@@ -1,0 +1,19 @@
+/* Agent profile */
+.service-area-btn-wrap {
+	display: flex;
+	gap: 10px;
+}
+
+.upload-photo-div {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	background-color: white;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

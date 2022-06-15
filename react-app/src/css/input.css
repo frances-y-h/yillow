@@ -88,11 +88,23 @@
 }
 
 /* Agent Porfile Inputs */
-.agent-tel-input {
+.agent-input {
 	border: 1px solid var(--blue2);
 	background-color: var(--lightblue);
 	padding: 5px;
 	border-radius: 5px;
 	font-size: 18px;
 	font-weight: lighter;
+}
+
+.agent-label {
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	font-weight: lighter;
+	width: 100%;
+}
+
+.agent-profile-input {
+	border: 1px solid lightgray;
 }
