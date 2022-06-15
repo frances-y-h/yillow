@@ -48,7 +48,7 @@ const AgentProfile = () => {
 				</div>
 				<div className="bio-wrap">
 					<div className="btn-wrap-rt">
-						<button type="button" className="btn btn-bl">
+						<button type="button" className="btn btn-bl" onClick={undo}>
 							Undo
 						</button>
 						<button type="submit" className="btn">
