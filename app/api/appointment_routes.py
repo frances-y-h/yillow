@@ -25,18 +25,25 @@ def validation_errors_to_error_messages(validation_errors):
 def add_appointment():
 
     if request.method == "GET":
+
         appointments = [appt.to_dict() for appt in current_user.appointments]
         property_ids = [appt.property_id for appt in current_user.appointments]
-        agent_ids = [appt.agent_id for appt in current_user.appointments]
-
         properties = Property.query.filter(Property.id.in_(property_ids)).all()
-        agents = User.query.filter(User.id.in_(agent_ids)).all()
 
-        return {
-            "appointments": appointments,
-            "agents": [agent.to_dict() for agent in agents],
-            "properties": [property.to_dict() for property in properties],
+        if current_user.agent:
+            return {
+                "appointments": appointments,
+                "properties": [property.to_dict() for property in properties],
             }
+        else:
+            agent_ids = [appt.agent_id for appt in current_user.appointments]
+            agents = User.query.filter(User.id.in_(agent_ids)).all()
+
+            return {
+                "appointments": appointments,
+                "agents": [agent.to_dict() for agent in agents],
+                "properties": [property.to_dict() for property in properties],
+                }
 
     if request.method == "POST":
         form = AddAppointmentForm()
@@ -188,7 +195,7 @@ def edit_appointment(appointment_id):
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
     if request.method == "DELETE":
-        appt = Appointment.query.filter(Appointment.id == appointment_id).filter(Appointment.user_id == current_user.id).first()
+        appt = Appointment.query.filter(Appointment.id == appointment_id).filter(or_(Appointment.user_id == current_user.id, Appointment.agent_id == current_user.id)).first()
 
         if appt:
             db.session.delete(appt)

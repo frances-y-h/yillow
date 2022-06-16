@@ -66,7 +66,27 @@
 	gap: 20px;
 }
 
+.btn-wrap {
+	display: flex;
+	gap: 20px;
+}
+
 .btn-sm {
 	padding: 5px;
 	font-size: 12px;
+}
+
+.btn-gr {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	padding: 5px;
+	font-size: 20px;
+	background-color: green;
+	border: transparent;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
 }

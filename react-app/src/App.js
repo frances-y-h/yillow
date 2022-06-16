@@ -68,6 +68,9 @@ function App() {
 				<ProtectedRoute path="/profile" exact={true}>
 					<Profile />
 				</ProtectedRoute>
+				<ProtectedRoute path="/reviews" exact={true}>
+					<div>My Reviews</div>
+				</ProtectedRoute>
 				<Route>
 					<NotFound />
 				</Route>

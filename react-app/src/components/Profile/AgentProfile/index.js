@@ -103,9 +103,6 @@ const AgentProfile = () => {
 				<div className="split">
 					<div className="center">
 						<UploadPhoto />
-						<button type="button" className="btn-font-lt">
-							Remove Photo
-						</button>
 						<label className="agent-label">
 							Full Name
 							<input

@@ -43,7 +43,16 @@ const UploadPhoto = () => {
 	const updatePhoto = async (e) => {
 		const file = e.target.files[0];
 		setPhoto(file);
-		setSrc(URL.createObjectURL(file));
+		if (file) {
+			setSrc(URL.createObjectURL(file));
+		}
+	};
+
+	const cancel = (e) => {
+		e.preventDefault();
+		setPhoto(null);
+		setSrc("");
+		inputRef.current.value = "";
 	};
 
 	if (agent.photo) {
@@ -70,9 +79,14 @@ const UploadPhoto = () => {
 					ref={inputRef}
 				/>
 				{src && (
-					<button className="btn" type="button" onClick={submitPhoto}>
-						Upload
-					</button>
+					<div className="btn-wrap">
+						<button className="btn btn-bl" type="button" onClick={cancel}>
+							Cancel
+						</button>
+						<button className="btn" type="button" onClick={submitPhoto}>
+							Upload
+						</button>
+					</div>
 				)}
 				{photoLoading && <div>Loading...</div>}
 				{errors && (
@@ -104,9 +118,14 @@ const UploadPhoto = () => {
 					ref={inputRef}
 				/>
 				{src && (
-					<button className="btn" type="button" onClick={submitPhoto}>
-						Upload
-					</button>
+					<div className="btn-wrap">
+						<button className="btn btn-bl" type="button" onClick={cancel}>
+							Cancel
+						</button>
+						<button className="btn" type="button" onClick={submitPhoto}>
+							Upload
+						</button>
+					</div>
 				)}
 				{photoLoading && <div>Loading...</div>}
 			</>
