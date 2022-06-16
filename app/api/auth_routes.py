@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
-from app.forms import SignUpForm
+from app.forms import SignUpForm, UserUpdateForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -29,8 +29,27 @@ def authenticate():
         return {'errors': ['Unauthorized']}
 
     if request.method == "PUT":
+        form = UserUpdateForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
 
-        pass
+            license_exists = User.query.filter(User.license_num == form.data['license_num'], User.id != current_user.id).first()
+
+            if license_exists:
+                return {"errors": ["License number belongs to another agent"]}
+
+            user = User.query.filter(User.id == current_user.id).first()
+
+            user.username = form.data['username']
+            user.phone = form.data["phone"]
+            user.license_num = form.data["license_num"]
+            user.office = form.data["office"]
+            user.bio = form.data["bio"]
+
+            db.session.commit()
+
+            return {"user": user.to_dict()}
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @auth_routes.route('/login', methods=['POST'])

@@ -1,10 +1,18 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+
+import { useNotification } from "../../../context/Notification";
 
 import UploadPhoto from "../UploadPhoto";
 import Stars from "../../Tools/Stars";
 
+import * as sessionActions from "../../../store/session";
+
 const AgentProfile = () => {
+	const dispatch = useDispatch();
+	const history = useHistory();
+
 	const agent = useSelector((state) => state.session.user);
 	const [username, setUsername] = useState("");
 	const [office, setOffice] = useState("");
@@ -13,9 +21,14 @@ const AgentProfile = () => {
 	const [phone, setPhone] = useState("");
 	const [maxChar, setMaxChar] = useState(2000);
 	const [errors, setErrors] = useState([]);
+	const [zip, setZip] = useState("");
+	const [zipErrors, setZipErrors] = useState([]);
+
+	const { setToggleNotification, setNotificationMsg } = useNotification();
 
 	const undo = (e) => {
 		e.preventDefault();
+		setErrors([]);
 		setUsername(agent?.username);
 		setOffice(agent?.office);
 		setLicense_num(agent?.license_num);
@@ -23,7 +36,31 @@ const AgentProfile = () => {
 		setPhone(agent?.phone);
 	};
 
+	const removeServiceArea = async (zipcode) => {
+		setZipErrors([]);
+		const data = await dispatch(sessionActions.removeServiceArea(zipcode));
+		if (data.errors) {
+			setZipErrors(data.errors);
+		} else {
+			setZip("");
+		}
+	};
+
+	const addServiceAreas = async (e) => {
+		e.preventDefault();
+		setZipErrors([]);
+		const payload = { zip };
+
+		const data = await dispatch(sessionActions.addServiceArea(payload));
+		if (data.errors) {
+			setZipErrors(data.errors);
+		} else {
+			setZip("");
+		}
+	};
+
 	const handleSubmit = async (e) => {
+		setErrors([]);
 		e.preventDefault();
 		const payload = {
 			username,
@@ -32,8 +69,20 @@ const AgentProfile = () => {
 			bio,
 			phone,
 		};
-		console.log(payload);
-		// Notification if updated
+
+		const data = await dispatch(sessionActions.updateThisUser(payload));
+		if (!data.errors) {
+			// Notification if updated
+			setToggleNotification("");
+			setNotificationMsg("Profile updated");
+
+			setTimeout(() => {
+				setToggleNotification("notification-move");
+				setNotificationMsg("");
+			}, 2000);
+		} else {
+			setErrors(data.errors);
+		}
 	};
 
 	useEffect(() => {
@@ -49,130 +98,153 @@ const AgentProfile = () => {
 	}, [bio]);
 
 	return (
-		<form className="agent-ctrl" onSubmit={handleSubmit}>
-			<div className="split">
-				<div className="center">
-					{/* {agent.photo ? (
+		<>
+			<form className="agent-ctrl" onSubmit={handleSubmit}>
+				<div className="split">
+					<div className="center">
+						{/* {agent.photo ? (
 						<div
 							className="photo"
 							style={{ backgroundImage: `url("${agent.photo}")` }}
 						>
             						<UploadPhoto /></div>
 					) : ( */}
-					<div className="photo">
-						Upload Photo
-						<UploadPhoto />
+						<div className="photo">
+							Upload Photo
+							<UploadPhoto />
+						</div>
+						{/* )} */}
+						<button type="button" className="btn-font-lt">
+							Remove Photo
+						</button>
+						<label className="agent-label">
+							Full Name
+							<input
+								maxLength="40"
+								className="name agent-profile-input"
+								value={username}
+								onChange={(e) => setUsername(e.target.value)}
+								placeholder="Full Name"
+								required
+							/>
+						</label>
+						<label className="agent-label">
+							Office
+							<input
+								maxLength="100"
+								className="office agent-profile-input"
+								value={office}
+								onChange={(e) => setOffice(e.target.value)}
+								placeholder="Office"
+							/>
+						</label>
+						<label className="agent-label">
+							License #
+							<input
+								maxLength="20"
+								className="license agent-profile-input"
+								value={license_num}
+								onChange={(e) => setLicense_num(e.target.value)}
+								placeholder="License Number"
+							/>
+						</label>
 					</div>
-					{/* )} */}
-					<button type="button" className="btn-font-lt">
-						Remove Photo
-					</button>
-					<label className="agent-label">
-						Full Name
-						<input
-							maxLength="40"
-							className="name agent-profile-input"
-							value={username}
-							onChange={(e) => setUsername(e.target.value)}
-							placeholder="Full Name"
-						/>
-					</label>
-					<label className="agent-label">
-						Office
-						<input
-							maxLength="100"
-							className="office agent-profile-input"
-							value={office}
-							onChange={(e) => setOffice(e.target.value)}
-							placeholder="Office"
-						/>
-					</label>
-					<label className="agent-label">
-						License #
-						<input
-							maxLength="20"
-							className="license agent-profile-input"
-							value={license_num}
-							onChange={(e) => setLicense_num(e.target.value)}
-							placeholder="License Number"
-						/>
-					</label>
+					<div className="bio-wrap">
+						<div className="btn-wrap-rt">
+							<div className="error-list">
+								{errors.map((err) => (
+									<div key={err}>{err}</div>
+								))}
+							</div>
+							<button
+								type="button"
+								className="btn"
+								onClick={() => history.push(`/agents/${agent.id}`)}
+							>
+								Profile Public View
+							</button>
+							<button type="button" className="btn btn-bl" onClick={undo}>
+								Undo
+							</button>
+							<button type="submit" className="btn">
+								Update
+							</button>
+						</div>
+						<div className="gap15">
+							<div className="about">About</div>
+							<div>
+								<textarea
+									maxLength="2000"
+									className="textarea"
+									value={bio}
+									onChange={(e) => setBio(e.target.value)}
+									rows="4"
+									placeholder="Introduce yourself"
+								/>
+								<div className="error-list">
+									{maxChar} characters left (max 2,000)
+								</div>
+							</div>
+						</div>
+						<div className="gap15">
+							<div className="about">Contact</div>
+							<div className="phone">
+								Tel{" "}
+								<input
+									type="text"
+									className="agent-input"
+									value={phone}
+									onChange={(e) => setPhone(e.target.value)}
+									placeholder="123-456-7890"
+								/>
+							</div>
+							<div className="phone">{agent?.email}</div>
+						</div>
+						{/* <div>
+						Average Rating {agent?.rating} <Stars rating={agent?.rating} />
+					</div> */}
+					</div>
 				</div>
-				<div className="bio-wrap">
-					<div className="btn-wrap-rt">
+			</form>
+			<form onSubmit={addServiceAreas}>
+				<div className="gap15">
+					<div className="about">Service Areas</div>
+					<div className="service-area-btn-wrap">
+						<input
+							className="agent-input"
+							type="number"
+							maxLength="5"
+							placeholder="5 digit zip code only"
+							value={zip}
+							onChange={(e) => setZip(e.target.value)}
+						/>
+						<button type="button" className="btn" onClick={addServiceAreas}>
+							Add
+						</button>
 						<div className="error-list">
-							{errors.map((err) => (
+							{zipErrors.map((err) => (
 								<div key={err}>{err}</div>
 							))}
 						</div>
-						<button type="button" className="btn btn-bl" onClick={undo}>
-							Undo
-						</button>
-						<button type="submit" className="btn">
-							Update
-						</button>
 					</div>
-					<div className="gap15">
-						<div className="about">About</div>
-						<div>
-							<textarea
-								maxLength="2000"
-								className="textarea"
-								value={bio}
-								onChange={(e) => setBio(e.target.value)}
-								rows="4"
-								placeholder="Introduce yourself"
-							/>
-							<div className="error-list">
-								{maxChar} characters left (max 2,000)
+					<div className="bio gap5">
+						{agent?.areas.map((each) => (
+							<div className="service-area-btn-wrap" key={each.zip}>
+								<button
+									type="button"
+									className="btn btn-sm"
+									onClick={() => removeServiceArea(each.zip)}
+								>
+									Remove
+								</button>
+								<span className="zip"> {each.zip}</span> -{" "}
+								{each.cities?.join(", ")}
 							</div>
-						</div>
+						))}
 					</div>
-					<div className="gap15">
-						<div className="about">Service Areas</div>
-						<div className="service-area-btn-wrap">
-							<input
-								className="agent-input"
-								type="number"
-								maxLength="5"
-								placeholder="5 digit zip code only"
-							/>
-							<button type="button" className="btn">
-								Add
-							</button>
-						</div>
-						<div className="bio gap5">
-							{agent?.areas.map((each) => (
-								<div className="service-area-btn-wrap" key={each.zip}>
-									<button type="button" className="btn btn-sm">
-										Remove
-									</button>
-									<span className="zip"> {each.zip}</span> -{" "}
-									{each.cities?.join(", ")}
-								</div>
-							))}
-						</div>
-					</div>
-					<div className="gap15">
-						<div className="about">Contact</div>
-						<div className="phone">
-							Tel{" "}
-							<input
-								type="text"
-								className="agent-input"
-								value={phone}
-								onChange={(e) => setPhone(e.target.value)}
-								placeholder="123-456-7890"
-							/>
-						</div>
-						<div className="phone">{agent?.email}</div>
-					</div>
-					{/* <div>
-						Average Rating {agent?.rating} <Stars rating={agent?.rating} />
-					</div> */}
 				</div>
-			</div>
-		</form>
+			</form>
+		</>
 	);
 };
 

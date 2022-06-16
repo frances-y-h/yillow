@@ -1,7 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
-const UPDATE_USER = "session/UPDATE_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const UPDATE_USER = "session/UPDATE_USER";
 
 // Action Creator
 const setUser = (user) => ({
@@ -108,17 +108,71 @@ export const updateThisUser = (user) => async (dispatch) => {
 		},
 		body: JSON.stringify(user),
 	});
+
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(updateUser(data.user));
+		return data;
+	} else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data;
+		}
+	} else {
+		return { errors: ["An error occurred. Please try again."] };
+	}
+};
+
+export const addServiceArea = (zip) => async (dispatch) => {
+	const response = await fetch("/api/service_areas/", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(zip),
+	});
+	const data = await response.json();
+	if (response.ok) {
+		dispatch(updateUser(data.user));
+		return data;
+	} else if (response.status < 500) {
+		if (data.errors) {
+			return data;
+		}
+	} else {
+		return { errors: ["An error occurred. Please try again."] };
+	}
+};
+
+export const removeServiceArea = (zip) => async (dispatch) => {
+	const response = await fetch(`/api/service_areas/${zip}`, {
+		method: "DELETE",
+	});
+	const data = await response.json();
+	if (response.ok) {
+		dispatch(updateUser(data.user));
+		return data;
+	} else if (response.status < 500) {
+		if (data.errors) {
+			return data;
+		}
+	} else {
+		return { errors: ["An error occurred. Please try again."] };
+	}
 };
 
 // Reducer
 const initialState = { user: null };
 
 export default function reducer(state = initialState, action) {
+	let newState;
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case UPDATE_USER:
-			return { user: action.payload };
+			newState = JSON.parse(JSON.stringify(state));
+			newState.user = { ...newState.user, ...action.payload };
+			return newState;
 		case REMOVE_USER:
 			return { user: null };
 		default:

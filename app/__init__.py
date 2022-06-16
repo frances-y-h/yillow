@@ -12,6 +12,7 @@ from .api.agent_routes import agent_routes
 from .api.appointment_routes import appointment_routes
 from .api.review_routes import review_routes
 from .api.search_routes import search_routes
+from .api.service_area_routes import service_area_routes
 
 from .seeds import seed_commands
 
@@ -39,6 +40,7 @@ app.register_blueprint(agent_routes, url_prefix='/api/agents')
 app.register_blueprint(appointment_routes, url_prefix='/api/appointments')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(search_routes, url_prefix='/api/search')
+app.register_blueprint(service_area_routes, url_prefix='/api/service_areas')
 db.init_app(app)
 Migrate(app, db)
 

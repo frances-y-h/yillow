@@ -14,4 +14,6 @@ class AgentArea(db.Model):
         properties = Property.query.filter(Property.zip == self.zip).all()
         cities = [property.city for property in properties]
         uniqueCities = list(set(cities))
+        if not uniqueCities:
+            uniqueCities = ["No matching city in database"]
         return {"zip": self.zip, "cities": uniqueCities}
