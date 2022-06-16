@@ -206,7 +206,7 @@ const AgentProfile = () => {
 					</div>
 				</div>
 			</form>
-			<form onSubmit={addServiceAreas}>
+			<form className="bio-wrap wrap-ctr" onSubmit={addServiceAreas}>
 				<div className="gap15">
 					<div className="about">Service Areas</div>
 					<div className="service-area-btn-wrap">
