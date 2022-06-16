@@ -25,6 +25,35 @@ const ApptDetail = ({ appt, past, onClose }) => {
 
 	const schedule = editAvailable(property, appt.date, appt.time);
 
+	const update = async (e) => {
+		e.preventDefault();
+		const apptToUpdate = {
+			id: appt.id,
+			property_id: appt.property_id,
+			date: today,
+			time: hour,
+			message: appt.message,
+		};
+		const data = await dispatch(
+			appointmentActions.editAppointment(apptToUpdate)
+		);
+		if (!data.errors) {
+			// after appt updated, need to dispatch to update property
+			await dispatch(propertyActions.getThisProperty(appt.property_id));
+			setNotificationMsg("Appointment updated");
+			setToggleNotification("");
+			setTimeout(() => {
+				setToggleNotification("notification-move");
+				setNotificationMsg("");
+			}, 2000);
+			onClose();
+		} else {
+			setTimeout(() => {
+				setErrors(data.errors);
+			}, 1);
+		}
+	};
+
 	const undo = (e) => {
 		e.preventDefault();
 		setToday(appt.date);
@@ -97,7 +126,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 					No image available
 				</div>
 			)}
-			<div className="appt-modal-btm">
+			<form className="appt-modal-btm" onSubmit={update}>
 				<div
 					className="appt-address-wrap"
 					onClick={() => setShowProperty(true)}
@@ -192,7 +221,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 						</div>
 					</>
 				)}
-			</div>
+			</form>
 			{/* {showProperty && (
 				<Modal onClose={() => setShowProperty(false)}>
 					<Property

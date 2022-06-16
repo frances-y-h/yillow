@@ -152,16 +152,59 @@ def edit_appointment(appointment_id):
             if hour < 8 or hour > 19:
                 return  {"errors": ["Visit hour out of range"]}
 
-             # Check user appointment to see if overlaps
-            user_appt = Appointment.query.filter(
-                Appointment.user_id == current_user.id, \
-                Appointment.date == date, \
-                Appointment.time == time,
-                Appointment.id != appointment_id)\
-                .first()
 
-            if user_appt:
-                return {"errors": ["You already have another appointment at this timeslot"]}
+            # Make sure the appointment id belongs to user
+            update_appt = Appointment.query \
+            .filter(Appointment.id == appointment_id) \
+            .filter(or_(Appointment.user_id == current_user.id, Appointment.agent_id == current_user.id)) \
+            .first()
+
+            if not update_appt:
+                return {"errors": ["Appointment does not exist"]}
+
+
+            if current_user.agent:
+                 # Check agent appointment to see if overlaps
+                agent_appt = Appointment.query.filter(
+                    Appointment.agent_id == current_user.id, \
+                    Appointment.date == date, \
+                    Appointment.time == time,
+                    Appointment.id != appointment_id)\
+                    .first()
+
+                if agent_appt:
+                    return {"errors": ["You already have another appointment at this timeslot"]}
+
+                client_appt = Appointment.query.filter(
+                    Appointment.user_id == update_appt.user_id, \
+                    Appointment.date == date, \
+                    Appointment.time == time,
+                    Appointment.id != appointment_id)\
+                    .first()
+
+                if client_appt:
+                    return {"errors": ["Client has another appointment at this timeslot"]}
+
+            else:
+                user_appt = Appointment.query.filter(
+                    Appointment.user_id == current_user.id, \
+                    Appointment.date == date, \
+                    Appointment.time == time,
+                    Appointment.id != appointment_id)\
+                    .first()
+
+                if user_appt:
+                    return {"errors": ["You already have another appointment at this timeslot"]}
+
+                agent_appt = Appointment.query.filter(
+                    Appointment.user_id == update_appt.agent_id, \
+                    Appointment.date == date, \
+                    Appointment.time == time,
+                    Appointment.id != appointment_id)\
+                    .first()
+
+                if agent_appt:
+                    return {"errors": ["Agent has another appointment at this timeslot"]}
 
             # query for to see if it is not avaliable
             exists = Appointment.query.filter(
@@ -174,13 +217,6 @@ def edit_appointment(appointment_id):
             if exists:
                 return {"errors": ["Timeslot not avaliable"]}
 
-            # Make sure the appointment id belongs to user
-            update_appt = Appointment.query \
-            .filter(Appointment.id == appointment_id, Appointment.user_id == current_user.id) \
-            .first()
-
-            if not update_appt:
-                return {"errors": ["Appointment does not exist"]}
 
             update_appt.date = date
             update_appt.time = time
