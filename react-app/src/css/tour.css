@@ -89,3 +89,12 @@
 .fa-xmark {
 	cursor: pointer;
 }
+
+.tour-agent-msg {
+	display: flex;
+	align-items: center;
+	white-space: normal;
+	text-align: center;
+	font-size: 20px;
+	height: 60vh;
+}

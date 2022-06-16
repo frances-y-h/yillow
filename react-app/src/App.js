@@ -14,6 +14,8 @@ import Agents from "./components/Agents";
 import Agent from "./components/Agent";
 import NotFound from "./components/NotFound";
 import Profile from "./components/Profile";
+import Reviews from "./components/Reviews";
+import Chats from "./components/Chats";
 import { authenticate } from "./store/session";
 
 import About from "./components/About";
@@ -69,7 +71,10 @@ function App() {
 					<Profile />
 				</ProtectedRoute>
 				<ProtectedRoute path="/reviews" exact={true}>
-					<div>My Reviews</div>
+					<Reviews />
+				</ProtectedRoute>
+				<ProtectedRoute path="/chats" exact={true}>
+					<Chats />
 				</ProtectedRoute>
 				<Route>
 					<NotFound />

@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import { useNotification } from "../../../context/Notification";
 
 import UploadPhoto from "../UploadPhoto";
-import Stars from "../../Tools/Stars";
 
 import * as sessionActions from "../../../store/session";
 

@@ -13,13 +13,16 @@ const AgentBar = () => {
 			<div className="nav-lf">
 				<NavLink to="/about">About</NavLink>
 				<NavLink to="/agents">Agent Finder</NavLink>
+				<NavLink to="/reviews" exact={true}>
+					My Reviews
+				</NavLink>
 			</div>
 			<NavLink to="/" exact={true}>
 				<img src={logo} alt="Yillow" />
 			</NavLink>
 			<div className="nav-rt">
-				<NavLink to="/reviews" exact={true}>
-					My Reviews
+				<NavLink to="/chats" exact={true}>
+					<i className="fa-regular fa-comment"></i> Chats
 				</NavLink>
 				<NavLink to="/appointments" exact={true}>
 					Appointments

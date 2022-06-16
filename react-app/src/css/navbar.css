@@ -30,6 +30,7 @@
 .nav-agent {
 	background-color: var(--blue2);
 	color: white;
+	padding: 15px;
 }
 
 .nav-agent .btn-font-lt {
