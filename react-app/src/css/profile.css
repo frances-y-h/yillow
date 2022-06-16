@@ -4,6 +4,36 @@
 	gap: 10px;
 }
 
+.agent-profile-photo,
+.agent-profile-no-photo {
+	width: 300px;
+	height: 300px;
+	border-radius: 100%;
+	background-color: var(--lightblue);
+	background-size: cover;
+	background-position: center center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 24px;
+	font-weight: bold;
+	color: transparent;
+	position: relative;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.agent-profile-no-photo {
+	border: 5px dashed lightgray;
+	color: var(--blue2);
+}
+
+.agent-profile-photo:hover {
+	color: white;
+	background-color: rgba(0, 0, 0, 0.5); /* Tint color */
+	background-blend-mode: multiply;
+}
+
 .upload-photo-div {
 	position: absolute;
 	right: 20px;
@@ -16,6 +46,16 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.profile-upload-preview {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	width: 100px;
+	height: 100px;
+	border-radius: 100%;
+	object-fit: cover;
 }
 
 .wrap-ctr {

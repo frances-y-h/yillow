@@ -102,18 +102,7 @@ const AgentProfile = () => {
 			<form className="agent-ctrl" onSubmit={handleSubmit}>
 				<div className="split">
 					<div className="center">
-						{/* {agent.photo ? (
-						<div
-							className="photo"
-							style={{ backgroundImage: `url("${agent.photo}")` }}
-						>
-            						<UploadPhoto /></div>
-					) : ( */}
-						<div className="photo">
-							Upload Photo
-							<UploadPhoto />
-						</div>
-						{/* )} */}
+						<UploadPhoto />
 						<button type="button" className="btn-font-lt">
 							Remove Photo
 						</button>

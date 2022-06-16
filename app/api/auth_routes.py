@@ -3,6 +3,9 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm, UserUpdateForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.s3_helpers import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
+
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -104,3 +107,33 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': ['Unauthorized']}, 401
+
+@auth_routes.route("/photo", methods=['POST'])
+@login_required
+def upload_photo():
+    if "image" not in request.files:
+        return {"errors": ["image required"]}, 400
+
+    image = request.files["image"]
+
+    if not allowed_file(image.filename):
+        return {"errors": ["file type not permitted"]}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+    # flask_login allows us to get the current user from the request
+    user = User.query.get(current_user.id)
+
+    user.photo = url
+    db.session.commit()
+
+    return {"url": url}

@@ -2,6 +2,7 @@
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 const UPDATE_USER = "session/UPDATE_USER";
+const UPLOAD_PHOTO = "session/UPLOAD_PHOTO";
 
 // Action Creator
 const setUser = (user) => ({
@@ -9,9 +10,14 @@ const setUser = (user) => ({
 	payload: user,
 });
 
-const updateUser = (user) => ({
+export const updateUser = (user) => ({
 	type: UPDATE_USER,
 	payload: user,
+});
+
+export const uploadPhoto = (url) => ({
+	type: UPLOAD_PHOTO,
+	url,
 });
 
 const removeUser = () => ({
@@ -172,6 +178,10 @@ export default function reducer(state = initialState, action) {
 		case UPDATE_USER:
 			newState = JSON.parse(JSON.stringify(state));
 			newState.user = { ...newState.user, ...action.payload };
+			return newState;
+		case UPLOAD_PHOTO:
+			newState = JSON.parse(JSON.stringify(state));
+			newState.user = { ...newState.user, photo: action.url.url };
 			return newState;
 		case REMOVE_USER:
 			return { user: null };
