@@ -1,17 +1,29 @@
-import { useHistory } from "react-router-dom";
+import { useRef, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Channels = ({ channel }) => {
 	const history = useHistory();
 	const user = useSelector((state) => state.session.user);
+	const channelParam = useParams().channelId;
+	const userRef = useRef();
 
 	const navigateChat = () => {
 		history.push(`/chats/${channel.id}`);
 	};
 
+	useEffect(() => {
+		const channelId = channelParam ? parseInt(channelParam, 10) : undefined;
+		if (channelId && channelId === channel?.id) {
+			userRef.current.classList.add("active");
+		} else {
+			userRef.current.classList.remove("active");
+		}
+	}, [channelParam]);
+
 	if (user.agent) {
 		return (
-			<div className="channel-user-wrap" onClick={navigateChat}>
+			<div className="channel-user-wrap" ref={userRef} onClick={navigateChat}>
 				{channel?.user_photo ? (
 					<div
 						className="photo"
@@ -25,7 +37,7 @@ const Channels = ({ channel }) => {
 		);
 	} else {
 		return (
-			<div className="channel-user-wrap" onClick={navigateChat}>
+			<div className="channel-user-wrap" ref={userRef} onClick={navigateChat}>
 				{channel?.agent_photo ? (
 					<div
 						className="photo"

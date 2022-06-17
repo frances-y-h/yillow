@@ -17,9 +17,13 @@ const Chat = () => {
 		return (
 			<div className="chat-chats-wrap">
 				<div className="chat-boxes-wrap">
-					{channel?.chat_ids.map((id) => (
-						<ChatBox key={id} chat={chats[id]} />
-					))}
+					{channel?.chat_ids?.length > 0 ? (
+						channel?.chat_ids.map((id) => <ChatBox key={id} chat={chats[id]} />)
+					) : (
+						<div className="first-conversation">
+							Be the first to start the conversation.
+						</div>
+					)}
 				</div>
 				<form className="chat-input-ctrl">
 					<label className="chat-label">
