@@ -22,7 +22,7 @@
 
 .chat-chats-wrap {
 	display: grid;
-	grid-template-rows: auto 100px;
+	grid-template-rows: auto 70px;
 	background-color: white;
 }
 
@@ -96,3 +96,105 @@
 }
 
 /* No channels selected, blank chat page */
+.blank-chat-div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	gap: 20px;
+}
+
+.blank-chat-img {
+	opacity: 0.7;
+	max-width: 30vw;
+}
+
+/* Chat boxes */
+.chat-boxes-wrap {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	gap: 20px;
+}
+
+.other-chatbox-wrap {
+	display: grid;
+	grid-template-columns: 60px auto;
+	width: fit-content;
+	align-items: flex-end;
+	gap: 10px;
+	width: 100%;
+}
+
+.other-chatbox-wrap .other-message {
+	padding: 20px;
+	border-radius: 20px 20px 20px 0px;
+	background-color: lightblue;
+	position: relative;
+	max-width: 80%;
+	width: fit-content;
+}
+
+.other-message::before {
+	content: " ";
+	width: 2px;
+	height: 2px;
+	background-color: lightblue;
+	position: absolute;
+	bottom: 0px;
+	left: -2px;
+}
+
+.other-chatbox-wrap .photo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+	background-color: lightgrey;
+	text-align: center;
+	font-size: 14px;
+	padding: 5px;
+	background-size: cover;
+	background-position: center;
+}
+.other-chatbox-wrap .username {
+	font-weight: lighter;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.my-chatbox-wrap {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.my-chatbox-wrap .my-message {
+	padding: 20px;
+	border-radius: 20px 20px 0px 20px;
+	background-color: lightgray;
+	position: relative;
+	max-width: 80%;
+	width: fit-content;
+}
+
+.my-message::after {
+	content: " ";
+	width: 2px;
+	height: 2px;
+	background-color: lightgray;
+	position: absolute;
+	bottom: 0px;
+	right: -2px;
+}
+
+/* Chat input form */
+.chat-input-ctrl {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding: 0px 20px 20px 20px;
+}

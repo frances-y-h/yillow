@@ -129,3 +129,27 @@
 .chnl-search-label input:focus::placeholder {
 	color: transparent;
 }
+
+/* Chat input */
+.chat-label {
+	padding: 10px;
+	width: 100%;
+	background-color: var(--lightblue);
+	border: 1px solid var(--blue);
+	border-radius: 30px;
+	display: grid;
+	grid-template-columns: auto 50px;
+}
+
+.chat-label input {
+	background-color: transparent;
+	border: none;
+	outline: none;
+}
+
+.chat-label button {
+	background-color: var(--blue2);
+	border: none;
+	border-radius: 20px;
+	color: white;
+}
