@@ -5,7 +5,7 @@ def seed_channel():
     channel2 = Channel(user_id=1, agent_id=5)
     channel3 = Channel(user_id=1, agent_id=6)
 
-    db.session.add_all(channel1, channel2, channel3)
+    db.session.add_all([channel1, channel2, channel3])
     db.session.commit()
 
 def undo_channel():

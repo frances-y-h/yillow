@@ -4,8 +4,8 @@ class Chat(db.Model):
     __tablename__ = "chats"
 
     id = db.Column(db.Integer, primary_key=True)
-    channel_id = db.Column(db.Integer, db.ForeignKey("Channel.id", nullable=False))
-    user_id = db.Column(db.Integer, db.ForeignKey("User.id", nullable=False))
+    channel_id = db.Column(db.Integer, db.ForeignKey("channels.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     message = db.Column(db.String(2000), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
 
