@@ -1,10 +1,17 @@
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Channels = ({ channel }) => {
+	const history = useHistory();
 	const user = useSelector((state) => state.session.user);
+
+	const navigateChat = () => {
+		history.push(`/chats/${channel.id}`);
+	};
+
 	if (user.agent) {
 		return (
-			<div className="channel-user-wrap">
+			<div className="channel-user-wrap" onClick={navigateChat}>
 				{channel?.user_photo ? (
 					<div
 						className="photo"
@@ -18,7 +25,7 @@ const Channels = ({ channel }) => {
 		);
 	} else {
 		return (
-			<div className="channel-user-wrap">
+			<div className="channel-user-wrap" onClick={navigateChat}>
 				{channel?.agent_photo ? (
 					<div
 						className="photo"

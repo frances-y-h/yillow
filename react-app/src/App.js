@@ -73,7 +73,7 @@ function App() {
 				<ProtectedRoute path="/reviews" exact={true}>
 					<Reviews />
 				</ProtectedRoute>
-				<ProtectedRoute path="/chats" exact={true}>
+				<ProtectedRoute path={["/chats", "/chats/:channelId"]} exact={true}>
 					<Chats />
 				</ProtectedRoute>
 				<Route>
