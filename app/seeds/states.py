@@ -51,6 +51,8 @@ def seed_states():
     state48 = State(state="WV", long="West Virginia")
     state49 = State(state="WI", long="Wisconsin")
     state50 = State(state="WY", long="Wyoming")
+    state51 = State(state="PR", long="Puerto Rico")
+    state52 = State(state="VI", long="Virgin Islands")
 
     db.session.add_all([
         state1, state2, state3, state4, state5, state6, state7,
@@ -60,7 +62,7 @@ def seed_states():
         state27, state28, state29, state30, state31, state32,
         state33, state34, state35, state36, state37, state38,
         state39, state40, state41, state42, state43, state44,
-        state45, state46, state47, state48, state49, state50])
+        state45, state46, state47, state48, state49, state50, state51, state52])
     db.session.commit()
 
 def undo_states():

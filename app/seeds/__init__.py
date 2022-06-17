@@ -6,6 +6,9 @@ from .property_imgs import seed_property_imgs, undo_property_imgs
 from .reviews import seed_reviews, undo_reviews
 from .appointments import seed_appointments, undo_appointments
 from .agent_area import seed_aa, undo_aa
+from .zip_city import seed_zip_city, undo_zip_city
+from .channel import seed_channel, undo_channel
+from .chat import seed_chat, undo_chat
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -22,12 +25,18 @@ def seed():
     seed_reviews()
     seed_appointments()
     seed_aa()
+    seed_zip_city()
+    seed_channel()
+    seed_chat()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_chat()
+    undo_channel()
+    undo_zip_city()
     undo_aa()
     undo_property_imgs()
     undo_properties()
