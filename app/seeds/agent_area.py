@@ -75,7 +75,7 @@ def seed_aa():
     aa72 = AgentArea(agent_id=15, zip="92596")
     aa73 = AgentArea(agent_id=16, zip="92596")
     aa74 = AgentArea(agent_id=17, zip="92395")
-    aa75 = AgentArea(agent_id=18, zip="92211")
+    aa75 = AgentArea(agent_id=18, zip="91775")
     aa76 = AgentArea(agent_id=4, zip="91362")
     aa77 = AgentArea(agent_id=5, zip="93923")
     aa78 = AgentArea(agent_id=6, zip="92117")
