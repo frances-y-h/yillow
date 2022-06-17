@@ -108,3 +108,24 @@
 .agent-profile-input {
 	border: 1px solid lightgray;
 }
+
+/* Channel search input */
+.chnl-search-label {
+	background-color: white;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid var(--blue);
+	display: grid;
+	grid-template-columns: auto 20px;
+	align-items: center;
+	color: gray;
+}
+
+.chnl-search-label input {
+	border: none;
+	outline: none;
+}
+
+.chnl-search-label input:focus::placeholder {
+	color: transparent;
+}

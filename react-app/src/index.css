@@ -21,6 +21,7 @@
 @import url("./css/map.css");
 @import url("./css/not-found.css");
 @import url("./css/profile.css");
+@import url("./css/chat.css");
 
 :root {
 	--blue: #016bff;

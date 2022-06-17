@@ -103,12 +103,12 @@ export const deleteThisReview = (reviewId) => async (dispatch) => {
 };
 
 // Reducers
-const initialState = {};
+const initialState = { reviews: null };
 export default function reducer(state = initialState, action) {
 	let newState;
 	switch (action.type) {
 		case GET_REVIEWS:
-			newState = JSON.parse(JSON.stringify(state));
+			newState = {};
 			action.reviews.forEach((review) => {
 				newState[review.id] = review;
 			});

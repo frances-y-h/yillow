@@ -6,6 +6,8 @@ import images from "./property_img";
 import agents from "./agent";
 import appointments from "./appointment";
 import reviews from "./review";
+import channels from "./channel";
+import chats from "./chat";
 
 const rootReducer = combineReducers({
 	session,
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
 	images,
 	appointments,
 	reviews,
+	channels,
+	chats,
 });
 
 let enhancer;
