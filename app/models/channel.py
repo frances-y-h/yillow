@@ -22,4 +22,6 @@ class Channel(db.Model):
             "agent_id": self.agent_id,
             "agent_name": self.agent.username,
             "agent_photo": self.agent.photo,
+            "agent_office": self.agent.office,
+            "chat_ids": [chat.id for chat in self.chats],
         }
