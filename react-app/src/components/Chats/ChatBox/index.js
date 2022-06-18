@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { subHours, formatRelative } from "date-fns";
 
+import no_photo from "../../../assets/no_photo.svg";
+
 import { Modal } from "../../../context/Modal";
 import DeleteChat from "../DeleteChat";
 
@@ -94,16 +96,13 @@ const ChatBox = ({ chat, editChat, deleteChat }) => {
 			</div>
 		);
 	} else {
+		const image = photo || no_photo;
 		return (
 			<div className="other-chatbox-wrap">
-				{photo ? (
-					<div
-						className="photo"
-						style={{ backgroundImage: `url("${photo}")` }}
-					></div>
-				) : (
-					<div className="photo">No photo</div>
-				)}
+				<div
+					className="photo"
+					style={{ backgroundImage: `url("${image}")` }}
+				></div>
 				<div>
 					<div className="username">{username}</div>
 					<div className="other-message">{chat?.message}</div>

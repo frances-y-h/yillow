@@ -109,6 +109,9 @@ const UploadPhoto = () => {
 					<div className="upload-photo-div">
 						<img src={upload} alt="Upload" />
 					</div>
+					{src && (
+						<img className="profile-upload-preview" src={src} alt="Upload" />
+					)}
 				</div>
 				<input
 					hidden

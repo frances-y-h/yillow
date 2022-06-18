@@ -6,9 +6,13 @@ import LogoutButton from "../../auth/LogoutButton";
 import logo from "../../../assets/logo-blue.svg";
 import no_photo from "../../../assets/no_photo.svg";
 
+import { Modal } from "../../../context/Modal";
+import UserProfile from "../../Profile/UserProfile";
+
 const UserBar = () => {
 	const user = useSelector((state) => state.session.user);
 	const [showMenu, setShowMenu] = useState(false);
+	const [showModal, setShowModal] = useState(false);
 
 	const image = user.photo || no_photo;
 
@@ -58,7 +62,12 @@ const UserBar = () => {
 					{showMenu && (
 						<div className="dropdown" ref={dropdownRef}>
 							<div className="div">
-								<button className="btn-font-lt">Edit my profile</button>
+								<button
+									className="btn-font-lt"
+									onClick={() => setShowModal(true)}
+								>
+									Edit my profile
+								</button>
 							</div>
 							<div className="div">
 								<LogoutButton />
@@ -67,6 +76,11 @@ const UserBar = () => {
 					)}
 				</div>
 			</div>
+			{showModal && (
+				<Modal onClose={() => setShowModal(false)}>
+					<UserProfile onClose={() => setShowModal(false)} />
+				</Modal>
+			)}
 		</nav>
 	);
 };
