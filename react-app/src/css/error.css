@@ -31,3 +31,10 @@
 	position: absolute;
 	bottom: 0px;
 }
+
+.chat-error {
+	position: absolute;
+	font-size: 10px;
+	color: var(--error);
+	bottom: 5px;
+}

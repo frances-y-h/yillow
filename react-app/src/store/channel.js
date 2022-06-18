@@ -1,11 +1,19 @@
 // Actions
 const GET_CHANNELS = "channels/GET_CHANNELS";
+const ADD_CHAT = "channels/ADD_CHAT";
 
 // Action Creator
 export const getChannels = (channels) => {
 	return {
 		type: GET_CHANNELS,
 		channels,
+	};
+};
+
+export const addChat = (payload) => {
+	return {
+		type: ADD_CHAT,
+		payload,
 	};
 };
 
@@ -22,6 +30,10 @@ export default function reducer(state = initialState, action) {
 			action.channels.forEach((channel) => {
 				newState[channel.id] = channel;
 			});
+			return newState;
+		case ADD_CHAT:
+			newState = JSON.parse(JSON.stringify(state));
+			newState[action.payload.channel_id].chat_ids.push(action.payload.chat_id);
 			return newState;
 		default:
 			return state;
