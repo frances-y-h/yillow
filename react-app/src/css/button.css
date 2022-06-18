@@ -83,10 +83,15 @@
 	align-items: center;
 	gap: 10px;
 	padding: 5px;
-	font-size: 20px;
+	font-size: 18px;
 	background-color: green;
 	border: transparent;
 	border-radius: 5px;
 	color: white;
 	cursor: pointer;
+}
+
+.btn-short {
+	width: fit-content;
+	padding: 5px 10px;
 }
