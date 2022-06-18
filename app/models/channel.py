@@ -14,6 +14,8 @@ class Channel(db.Model):
 
 
     def to_dict(self):
+        chat_ids = [chat.id for chat in self.chats]
+
         return {
             "id": self.id,
             "user_id": self.user_id,
@@ -23,5 +25,5 @@ class Channel(db.Model):
             "agent_name": self.agent.username,
             "agent_photo": self.agent.photo,
             "agent_office": self.agent.office,
-            "chat_ids": [chat.id for chat in self.chats],
+            "chat_ids": sorted(chat_ids),
         }
