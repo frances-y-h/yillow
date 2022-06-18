@@ -1,14 +1,20 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import editAvailable from "../../../Tools/EditAvailable";
 import { useNotification } from "../../../../context/Notification";
 
+import { Modal } from "../../../../context/Modal";
+import Property from "../../../Property";
+
 import * as appointmentActions from "../../../../store/appointment";
 import * as propertyActions from "../../../../store/property";
+import * as channelActions from "../../../../store/channel";
 
 const ApptDetail = ({ appt, past, onClose }) => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const properties = useSelector((state) => state.properties);
 
@@ -78,6 +84,15 @@ const ApptDetail = ({ appt, past, onClose }) => {
 		} else {
 			setErrors(data.errors);
 		}
+	};
+
+	const chatWithClient = async (e) => {
+		e.preventDefault();
+		const this_channel = { user_id: appt.user_id, agent_id: appt.agent_id };
+		// send a post request to channels. will create channel if does not exist
+		const data = await dispatch(channelActions.addThisChannel(this_channel));
+		// use history to redirect
+		history.push(`/chats/${data.id}`);
 	};
 
 	useEffect(() => {
@@ -190,7 +205,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 						<div>
 							<i className="fa-regular fa-envelope"></i> {appt.email}
 						</div>
-						<button type="button" className="btn-gr">
+						<button type="button" className="btn-gr" onClick={chatWithClient}>
 							Chat with client <i className="fa-regular fa-comment"></i>
 						</button>
 					</div>
@@ -222,14 +237,14 @@ const ApptDetail = ({ appt, past, onClose }) => {
 					</>
 				)}
 			</form>
-			{/* {showProperty && (
+			{showProperty && (
 				<Modal onClose={() => setShowProperty(false)}>
 					<Property
 						property={property}
 						onClose={() => setShowProperty(false)}
 					/>
 				</Modal>
-			)} */}
+			)}
 		</div>
 	);
 };

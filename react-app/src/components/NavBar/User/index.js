@@ -57,7 +57,7 @@ const UserBar = () => {
 				)}
 				{user && (
 					<>
-						<NavLink to="/chats" exact={true}>
+						<NavLink className="btn-font-lt" to="/chats" exact={true}>
 							<i className="fa-regular fa-comment"></i> Chats
 						</NavLink>
 						<NavLink className="btn-font-lt" to="/appointments" exact={true}>

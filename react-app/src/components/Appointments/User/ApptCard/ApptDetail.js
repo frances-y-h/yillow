@@ -196,7 +196,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 						</div>
 					)}
 				</label>
-				<Agent agent={agent} />
+				<Agent agent={agent} appt={appt} />
 				{errors && (
 					<div className="error-list error-ctr">
 						{errors.map((err) => (
