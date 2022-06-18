@@ -50,7 +50,6 @@ const Chat = () => {
 
 		// listen for delete events
 		socket.on("delete", (data) => {
-			console.log(data);
 			dispatch(chatActions.deleteChat(data.chat_id));
 			dispatch(channelActions.deleteChat(data));
 		});
@@ -77,7 +76,7 @@ const Chat = () => {
 		const sendChat = (e) => {
 			e.preventDefault();
 			setError("");
-			if (message.length) {
+			if (message.length < 2001) {
 				const chatToSend = {
 					user_id: user.id,
 					channel_id: channel.id,
@@ -86,8 +85,10 @@ const Chat = () => {
 				};
 				socket.emit("chat", chatToSend);
 				setMessage("");
-			} else {
+			} else if (message.length === 0) {
 				setError("Please write a message");
+			} else {
+				setError("Message must be under 2,000 characters");
 			}
 		};
 
@@ -125,6 +126,7 @@ const Chat = () => {
 							placeholder="Say something..."
 							value={message}
 							onChange={(e) => setMessage(e.target.value)}
+							required
 						/>
 						<button type="submit">Send</button>
 						{error && <div className="chat-error">{error}</div>}

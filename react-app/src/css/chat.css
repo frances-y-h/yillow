@@ -261,6 +261,20 @@
 	padding: 0px 20px 20px 20px;
 }
 
+.send-chat-desc {
+	font-size: 12px;
+	font-weight: lighter;
+	position: absolute;
+	bottom: 0px;
+	left: 20px;
+	color: var(--blue2);
+}
+
+.my-message .cancel {
+	color: var(--error);
+	cursor: pointer;
+}
+
 /* First to start conversation */
 .first-conversation {
 	width: 100%;
@@ -270,4 +284,22 @@
 	font-weight: lighter;
 	display: flex;
 	align-items: flex-end;
+}
+
+/* Delete Chat Modal */
+.delete-chat-modal {
+	background-color: white;
+	border-radius: 10px;
+	padding: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+
+.delete-chat-modal .message {
+	background-color: var(--lightblue);
+	border: 1px solid var(--blue);
+	padding: 10px;
+	border-radius: 5px;
 }

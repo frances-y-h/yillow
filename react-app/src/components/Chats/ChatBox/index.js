@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { parseISO, formatRelative } from "date-fns";
+import { subHours, formatRelative } from "date-fns";
+
+import { Modal } from "../../../context/Modal";
+import DeleteChat from "../DeleteChat";
 
 const ChatBox = ({ chat, editChat, deleteChat }) => {
 	const user = useSelector((state) => state.session.user);
@@ -13,10 +16,19 @@ const ChatBox = ({ chat, editChat, deleteChat }) => {
 	const [editMsg, setEditMsg] = useState(false);
 	const [message, setMessage] = useState("");
 	const [error, setError] = useState("");
+	const [showModal, setShowModal] = useState(false);
+
+	const cancel = (e) => {
+		e.preventDefault();
+		setEditMsg(false);
+		setMessage(chat.message);
+	};
 
 	useEffect(() => {
 		if (chat && chat.created_at) {
-			setTime(formatRelative(parseISO(chat.created_at), new Date()));
+			const newTime = new Date(chat.created_at);
+			const calcTime = subHours(newTime, 7);
+			setTime(formatRelative(calcTime, new Date()));
 		}
 		setMessage(chat?.message);
 	}, [chat]);
@@ -38,11 +50,19 @@ const ChatBox = ({ chat, editChat, deleteChat }) => {
 					}}
 				>
 					{editMsg ? (
-						<input
-							type="text"
-							value={message}
-							onChange={(e) => setMessage(e.target.value)}
-						/>
+						<>
+							<input
+								type="text"
+								value={message}
+								onChange={(e) => setMessage(e.target.value)}
+							/>
+							<div className="send-chat-desc">
+								Press Enter to send or{" "}
+								<span className="cancel" onClick={cancel}>
+									Cancel
+								</span>
+							</div>
+						</>
 					) : (
 						<div className="msg">{message}</div>
 					)}
@@ -58,12 +78,19 @@ const ChatBox = ({ chat, editChat, deleteChat }) => {
 					></i>
 					<i
 						className="fa-regular fa-trash-can"
-						onClick={() => {
-							deleteChat(chat.id);
-						}}
+						onClick={() => setShowModal(true)}
 					></i>
 					{time}
 				</div>
+				{showModal && (
+					<Modal onClose={() => setShowModal(false)}>
+						<DeleteChat
+							deleteChat={deleteChat}
+							chat={chat}
+							onClose={() => setShowModal(false)}
+						/>
+					</Modal>
+				)}
 			</div>
 		);
 	} else {
