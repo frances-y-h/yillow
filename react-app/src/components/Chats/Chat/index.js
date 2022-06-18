@@ -18,7 +18,6 @@ const Chat = () => {
 	const channels = useSelector((state) => state.channels);
 	const chats = useSelector((state) => state.chats);
 	const [message, setMessage] = useState("");
-	const [editMessage, setEditMessage] = useState("");
 	const [error, setError] = useState("");
 
 	const channelId = parseInt(channelParam, 10) || 0;
@@ -47,6 +46,13 @@ const Chat = () => {
 		// listen for edit events
 		socket.on("edit", (chat) => {
 			dispatch(chatActions.addEditChat(chat));
+		});
+
+		// listen for delete events
+		socket.on("delete", (data) => {
+			console.log(data);
+			dispatch(chatActions.deleteChat(data.chat_id));
+			dispatch(channelActions.deleteChat(data));
 		});
 
 		if (focusRef) {
@@ -89,12 +95,21 @@ const Chat = () => {
 			socket.emit("edit", payload);
 		};
 
+		const deleteChat = (chat_id) => {
+			socket.emit("delete", chat_id);
+		};
+
 		return (
 			<div className="chat-chats-wrap">
 				<div className="chat-boxes-wrap" ref={focusRef}>
 					{channel?.chat_ids?.length > 0 ? (
 						channel?.chat_ids.map((id) => (
-							<ChatBox key={id} chat={chats[id]} editChat={editChat} />
+							<ChatBox
+								key={id}
+								chat={chats[id]}
+								editChat={editChat}
+								deleteChat={deleteChat}
+							/>
 						))
 					) : (
 						<div className="first-conversation">

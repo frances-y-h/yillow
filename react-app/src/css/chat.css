@@ -223,15 +223,18 @@
 }
 
 .my-chatbox-wrap .my-message input,
-.my-chatbox-wrap .my-message input:disabled {
+.my-chatbox-wrap .my-message input:disabled,
+.my-chatbox-wrap .my-message .msg {
 	color: black;
 	padding: 10px;
 	font-size: 16px;
 	border-radius: 10px;
+	width: fit-content;
 }
 
 .my-chatbox-wrap .my-message input {
 	border: none;
+	width: 50vw;
 }
 
 .my-chatbox-wrap .my-message input:disabled {

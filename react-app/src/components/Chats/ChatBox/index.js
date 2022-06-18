@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { parseISO, formatRelative } from "date-fns";
 
-const ChatBox = ({ chat, editChat }) => {
+const ChatBox = ({ chat, editChat, deleteChat }) => {
 	const user = useSelector((state) => state.session.user);
 	const channels = useSelector((state) => state.channels);
 	const channel = channels[chat?.channel_id];
@@ -37,12 +37,15 @@ const ChatBox = ({ chat, editChat }) => {
 						}
 					}}
 				>
-					<input
-						type="text"
-						value={message}
-						onChange={(e) => setMessage(e.target.value)}
-						disabled={!editMsg}
-					/>
+					{editMsg ? (
+						<input
+							type="text"
+							value={message}
+							onChange={(e) => setMessage(e.target.value)}
+						/>
+					) : (
+						<div className="msg">{message}</div>
+					)}
 					{error && <div className="chat-error">{error}</div>}
 				</form>
 				<div className="time">
@@ -53,7 +56,12 @@ const ChatBox = ({ chat, editChat }) => {
 							setError("");
 						}}
 					></i>
-					<i className="fa-regular fa-trash-can"></i>
+					<i
+						className="fa-regular fa-trash-can"
+						onClick={() => {
+							deleteChat(chat.id);
+						}}
+					></i>
 					{time}
 				</div>
 			</div>
