@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import db, Channel, User, Chat
 from flask_login import current_user, login_required
-from datetime import datetime
+from app.forms import NewChannelForm
 
 channel_routes = Blueprint("channels", __name__)
 
@@ -15,7 +15,7 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-@channel_routes.route("/", methods=["GET"])
+@channel_routes.route("/", methods=["GET", "POST"])
 @login_required
 def channels():
     if request.method == "GET":
@@ -35,3 +35,23 @@ def channels():
             "channels": channels,
             "chats": [chat.to_dict() for chat in chats],
             }
+
+    if request.method == "POST":
+        form = NewChannelForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            user_id = form.data['user_id']
+            agent_id = form.data['agent_id']
+
+            channel = Channel.query.filter(Channel.user_id == user_id, Channel.agent_id == agent_id).first()
+
+            if channel:
+                return {"channel": channel.to_dict()}
+
+            else:
+                new_channel = Channel(user_id=user_id, agent_id=agent_id)
+
+                db.session.add(new_channel)
+                db.session.commit()
+
+                return {"channel": new_channel.to_dict()}
