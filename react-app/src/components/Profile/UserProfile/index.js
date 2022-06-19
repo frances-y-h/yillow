@@ -1,29 +1,54 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { useNotification } from "../../../context/Notification";
 
 import UploadPhoto from "../UploadPhoto";
 
 import no_photo from "../../../assets/no_photo.svg";
 
+import * as sessionActions from "../../../store/session";
+
 const UserProfile = ({ onClose }) => {
+	const dispatch = useDispatch();
+
 	const user = useSelector((state) => state.session.user);
 	const [username, setUsername] = useState("");
-	const [email, setEmail] = useState("");
+	const [errors, setErrors] = useState([]);
+
+	const { setToggleNotification, setNotificationMsg } = useNotification();
 
 	const image = user.photo || no_photo;
 
-	const updateProfile = (e) => {
+	const updateProfile = async (e) => {
 		e.preventDefault();
-		// do the thing
+		console.log("click");
+		const payload = {
+			username,
+		};
+		const data = await dispatch(sessionActions.updateThisUser(payload));
+
+		if (!data.errors) {
+			// Notification if updated
+			setToggleNotification("");
+			setNotificationMsg("Profile updated");
+
+			setTimeout(() => {
+				setToggleNotification("notification-move");
+				setNotificationMsg("");
+			}, 2000);
+			onClose();
+		} else {
+			setErrors(data.errors);
+		}
 	};
 
 	useEffect(() => {
 		setUsername(user.username);
-		setEmail(user.email);
 	}, [user]);
 
 	return (
-		<form className="user-profile-modal" onSubmit={updateProfile}>
+		<div className="user-profile-modal">
 			<div className="title">My Profile</div>
 			<UploadPhoto />
 			<label className="label">
@@ -41,21 +66,25 @@ const UserProfile = ({ onClose }) => {
 				<input
 					type="email"
 					placeholder="Email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
+					value={user?.email}
 					required
-					disabled={user?.id === 1}
+					disabled
 				/>
 			</label>
+			<div className="error-list">
+				{errors.map((err) => (
+					<div key={err}>{err}</div>
+				))}
+			</div>
 			<div className="btn-wrap">
 				<button type="button" className="btn btn-bl" onClick={onClose}>
 					Cancel
 				</button>
-				<button type="submit" className="btn">
+				<button type="button" className="btn" onClick={updateProfile}>
 					Update
 				</button>
 			</div>
-		</form>
+		</div>
 	);
 };
 

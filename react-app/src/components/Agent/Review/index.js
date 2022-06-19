@@ -18,6 +18,8 @@ const Review = ({ review }) => {
 	const [maxChar, setMaxChar] = useState(2000);
 	const [errors, setErrors] = useState([]);
 
+	const [reviewUser, setReviewUser] = useState("");
+
 	const [showModal, setShowModal] = useState(false);
 
 	const update = async (e) => {
@@ -56,13 +58,18 @@ const Review = ({ review }) => {
 	useEffect(() => {
 		setRating(review?.rating);
 		setContent(review?.content);
-	}, [review]);
+		if (review?.user_id === user?.id) {
+			setReviewUser(user?.username);
+		} else {
+			setReviewUser(review?.username);
+		}
+	}, [review, user]);
 
 	return (
 		<div className="review">
 			<div className="review-edit">
 				<div>
-					<div>Review by {review?.username}</div>
+					<div>Review by {reviewUser}</div>
 					<div className="review-star">
 						{edit ? (
 							<>

@@ -36,18 +36,20 @@ def authenticate():
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
 
-            license_exists = User.query.filter(User.license_num == form.data['license_num'], User.id != current_user.id).first()
-
-            if license_exists:
-                return {"errors": ["License number belongs to another agent"]}
-
             user = User.query.filter(User.id == current_user.id).first()
-
             user.username = form.data['username']
-            user.phone = form.data["phone"]
-            user.license_num = form.data["license_num"]
-            user.office = form.data["office"]
-            user.bio = form.data["bio"]
+
+
+            if current_user.agent:
+                license_exists = User.query.filter(User.license_num == form.data['license_num'], User.id != current_user.id).first()
+
+                if license_exists:
+                    return {"errors": ["License number belongs to another agent"]}
+
+                user.phone = form.data["phone"]
+                user.license_num = form.data["license_num"]
+                user.office = form.data["office"]
+                user.bio = form.data["bio"]
 
             db.session.commit()
 
@@ -107,6 +109,7 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': ['Unauthorized']}, 401
+
 
 @auth_routes.route("/photo", methods=['POST'])
 @login_required
