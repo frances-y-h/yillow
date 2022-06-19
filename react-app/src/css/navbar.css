@@ -63,14 +63,10 @@
 }
 
 .nav-rt .dropdown .div {
-	padding: 10px 20px;
+	padding: 20px 20px;
 	font-weight: lighter;
 	width: 100%;
 }
-
-/* .nav-rt .dropdown .div:hover {
-	background-color: rgb(235, 235, 235);
-} */
 
 /* Agent Navbar */
 .nav-agent {

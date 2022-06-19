@@ -78,13 +78,15 @@ const Agent = () => {
 							<div className="about">Contact</div>
 							<div className="phone">Tel {agent?.phone}</div>
 							<div className="phone">{agent?.email}</div>
-							<button
-								className="btn-gr btn-short"
-								type="button"
-								onClick={chatWithAgent}
-							>
-								Chat with Agent <i className="fa-regular fa-comment"></i>
-							</button>
+							{!user.agent && (
+								<button
+									className="btn-gr btn-short"
+									type="button"
+									onClick={chatWithAgent}
+								>
+									Chat with Agent <i className="fa-regular fa-comment"></i>
+								</button>
+							)}
 						</div>
 						<div>
 							Average Rating {agent?.rating} <Stars rating={agent?.rating} />
@@ -94,7 +96,7 @@ const Agent = () => {
 				<div className="agent-review-ctrl">
 					<div className="title">
 						<div>Reviews</div>
-						{!user?.agent && (
+						{user.id !== agent.id && (
 							<button
 								type="button"
 								className="btn"

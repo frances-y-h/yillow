@@ -66,7 +66,13 @@ const NewReview = ({ onClose, agent }) => {
 		setMaxChar(2000 - content.length);
 	}, [content]);
 
-	if (user) {
+	if (user && user.id === agent.id) {
+		return (
+			<div className="review-ctrl">
+				Agents are not allowed to review themselves
+			</div>
+		);
+	} else if (user) {
 		return (
 			<form className="review-ctrl" onSubmit={handleSubmit}>
 				<div className="for">Write a review for</div>

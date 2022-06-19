@@ -22,7 +22,7 @@ const UserProfile = ({ onClose }) => {
 
 	const updateProfile = async (e) => {
 		e.preventDefault();
-		console.log("click");
+
 		const payload = {
 			username,
 		};
