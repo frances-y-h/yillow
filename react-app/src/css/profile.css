@@ -64,6 +64,18 @@
 	justify-content: center;
 }
 
+.agent-profile {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.agent-profile .about {
+	font-size: 26px;
+	font-weight: bold;
+	color: var(--blue2);
+}
+
 /* User profile */
 .user-profile-modal {
 	display: flex;

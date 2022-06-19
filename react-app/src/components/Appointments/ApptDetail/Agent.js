@@ -2,15 +2,15 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import editAvailable from "../../../Tools/EditAvailable";
-import { useNotification } from "../../../../context/Notification";
+import editAvailable from "../../Tools/EditAvailable";
+import { useNotification } from "../../../context/Notification";
 
-import { Modal } from "../../../../context/Modal";
-import Property from "../../../Property";
+import { Modal } from "../../../context/Modal";
+import Property from "../../Property";
 
-import * as appointmentActions from "../../../../store/appointment";
-import * as propertyActions from "../../../../store/property";
-import * as channelActions from "../../../../store/channel";
+import * as appointmentActions from "../../../store/appointment";
+import * as propertyActions from "../../../store/property";
+import * as channelActions from "../../../store/channel";
 
 const ApptDetail = ({ appt, past, onClose }) => {
 	const dispatch = useDispatch();

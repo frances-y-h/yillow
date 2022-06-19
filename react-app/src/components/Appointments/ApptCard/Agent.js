@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useNotification } from "../../../../context/Notification";
+import { useNotification } from "../../../context/Notification";
 import ReactTooltip from "react-tooltip";
 
-import Stars from "../../../Tools/Stars";
-import StarRating from "../../../Tools/StarRating";
+import Stars from "../../Tools/Stars";
+import StarRating from "../../Tools/StarRating";
 
-import * as reviewActions from "../../../../store/review";
-import * as agentActions from "../../../../store/agent";
-import * as channelActions from "../../../../store/channel";
+import * as reviewActions from "../../../store/review";
+import * as agentActions from "../../../store/agent";
+import * as channelActions from "../../../store/channel";
 
 const Agent = ({ agent, appt }) => {
 	const dispatch = useDispatch();

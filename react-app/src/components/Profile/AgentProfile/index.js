@@ -101,7 +101,7 @@ const AgentProfile = () => {
 	}, [bio]);
 
 	return (
-		<>
+		<div className="agent-profile-div">
 			<form className="agent-ctrl" onSubmit={handleSubmit}>
 				<div className="split">
 					<div className="center">
@@ -139,8 +139,24 @@ const AgentProfile = () => {
 								required
 							/>
 						</label>
+						<div className="agent-profile">
+							<div className="about">About</div>
+							<div>
+								<textarea
+									maxLength="2000"
+									className="textarea"
+									value={bio}
+									onChange={(e) => setBio(e.target.value)}
+									rows="4"
+									placeholder="Introduce yourself"
+								/>
+								<div className="error-list">
+									{maxChar} characters left (max 2,000)
+								</div>
+							</div>
+						</div>
 					</div>
-					<div className="bio-wrap">
+					<div className="agent-profile gap40">
 						<div className="btn-wrap-rt">
 							<div className="error-list">
 								{errors.map((err) => (
@@ -162,22 +178,6 @@ const AgentProfile = () => {
 							</button>
 						</div>
 						<div className="gap15">
-							<div className="about">About</div>
-							<div>
-								<textarea
-									maxLength="2000"
-									className="textarea"
-									value={bio}
-									onChange={(e) => setBio(e.target.value)}
-									rows="4"
-									placeholder="Introduce yourself"
-								/>
-								<div className="error-list">
-									{maxChar} characters left (max 2,000)
-								</div>
-							</div>
-						</div>
-						<div className="gap15">
 							<div className="about">Contact</div>
 							<div className="phone">
 								Tel{" "}
@@ -195,7 +195,7 @@ const AgentProfile = () => {
 					</div>
 				</div>
 			</form>
-			<form className="bio-wrap wrap-ctr" onSubmit={addServiceAreas}>
+			<form className="bio-wrap agent-sa" onSubmit={addServiceAreas}>
 				<div className="gap15">
 					<div className="about">Service Areas</div>
 					<div className="service-area-btn-wrap">
@@ -233,7 +233,7 @@ const AgentProfile = () => {
 					</div>
 				</div>
 			</form>
-		</>
+		</div>
 	);
 };
 

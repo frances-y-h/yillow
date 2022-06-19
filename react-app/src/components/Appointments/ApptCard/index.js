@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import ApptDate from "../../../Tools/Date";
+import ApptDate from "../../Tools/Date";
 
-import { Modal } from "../../../../context/Modal";
-import ApptDetail from "./ApptDetail";
+import { Modal } from "../../../context/Modal";
+import ApptDetail from "../ApptDetail";
 
 const ApptCard = ({ appt, past }) => {
 	const properties = useSelector((state) => state.properties);

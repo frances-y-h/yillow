@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import { Calendar, DateLocalizer, momentLocalizer } from "react-big-calendar";
 
-import { Modal } from "../../../../context/Modal";
+import { Modal } from "../../../context/Modal";
 import ApptDetail from "../ApptDetail";
 
-import * as dates from "../../../../utils/dates";
+import * as dates from "../../../utils/dates";
 
 const mLocalizer = momentLocalizer(moment);
 
@@ -22,7 +22,7 @@ const ColoredDateCellWrapper = ({ children }) =>
  * We are defaulting the localizer here because we are using this same
  * example on the main 'About' page in Storybook
  */
-export default function AgentCalendar({
+export default function Basic({
 	localizer = mLocalizer,
 	showDemoLink = true,
 	...props
@@ -120,7 +120,7 @@ export default function AgentCalendar({
 	);
 }
 
-AgentCalendar.propTypes = {
+Basic.propTypes = {
 	localizer: PropTypes.instanceOf(DateLocalizer),
 	showDemoLink: PropTypes.bool,
 };

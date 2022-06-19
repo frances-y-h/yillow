@@ -63,3 +63,13 @@ input:focus {
 	opacity: 0;
 	visibility: hidden;
 }
+
+.gap40 {
+	gap: 40px;
+}
+
+.gap15 {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
