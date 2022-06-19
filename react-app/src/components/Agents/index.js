@@ -23,9 +23,13 @@ const Agents = () => {
 					agent?.username.toLowerCase().includes(search.toLowerCase())
 				)
 				.filter((agent) => {
-					return agent?.areas?.some((area) => {
-						return area.zip.includes(zip);
-					});
+					if (agent.areas.length > 0) {
+						return agent?.areas?.some((area) => {
+							return area.zip.includes(zip);
+						});
+					} else if (agent.areas.length === 0 && zip === "") {
+						return agent;
+					}
 				});
 
 			setAgentArr(arr);

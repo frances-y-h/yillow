@@ -93,7 +93,11 @@ const AgentProfile = () => {
 	}, []);
 
 	useEffect(() => {
-		setMaxChar(2000 - bio.length);
+		if (bio?.length) {
+			setMaxChar(2000 - bio?.length);
+		} else {
+			setMaxChar(2000);
+		}
 	}, [bio]);
 
 	return (
@@ -121,6 +125,7 @@ const AgentProfile = () => {
 								value={office}
 								onChange={(e) => setOffice(e.target.value)}
 								placeholder="Office"
+								required
 							/>
 						</label>
 						<label className="agent-label">
@@ -131,6 +136,7 @@ const AgentProfile = () => {
 								value={license_num}
 								onChange={(e) => setLicense_num(e.target.value)}
 								placeholder="License Number"
+								required
 							/>
 						</label>
 					</div>
@@ -181,13 +187,11 @@ const AgentProfile = () => {
 									value={phone}
 									onChange={(e) => setPhone(e.target.value)}
 									placeholder="123-456-7890"
+									required
 								/>
 							</div>
 							<div className="phone">{agent?.email}</div>
 						</div>
-						{/* <div>
-						Average Rating {agent?.rating} <Stars rating={agent?.rating} />
-					</div> */}
 					</div>
 				</div>
 			</form>

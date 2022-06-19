@@ -94,13 +94,15 @@ const Agent = () => {
 				<div className="agent-review-ctrl">
 					<div className="title">
 						<div>Reviews</div>
-						<button
-							type="button"
-							className="btn"
-							onClick={() => setShowModal(true)}
-						>
-							Write a Review
-						</button>
+						{!user?.agent && (
+							<button
+								type="button"
+								className="btn"
+								onClick={() => setShowModal(true)}
+							>
+								Write a Review
+							</button>
+						)}
 					</div>
 					{agent && agent?.reviewIds?.length ? (
 						<>
