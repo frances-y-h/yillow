@@ -83,7 +83,9 @@ const Chat = () => {
 					message,
 					created_at: new Date(),
 				};
-				socket.emit("chat", chatToSend);
+				setTimeout(() => {
+					socket.emit("chat", chatToSend);
+				}, 1);
 				setMessage("");
 			} else if (message.length === 0) {
 				setError("Please write a message");

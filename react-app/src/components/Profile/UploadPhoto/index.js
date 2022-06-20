@@ -41,6 +41,7 @@ const UploadPhoto = () => {
 	};
 
 	const updatePhoto = async (e) => {
+		console.log("Hre");
 		const file = e.target.files[0];
 		setPhoto(file);
 		if (file) {
