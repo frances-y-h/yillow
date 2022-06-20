@@ -5,8 +5,6 @@ import { useNotification } from "../../../context/Notification";
 
 import UploadPhoto from "../UploadPhoto";
 
-import no_photo from "../../../assets/no_photo.svg";
-
 import * as sessionActions from "../../../store/session";
 
 const UserProfile = ({ onClose }) => {
@@ -17,8 +15,6 @@ const UserProfile = ({ onClose }) => {
 	const [errors, setErrors] = useState([]);
 
 	const { setToggleNotification, setNotificationMsg } = useNotification();
-
-	const image = user.photo || no_photo;
 
 	const updateProfile = async (e) => {
 		e.preventDefault();
