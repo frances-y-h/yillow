@@ -19,6 +19,13 @@ const Login = () => {
 		await dispatch(login(email, password));
 	};
 
+	const onAgentDemoLogin = async (e) => {
+		e.preventDefault();
+		const email = "agent1@user.com";
+		const password = "password";
+		await dispatch(login(email, password));
+	};
+
 	useEffect(() => {
 		if (loginForm) {
 			loginRef.current.classList.add("ref-active");
@@ -51,7 +58,10 @@ const Login = () => {
 			{loginForm ? <LoginForm /> : <SignUpForm />}
 			<div className="login-sign-connect">Or connect with:</div>
 			<button type="button" className="btn btn-bl" onClick={onDemoLogin}>
-				Continue with Demo Login
+				Continue with User Demo Login
+			</button>
+			<button type="button" className="btn" onClick={onAgentDemoLogin}>
+				Continue with Agent Demo Login
 			</button>
 		</div>
 	);

@@ -57,6 +57,8 @@ const Agent = ({ agent, appt }) => {
 				}, 2000);
 				// if succeed, setWrite to false
 				setWrite(false);
+				setRating(1);
+				setContent("");
 			} else {
 				setErrors(data.errors);
 			}

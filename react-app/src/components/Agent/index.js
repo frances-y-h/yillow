@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import find_agent from "../../assets/find_agent.svg";
 import Review from "./Review";
 import Stars from "../Tools/Stars";
+import no_photo from "../../assets/no_photo.svg";
 
 import { Modal } from "../../context/Modal";
 import NewReview from "./Review/NewReview";
@@ -21,7 +22,7 @@ const Agent = () => {
 	const agents = useSelector((state) => state.agents);
 	const reviews = useSelector((state) => state.reviews);
 	const user = useSelector((state) => state.session.user);
-	const agent = agents[agentId];
+	const [agent, setAgent] = useState({});
 	const [showModal, setShowModal] = useState(false);
 
 	const onClose = () => {
@@ -33,6 +34,12 @@ const Agent = () => {
 		dispatch(reviewActions.getAllReviews(agentId));
 	}, [dispatch]);
 
+	useEffect(() => {
+		if (agents) {
+			setAgent(agents[agentId]);
+		}
+	}, [agents]);
+
 	const chatWithAgent = async (e) => {
 		e.preventDefault();
 		const this_channel = { user_id: user.id, agent_id: agent.id };
@@ -43,17 +50,16 @@ const Agent = () => {
 	};
 
 	if (agent) {
+		const image = agent?.photo || no_photo;
+
 		return (
 			<div className="agent-ctrl">
 				<div className="split">
 					<div className="center">
-						{agent?.photo && (
-							<div
-								className="photo"
-								style={{ backgroundImage: `url("${agent.photo}")` }}
-							></div>
-						)}
-
+						<div
+							className="photo"
+							style={{ backgroundImage: `url("${image}")` }}
+						></div>
 						<div className="name">{agent?.username}</div>
 						<div className="office">{agent?.office}</div>
 						<div className="license">License # {agent?.license_num}</div>
@@ -66,7 +72,7 @@ const Agent = () => {
 						<div className="gap15">
 							<div className="about">Service Areas</div>
 							<div className="bio">
-								{agent?.areas.map((each) => (
+								{agent?.areas?.map((each) => (
 									<div key={each.zip}>
 										<span className="zip">{each.zip}</span> -{" "}
 										{each.cities?.join(", ")}
@@ -78,7 +84,7 @@ const Agent = () => {
 							<div className="about">Contact</div>
 							<div className="phone">Tel {agent?.phone}</div>
 							<div className="phone">{agent?.email}</div>
-							{!user.agent && (
+							{user && !user.agent && (
 								<button
 									className="btn-gr btn-short"
 									type="button"
@@ -96,7 +102,7 @@ const Agent = () => {
 				<div className="agent-review-ctrl">
 					<div className="title">
 						<div>Reviews</div>
-						{user.id !== agent.id && (
+						{user?.id !== agent?.id && (
 							<button
 								type="button"
 								className="btn"

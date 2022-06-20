@@ -15,11 +15,17 @@ const NavBar = () => {
 	const user = useSelector((state) => state.session.user);
 	const [showLogin, setShowLogin] = useState(false);
 
-	const email = "demo@aa.io";
-	const password = "password";
-
 	const onLogin = async (e) => {
 		e.preventDefault();
+		const email = "demo@aa.io";
+		const password = "password";
+		await dispatch(login(email, password));
+	};
+
+	const onAgentLogin = async (e) => {
+		e.preventDefault();
+		const email = "agent1@user.com";
+		const password = "password";
 		await dispatch(login(email, password));
 	};
 
@@ -50,7 +56,10 @@ const NavBar = () => {
 						Login
 					</button>
 					<button type="button" className="btn-font-lt" onClick={onLogin}>
-						Demo Login
+						User Demo Login
+					</button>
+					<button type="button" className="btn-font-lt" onClick={onAgentLogin}>
+						Agent Demo Login
 					</button>
 					{showLogin && (
 						<Modal onClose={onClose}>

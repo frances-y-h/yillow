@@ -7,7 +7,6 @@ import RequestTour from "./RequestTour";
 
 const Detail = ({ property, openTour }) => {
 	const agents = useSelector((state) => state.agents);
-	const user = useSelector((state) => state.session.user);
 
 	return (
 		<div className="property-detail-ctrl">

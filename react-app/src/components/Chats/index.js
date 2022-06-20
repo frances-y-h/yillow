@@ -46,7 +46,7 @@ const Chats = () => {
 				<label className="chnl-search-label">
 					<input
 						type="text"
-						placeholder="Search Name"
+						placeholder="Filter by Name"
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
 					/>
