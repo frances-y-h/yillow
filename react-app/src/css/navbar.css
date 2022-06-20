@@ -48,6 +48,11 @@
 	z-index: 99;
 }
 
+.dropdown.demo-login {
+	padding: 20px;
+	gap: 20px;
+}
+
 .nav-rt .dropdown::before {
 	content: "";
 	position: absolute;

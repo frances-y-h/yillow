@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
@@ -14,6 +14,25 @@ const NavBar = () => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.session.user);
 	const [showLogin, setShowLogin] = useState(false);
+	const [showMenu, setShowMenu] = useState(false);
+
+	const dropdownRef = useRef(null);
+
+	const openMenu = (e) => {
+		e.preventDefault();
+		setTimeout(() => {
+			setShowMenu(true);
+		}, 1);
+		document.addEventListener("click", closeMenu);
+	};
+
+	const closeMenu = (e) => {
+		e.preventDefault();
+		if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+			setShowMenu(false);
+			document.removeEventListener("click", closeMenu);
+		}
+	};
 
 	const onLogin = async (e) => {
 		e.preventDefault();
@@ -55,12 +74,23 @@ const NavBar = () => {
 					<button className="btn-font-lt" onClick={() => setShowLogin(true)}>
 						Login
 					</button>
-					<button type="button" className="btn-font-lt" onClick={onLogin}>
-						User Demo Login
+					<button type="button" className="btn-font-lt" onClick={openMenu}>
+						Demo Login
 					</button>
-					<button type="button" className="btn-font-lt" onClick={onAgentLogin}>
-						Agent Demo Login
-					</button>
+					{showMenu && (
+						<div className="dropdown demo-login" ref={dropdownRef}>
+							<button type="button" className="btn btn-w" onClick={onLogin}>
+								User Demo Login
+							</button>
+							<button
+								type="button"
+								className="btn btn-bl"
+								onClick={onAgentLogin}
+							>
+								Agent Demo Login
+							</button>
+						</div>
+					)}
 					{showLogin && (
 						<Modal onClose={onClose}>
 							<Login />
