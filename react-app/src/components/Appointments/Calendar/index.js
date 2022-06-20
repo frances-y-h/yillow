@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import { Calendar, DateLocalizer, momentLocalizer } from "react-big-calendar";
 
-import { Modal } from "../../../../context/Modal";
-import ApptDetail from "../ApptCard/ApptDetail";
+import { Modal } from "../../../context/Modal";
+import ApptDetail from "../ApptDetail";
 
-import * as dates from "../../../../utils/dates";
+import * as dates from "../../../utils/dates";
 
 const mLocalizer = momentLocalizer(moment);
 

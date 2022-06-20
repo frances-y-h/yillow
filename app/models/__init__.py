@@ -6,3 +6,6 @@ from .property_img import PropertyImg
 from .review import Review
 from .appointment import Appointment
 from .agent_area import AgentArea
+from .zip_city import ZipCity
+from .channel import Channel
+from .chat import Chat

@@ -1,5 +1,6 @@
 from .db import db
 from .property import Property
+from .zip_city import ZipCity
 
 class AgentArea(db.Model):
     __tablename__ = "agent_areas"
@@ -11,7 +12,14 @@ class AgentArea(db.Model):
     agent = db.relationship("User", back_populates="areas")
 
     def city(self):
-        properties = Property.query.filter(Property.zip == self.zip).all()
-        cities = [property.city for property in properties]
-        uniqueCities = list(set(cities))
-        return {"zip": self.zip, "cities": uniqueCities}
+        cities = ZipCity.query.filter(ZipCity.zip == self.zip).all()
+        cities_lst = [city.city for city in cities]
+
+        if not cities_lst:
+            properties = Property.query.filter(Property.zip == self.zip).all()
+            more_cities = [property.city for property in properties]
+            cities_lst = list(set(more_cities))
+            if not cities_lst:
+                cities_lst = ["No matching city in database"]
+
+        return {"zip": self.zip, "cities": cities_lst}

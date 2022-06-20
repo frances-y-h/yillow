@@ -1,29 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import LogoutButton from "../../auth/LogoutButton";
-import { login } from "../../../store/session";
 
 import logo from "../../../assets/logo-blue.svg";
+import no_photo from "../../../assets/no_photo.svg";
+
 import { Modal } from "../../../context/Modal";
-import Login from "../Login";
+import UserProfile from "../../Profile/UserProfile";
 
 const UserBar = () => {
-	const dispatch = useDispatch();
 	const user = useSelector((state) => state.session.user);
+	const [showMenu, setShowMenu] = useState(false);
+	const [showModal, setShowModal] = useState(false);
 
-	const [showLogin, setShowLogin] = useState(false);
+	const image = user.photo || no_photo;
 
-	const email = "demo@aa.io";
-	const password = "password";
+	const dropdownRef = useRef();
 
-	const onLogin = async (e) => {
+	const openMenu = (e) => {
 		e.preventDefault();
-		await dispatch(login(email, password));
+		setTimeout(() => {
+			setShowMenu(true);
+		}, 1);
+		document.addEventListener("click", closeMenu);
 	};
 
-	const onClose = () => {
-		setShowLogin(false);
+	const closeMenu = (e) => {
+		e.preventDefault();
+		if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+			setShowMenu(false);
+			document.removeEventListener("click", closeMenu);
+		}
 	};
 
 	return (
@@ -40,30 +48,39 @@ const UserBar = () => {
 				<img src={logo} alt="Yillow" />
 			</NavLink>
 			<div className="nav-rt">
-				{!user && (
-					<>
-						<button className="btn-font-lt" onClick={() => setShowLogin(true)}>
-							Login
-						</button>
-						<button type="button" className="btn-font-lt" onClick={onLogin}>
-							Demo Login
-						</button>
-						{showLogin && (
-							<Modal onClose={onClose}>
-								<Login />
-							</Modal>
-						)}
-					</>
-				)}
-				{user && (
-					<>
-						<NavLink className="btn-font-lt" to="/appointments" exact={true}>
-							Appointments
-						</NavLink>
-						<LogoutButton />
-					</>
-				)}
+				<NavLink className="btn-font-lt" to="/chats" exact={true}>
+					<i className="fa-regular fa-comment"></i> Chats
+				</NavLink>
+				<NavLink className="btn-font-lt" to="/appointments" exact={true}>
+					Appointments
+				</NavLink>
+				<div
+					className="photo"
+					style={{ backgroundImage: `url("${image}")` }}
+					onClick={openMenu}
+				>
+					{showMenu && (
+						<div className="dropdown" ref={dropdownRef}>
+							<div className="div">
+								<button
+									className="btn-font-lt"
+									onClick={() => setShowModal(true)}
+								>
+									Edit my profile
+								</button>
+							</div>
+							<div className="div">
+								<LogoutButton />
+							</div>
+						</div>
+					)}
+				</div>
 			</div>
+			{showModal && (
+				<Modal onClose={() => setShowModal(false)}>
+					<UserProfile onClose={() => setShowModal(false)} />
+				</Modal>
+			)}
 		</nav>
 	);
 };

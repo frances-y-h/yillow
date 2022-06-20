@@ -10,6 +10,7 @@ class PropertyImg(db.Model):
 
     property = db.relationship("Property", back_populates="images")
 
+
     def to_dict(self):
         return {
             "id": self.id,

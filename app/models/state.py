@@ -8,3 +8,5 @@ class State(db.Model):
     long = db.Column(db.String(20), unique=True)
 
     properties = db.relationship("Property", back_populates="state")
+
+    zip = db.relationship("ZipCity", back_populates="state")

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNotification } from "../../../../context/Notification";
+import { useNotification } from "../../../context/Notification";
 
-import editAvailable from "../../../Tools/EditAvailable";
-import Agent from "./Agent";
+import editAvailable from "../../Tools/EditAvailable";
+import Agent from "../ApptCard/Agent";
 
-import Property from "../../../Property";
-import { Modal } from "../../../../context/Modal";
+import Property from "../../Property";
+import { Modal } from "../../../context/Modal";
 
-import * as appointmentActions from "../../../../store/appointment";
-import * as propertyActions from "../../../../store/property";
+import * as appointmentActions from "../../../store/appointment";
+import * as propertyActions from "../../../store/property";
 
 const ApptDetail = ({ appt, past, onClose }) => {
 	const dispatch = useDispatch();
@@ -196,7 +196,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 						</div>
 					)}
 				</label>
-				<Agent agent={agent} />
+				<Agent agent={agent} appt={appt} />
 				{errors && (
 					<div className="error-list error-ctr">
 						{errors.map((err) => (

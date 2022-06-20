@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import find_agent from "../../assets/find_agent.svg";
 import Review from "./Review";
 import Stars from "../Tools/Stars";
+import no_photo from "../../assets/no_photo.svg";
 
 import { Modal } from "../../context/Modal";
 import NewReview from "./Review/NewReview";
@@ -12,12 +13,16 @@ import NewReview from "./Review/NewReview";
 import * as agentActions from "../../store/agent";
 import * as reviewActions from "../../store/review";
 
+import * as channelActions from "../../store/channel";
+
 const Agent = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const { agentId } = useParams();
 	const agents = useSelector((state) => state.agents);
 	const reviews = useSelector((state) => state.reviews);
-	const agent = agents[agentId];
+	const user = useSelector((state) => state.session.user);
+	const [agent, setAgent] = useState({});
 	const [showModal, setShowModal] = useState(false);
 
 	const onClose = () => {
@@ -29,18 +34,32 @@ const Agent = () => {
 		dispatch(reviewActions.getAllReviews(agentId));
 	}, [dispatch]);
 
+	useEffect(() => {
+		if (agents) {
+			setAgent(agents[agentId]);
+		}
+	}, [agents]);
+
+	const chatWithAgent = async (e) => {
+		e.preventDefault();
+		const this_channel = { user_id: user.id, agent_id: agent.id };
+		// send a post request to channels. will create channel if does not exist
+		const data = await dispatch(channelActions.addThisChannel(this_channel));
+		// use history to redirect
+		history.push(`/chats/${data.id}`);
+	};
+
 	if (agent) {
+		const image = agent?.photo || no_photo;
+
 		return (
 			<div className="agent-ctrl">
 				<div className="split">
 					<div className="center">
-						{agent?.photo && (
-							<div
-								className="photo"
-								style={{ backgroundImage: `url("${agent.photo}")` }}
-							></div>
-						)}
-
+						<div
+							className="photo"
+							style={{ backgroundImage: `url("${image}")` }}
+						></div>
 						<div className="name">{agent?.username}</div>
 						<div className="office">{agent?.office}</div>
 						<div className="license">License # {agent?.license_num}</div>
@@ -53,7 +72,7 @@ const Agent = () => {
 						<div className="gap15">
 							<div className="about">Service Areas</div>
 							<div className="bio">
-								{agent?.areas.map((each) => (
+								{agent?.areas?.map((each) => (
 									<div key={each.zip}>
 										<span className="zip">{each.zip}</span> -{" "}
 										{each.cities?.join(", ")}
@@ -65,6 +84,15 @@ const Agent = () => {
 							<div className="about">Contact</div>
 							<div className="phone">Tel {agent?.phone}</div>
 							<div className="phone">{agent?.email}</div>
+							{user && !user.agent && (
+								<button
+									className="btn-gr btn-short"
+									type="button"
+									onClick={chatWithAgent}
+								>
+									Chat with Agent <i className="fa-regular fa-comment"></i>
+								</button>
+							)}
 						</div>
 						<div>
 							Average Rating {agent?.rating} <Stars rating={agent?.rating} />
@@ -74,13 +102,15 @@ const Agent = () => {
 				<div className="agent-review-ctrl">
 					<div className="title">
 						<div>Reviews</div>
-						<button
-							type="button"
-							className="btn"
-							onClick={() => setShowModal(true)}
-						>
-							Write a Review
-						</button>
+						{user?.id !== agent?.id && (
+							<button
+								type="button"
+								className="btn"
+								onClick={() => setShowModal(true)}
+							>
+								Write a Review
+							</button>
+						)}
 					</div>
 					{agent && agent?.reviewIds?.length ? (
 						<>

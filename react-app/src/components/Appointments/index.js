@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import User from "./User";
+import User from "./User.js";
 
 import * as appointmentActions from "../../store/appointment";
 import * as propertyActions from "../../store/property";
@@ -15,16 +15,14 @@ const Appointments = () => {
 		dispatch(appointmentActions.getAllAppointments())
 			.then((data) => {
 				dispatch(propertyActions.getProperties(data.properties));
-				dispatch(agentActions.getAgents(data.agents));
+				if (!user.agent) {
+					dispatch(agentActions.getAgents(data.agents));
+				}
 			})
 			.catch((error) => console.log(error));
 	}, [dispatch]);
 
-	if (user.agent) {
-		return <div>Agent Appointments</div>;
-	} else {
-		return <User />;
-	}
+	return <User />;
 };
 
 export default Appointments;

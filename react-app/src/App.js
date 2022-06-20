@@ -13,6 +13,9 @@ import Notification from "./components/Tools/Notification";
 import Agents from "./components/Agents";
 import Agent from "./components/Agent";
 import NotFound from "./components/NotFound";
+import Profile from "./components/Profile";
+import Reviews from "./components/Reviews";
+import Chats from "./components/Chats";
 import { authenticate } from "./store/session";
 
 import About from "./components/About";
@@ -63,6 +66,15 @@ function App() {
 				</Route>
 				<ProtectedRoute path="/appointments" exact={true}>
 					<Appointments />
+				</ProtectedRoute>
+				<ProtectedRoute path="/profile" exact={true}>
+					<Profile />
+				</ProtectedRoute>
+				<ProtectedRoute path="/reviews" exact={true}>
+					<Reviews />
+				</ProtectedRoute>
+				<ProtectedRoute path={["/chats", "/chats/:channelId"]} exact={true}>
+					<Chats />
 				</ProtectedRoute>
 				<Route>
 					<NotFound />

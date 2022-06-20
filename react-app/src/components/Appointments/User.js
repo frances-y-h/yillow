@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import SplitAppt from "../../Tools/SplitAppt";
+import SplitAppt from "../Tools/SplitAppt";
 
 import Upcoming from "./Upcoming";
 import Past from "./Past";

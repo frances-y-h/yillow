@@ -23,3 +23,22 @@
 .star-rating .off {
 	color: lightgray;
 }
+
+.big-star-wrap {
+	background: url("../assets/stars/star-rating-sprite.png") repeat-x;
+	font-size: 0;
+	height: 75px;
+	line-height: 0;
+	overflow: hidden;
+	text-indent: -999em;
+	width: 375px;
+	margin: 0 auto;
+}
+
+.big-star-sprite {
+	background: url("../assets/stars/star-rating-sprite.png") repeat-x;
+	background-position: 0 100%;
+	float: left;
+	height: 75px;
+	display: block;
+}

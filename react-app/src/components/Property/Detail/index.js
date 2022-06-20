@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import logo from "../../../assets/logo-blue.svg";
 import footer from "../../../assets/footer-art.svg";
 
+import RequestTour from "./RequestTour";
+
 const Detail = ({ property, openTour }) => {
 	const agents = useSelector((state) => state.agents);
 
@@ -54,9 +56,8 @@ const Detail = ({ property, openTour }) => {
 							</>
 						)}
 					</div>
-					<button type="button" className="btn btn-w" onClick={openTour}>
-						Request a tour
-					</button>
+
+					<RequestTour openTour={openTour} />
 					<div className="property-detail-overview-wrap">
 						<div className="property-detail-overview-btn">Overview</div>
 					</div>

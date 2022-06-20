@@ -86,3 +86,71 @@
 	border-radius: 5px;
 	line-height: 24px;
 }
+
+/* Agent Porfile Inputs */
+.agent-input {
+	border: 1px solid var(--blue2);
+	background-color: var(--lightblue);
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 18px;
+	font-weight: lighter;
+}
+
+.agent-label {
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	font-weight: lighter;
+	width: 100%;
+}
+
+.agent-profile-input {
+	border: 1px solid lightgray;
+}
+
+/* Channel search input */
+.chnl-search-label {
+	background-color: white;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid var(--blue);
+	display: grid;
+	grid-template-columns: auto 20px;
+	align-items: center;
+	color: gray;
+}
+
+.chnl-search-label input {
+	border: none;
+	outline: none;
+}
+
+.chnl-search-label input:focus::placeholder {
+	color: transparent;
+}
+
+/* Chat input */
+.chat-label {
+	padding: 10px;
+	width: 100%;
+	background-color: var(--lightblue);
+	border: 1px solid var(--blue);
+	border-radius: 30px;
+	display: grid;
+	grid-template-columns: auto 50px;
+}
+
+.chat-label input {
+	background-color: transparent;
+	border: none;
+	outline: none;
+}
+
+.chat-label button {
+	background-color: var(--blue2);
+	border: none;
+	border-radius: 20px;
+	color: white;
+	cursor: pointer;
+}

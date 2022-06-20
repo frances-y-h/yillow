@@ -4,29 +4,12 @@ from app.models import User
 
 property_routes = Blueprint('properties', __name__)
 
-@property_routes.route("/search", methods=["GET", 'POST'])
-def search():
-    # searchParam = request.json["search"]
-
-    # if len(searchParam) < 3:
-    #     properties = Property.query.limit(200).all()
-    #     return {
-    #         "properties": [property.to_dict() for property in properties],
-    #         }
-    # else:
-    #     properties = Property.query.filter(Property.city.ilike(f'%{searchParam}%')).limit(200).all()
-    #     if len(properties) == 0:
-    #         properties = Property.query.filter(Property.city.ilike(f'%{searchParam[0:2]}%')).limit(200).all()
-    #         return {
-    #             "properties": [property.to_dict() for property in properties],
-    #             }
-    #     return {
-    #         "properties": [property.to_dict() for property in properties],
-    #         }
-    properties = Property.query.limit(200).all()
-    return {
-        "properties": [property.to_dict() for property in properties],
-        }
+# @property_routes.route("/search", methods=["GET", 'POST'])
+# def search():
+#     properties = Property.query.limit(200).all()
+#     return {
+#         "properties": [property.to_dict() for property in properties],
+#         }
 
 @property_routes.route("/<int:property_id>")
 def get_property(property_id):

@@ -3,24 +3,34 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LogoutButton from "../../auth/LogoutButton";
 
-import logo from "../../../assets/logo-blue.svg";
+import logo from "../../../assets/logo-white.svg";
 
 const AgentBar = () => {
 	const user = useSelector((state) => state.session.user);
 
 	return (
-		<nav className="nav">
-			<NavLink to="/about">About</NavLink>
+		<nav className="nav nav-agent">
+			<div className="nav-lf">
+				<NavLink to="/about">About</NavLink>
+				<NavLink to="/agents">Agent Finder</NavLink>
+				<NavLink to="/reviews" exact={true}>
+					My Reviews
+				</NavLink>
+			</div>
 			<NavLink to="/" exact={true}>
 				<img src={logo} alt="Yillow" />
 			</NavLink>
 			<div className="nav-rt">
-				{!user && (
-					<NavLink to="/login" exact={true} activeClassName="active">
-						Login
-					</NavLink>
-				)}
-				{user && <LogoutButton />}
+				<NavLink to="/chats" exact={true}>
+					<i className="fa-regular fa-comment"></i> Chats
+				</NavLink>
+				<NavLink to="/appointments" exact={true}>
+					Appointments
+				</NavLink>
+				<NavLink to="/profile" exact={true}>
+					My Profile
+				</NavLink>
+				<LogoutButton />
 			</div>
 		</nav>
 	);

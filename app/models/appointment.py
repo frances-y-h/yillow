@@ -20,6 +20,9 @@ class Appointment(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
+            "username": self.user.username,
+            "email": self.user.email,
+            "user_photo": self.user.photo,
             "agent_id": self.agent_id,
             "property_id": self.property_id,
             "date": self.date,

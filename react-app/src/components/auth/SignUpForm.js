@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 
 const SignUpForm = () => {
+	const history = useHistory();
+
 	const [errors, setErrors] = useState([]);
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [repeatPassword, setRepeatPassword] = useState("");
+	const [agent, setAgent] = useState(false);
+
 	const [matchErr, setMatchErr] = useState("");
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
@@ -16,11 +20,13 @@ const SignUpForm = () => {
 	const onSignUp = async (e) => {
 		e.preventDefault();
 		if (password === repeatPassword) {
-			const data = await dispatch(signUp(username, email, password));
+			const data = await dispatch(signUp(username, email, password, agent));
 			if (data) {
 				setErrors(data);
 				setPassword("");
 				setRepeatPassword("");
+			} else if (agent) {
+				history.push("/profile");
 			}
 		}
 	};
@@ -110,7 +116,18 @@ const SignUpForm = () => {
 					required={true}
 				></input>
 			</label>
-
+			<label>
+				<input
+					type="checkbox"
+					defaultChecked={agent}
+					onChange={(e) => {
+						setTimeout(() => {
+							setAgent(!agent);
+						}, 1);
+					}}
+				/>{" "}
+				I am a real estate agent
+			</label>
 			<div className="error-list">
 				{errors.map((error, ind) => (
 					<div key={ind}>{error}</div>

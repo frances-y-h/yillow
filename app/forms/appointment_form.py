@@ -2,8 +2,6 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired, Length
 
-from app.models import User, Property
-
 
 class AddAppointmentForm(FlaskForm):
     property_id = IntegerField("property_id", validators=[DataRequired()])

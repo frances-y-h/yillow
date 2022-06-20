@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useNotification } from "../../../../context/Notification";
+import { useNotification } from "../../../context/Notification";
 import ReactTooltip from "react-tooltip";
 
-import Stars from "../../../Tools/Stars";
-import StarRating from "../../../Tools/StarRating";
+import Stars from "../../Tools/Stars";
+import StarRating from "../../Tools/StarRating";
 
-import * as reviewActions from "../../../../store/review";
-import * as agentActions from "../../../../store/agent";
+import * as reviewActions from "../../../store/review";
+import * as agentActions from "../../../store/agent";
+import * as channelActions from "../../../store/channel";
 
-const Agent = ({ agent }) => {
+const Agent = ({ agent, appt }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
@@ -56,12 +57,23 @@ const Agent = ({ agent }) => {
 				}, 2000);
 				// if succeed, setWrite to false
 				setWrite(false);
+				setRating(1);
+				setContent("");
 			} else {
 				setErrors(data.errors);
 			}
 		} else {
 			setErrors(["Min 1 star required"]);
 		}
+	};
+
+	const chatWithAgent = async (e) => {
+		e.preventDefault();
+		const this_channel = { user_id: appt.user_id, agent_id: appt.agent_id };
+		// send a post request to channels. will create channel if does not exist
+		const data = await dispatch(channelActions.addThisChannel(this_channel));
+		// use history to redirect
+		history.push(`/chats/${data.id}`);
 	};
 
 	useEffect(() => {
@@ -96,8 +108,12 @@ const Agent = ({ agent }) => {
 						{agent.username}{" "}
 						<span className="license">DRE# {agent.license_num}</span>
 					</div>
-					<div>Tel {agent.phone}</div>
-					<div>{agent.email}</div>
+					<div>
+						Tel {agent.phone} | {agent.email}
+					</div>
+					<button className="btn btn-gr" onClick={chatWithAgent}>
+						Chat with Agent <i className="fa-regular fa-comment"></i>
+					</button>
 					<div className="office">{agent.office.toUpperCase()}</div>
 					<div className="appt-agent-reviews">
 						<Stars rating={agent?.rating} />

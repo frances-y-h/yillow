@@ -182,6 +182,7 @@
 	border: 1px solid var(--blue2);
 	border-radius: 5px;
 	background-color: var(--lightblue);
+	font-weight: lighter;
 }
 
 /* Appointment Agent */

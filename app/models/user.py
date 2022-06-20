@@ -28,6 +28,11 @@ class User(db.Model, UserMixin):
     user_appointments = db.relationship("Appointment", back_populates="user", primaryjoin="User.id == Appointment.user_id")
     agent_appointments = db.relationship("Appointment", back_populates="agent", primaryjoin="User.id == Appointment.agent_id")
 
+    user_channels = db.relationship("Channel", back_populates="user", primaryjoin="User.id == Channel.user_id")
+    agent_channels = db.relationship("Channel", back_populates="agent", primaryjoin="User.id == Channel.agent_id")
+
+    chats = db.relationship("Chat", back_populates="user")
+
     @property
     def appointments(self):
         if self.agent:
@@ -49,7 +54,10 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         if self.agent:
             avg_review_lst = [review.rating for review in self.agent_reviews]
-            avg = sum(avg_review_lst) / len(avg_review_lst)
+            if len(avg_review_lst):
+                avg = sum(avg_review_lst) / len(avg_review_lst)
+            else:
+                avg = 0
 
             reviews = [review.to_dict() for review in self.agent_reviews]
 
@@ -66,6 +74,9 @@ class User(db.Model, UserMixin):
                         else:
                             i -= 1
 
+            else:
+                recent_review = ""
+
 
             areas = [area.city() for area in self.areas]
 
@@ -80,7 +91,7 @@ class User(db.Model, UserMixin):
                 "photo": self.photo,
                 "broker_license": self.broker_license,
                 "office": self.office,
-                "recent_review": recent_review or "",
+                "recent_review": recent_review,
                 "reviewIds" : [review.id for review in self.agent_reviews],
                 "rating": round(avg, 1),
                 "areas": areas,

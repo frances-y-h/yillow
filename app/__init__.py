@@ -5,14 +5,16 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
+from .socket import socketio
 from .models import db, User
-from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.property_routes import property_routes
 from .api.agent_routes import agent_routes
 from .api.appointment_routes import appointment_routes
 from .api.review_routes import review_routes
 from .api.search_routes import search_routes
+from .api.service_area_routes import service_area_routes
+from .api.channel_routes import channel_routes
 
 from .seeds import seed_commands
 
@@ -34,15 +36,17 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
-app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(property_routes, url_prefix='/api/properties')
 app.register_blueprint(agent_routes, url_prefix='/api/agents')
 app.register_blueprint(appointment_routes, url_prefix='/api/appointments')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(search_routes, url_prefix='/api/search')
+app.register_blueprint(service_area_routes, url_prefix='/api/service_areas')
+app.register_blueprint(channel_routes, url_prefix='/api/channels')
 db.init_app(app)
 Migrate(app, db)
+socketio.init_app(app)
 
 # Application Security
 CORS(app)
@@ -80,3 +84,6 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+if __name__ == '__main__':
+    socketio.run(app)
