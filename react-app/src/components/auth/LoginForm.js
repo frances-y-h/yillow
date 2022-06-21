@@ -31,7 +31,7 @@ const LoginForm = () => {
 	}
 
 	return (
-		<form className="login-sign-form" onSubmit={onLogin}>
+		<div className="login-sign-form">
 			<label htmlFor="email" className="label">
 				Email
 				<input
@@ -60,10 +60,10 @@ const LoginForm = () => {
 					<div key={ind}>{error}</div>
 				))}
 			</div>
-			<button className="btn btn-w" type="submit">
+			<button className="btn btn-w" type="button" onClick={onLogin}>
 				Login
 			</button>
-		</form>
+		</div>
 	);
 };
 
