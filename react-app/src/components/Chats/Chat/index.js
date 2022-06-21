@@ -120,7 +120,7 @@ const Chat = () => {
 						</div>
 					)}
 				</div>
-				<form className="chat-input-ctrl" onSubmit={sendChat}>
+				<div className="chat-input-ctrl">
 					<label className="chat-label">
 						<input
 							type="text"
@@ -129,11 +129,16 @@ const Chat = () => {
 							value={message}
 							onChange={(e) => setMessage(e.target.value)}
 							required
+							onKeyPress={(e) => {
+								if (e.charCode === 13) sendChat(e);
+							}}
 						/>
-						<button type="submit">Send</button>
+						<button type="button" onClick={sendChat}>
+							Send
+						</button>
 						{error && <div className="chat-error">{error}</div>}
 					</label>
-				</form>
+				</div>
 			</div>
 		);
 	} else if (chats) {
