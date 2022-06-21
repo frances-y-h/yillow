@@ -18,9 +18,9 @@ const AgentBar = () => {
 				<img src={logo} alt="Yillow" />
 			</NavLink>
 			<div className="nav-rt">
-				<NavLink to="/chats" exact={true}>
+				{/* <NavLink to="/chats" exact={true}>
 					<i className="fa-regular fa-comment"></i> Chats
-				</NavLink>
+				</NavLink> */}
 				<NavLink to="/appointments" exact={true}>
 					Appointments
 				</NavLink>

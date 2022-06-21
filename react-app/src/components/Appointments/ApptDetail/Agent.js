@@ -10,7 +10,7 @@ import Property from "../../Property";
 
 import * as appointmentActions from "../../../store/appointment";
 import * as propertyActions from "../../../store/property";
-import * as channelActions from "../../../store/channel";
+// import * as channelActions from "../../../store/channel";
 
 const ApptDetail = ({ appt, past, onClose }) => {
 	const dispatch = useDispatch();
@@ -86,14 +86,14 @@ const ApptDetail = ({ appt, past, onClose }) => {
 		}
 	};
 
-	const chatWithClient = async (e) => {
-		e.preventDefault();
-		const this_channel = { user_id: appt.user_id, agent_id: appt.agent_id };
-		// send a post request to channels. will create channel if does not exist
-		const data = await dispatch(channelActions.addThisChannel(this_channel));
-		// use history to redirect
-		history.push(`/chats/${data.id}`);
-	};
+	// const chatWithClient = async (e) => {
+	// 	e.preventDefault();
+	// 	const this_channel = { user_id: appt.user_id, agent_id: appt.agent_id };
+	// 	// send a post request to channels. will create channel if does not exist
+	// 	const data = await dispatch(channelActions.addThisChannel(this_channel));
+	// 	// use history to redirect
+	// 	history.push(`/chats/${data.id}`);
+	// };
 
 	useEffect(() => {
 		setToday(appt.date);
@@ -141,7 +141,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 					No image available
 				</div>
 			)}
-			<form className="appt-modal-btm" onSubmit={update}>
+			<div className="appt-modal-btm">
 				<div
 					className="appt-address-wrap"
 					onClick={() => setShowProperty(true)}
@@ -205,9 +205,9 @@ const ApptDetail = ({ appt, past, onClose }) => {
 						<div>
 							<i className="fa-regular fa-envelope"></i> {appt.email}
 						</div>
-						<button type="button" className="btn-gr" onClick={chatWithClient}>
+						{/* <button type="button" className="btn-gr" onClick={chatWithClient}>
 							Chat with client <i className="fa-regular fa-comment"></i>
-						</button>
+						</button> */}
 					</div>
 				</div>
 
@@ -220,7 +220,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 				)}
 				{!past && (
 					<>
-						<button className="btn" type="submit">
+						<button className="btn" type="button" onClick={update}>
 							<div>Update Appointment to</div>
 							<div className="btn-desc">
 								{today} {hour}
@@ -236,7 +236,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 						</div>
 					</>
 				)}
-			</form>
+			</div>
 			{showProperty && (
 				<Modal onClose={() => setShowProperty(false)}>
 					<Property
