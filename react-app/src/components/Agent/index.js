@@ -13,7 +13,7 @@ import NewReview from "./Review/NewReview";
 import * as agentActions from "../../store/agent";
 import * as reviewActions from "../../store/review";
 
-import * as channelActions from "../../store/channel";
+// import * as channelActions from "../../store/channel";
 
 const Agent = () => {
 	const dispatch = useDispatch();
@@ -40,14 +40,14 @@ const Agent = () => {
 		}
 	}, [agents]);
 
-	const chatWithAgent = async (e) => {
-		e.preventDefault();
-		const this_channel = { user_id: user.id, agent_id: agent.id };
-		// send a post request to channels. will create channel if does not exist
-		const data = await dispatch(channelActions.addThisChannel(this_channel));
-		// use history to redirect
-		history.push(`/chats/${data.id}`);
-	};
+	// const chatWithAgent = async (e) => {
+	// 	e.preventDefault();
+	// 	const this_channel = { user_id: user.id, agent_id: agent.id };
+	// 	// send a post request to channels. will create channel if does not exist
+	// 	const data = await dispatch(channelActions.addThisChannel(this_channel));
+	// 	// use history to redirect
+	// 	history.push(`/chats/${data.id}`);
+	// };
 
 	if (agent) {
 		const image = agent?.photo || no_photo;
@@ -84,7 +84,7 @@ const Agent = () => {
 							<div className="about">Contact</div>
 							<div className="phone">Tel {agent?.phone}</div>
 							<div className="phone">{agent?.email}</div>
-							{user && !user.agent && (
+							{/* {user && !user.agent && (
 								<button
 									className="btn-gr btn-short"
 									type="button"
@@ -92,7 +92,7 @@ const Agent = () => {
 								>
 									Chat with Agent <i className="fa-regular fa-comment"></i>
 								</button>
-							)}
+							)} */}
 						</div>
 						<div>
 							Average Rating {agent?.rating} <Stars rating={agent?.rating} />

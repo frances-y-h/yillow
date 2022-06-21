@@ -40,6 +40,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 			time: hour,
 			message,
 		};
+
 		const data = await dispatch(
 			appointmentActions.editAppointment(apptToUpdate)
 		);
@@ -102,7 +103,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 	});
 
 	return (
-		<form className="appt-detail-modal" onSubmit={update}>
+		<div className="appt-detail-modal">
 			{property?.front_img ? (
 				<div
 					className="appt-img-detail"
@@ -206,7 +207,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 				)}
 				{!past && (
 					<>
-						<button className="btn" type="submit">
+						<button className="btn" type="button" onClick={update}>
 							<div>Update Appointment to</div>
 							<div className="btn-desc">
 								{today} {hour}
@@ -231,7 +232,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 					/>
 				</Modal>
 			)}
-		</form>
+		</div>
 	);
 };
 
