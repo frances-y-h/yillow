@@ -18,7 +18,9 @@
 /* Property Images */
 .property-imgs-ctrl {
 	width: 100%;
-	height: 100vh;
+	min-height: 100vh;
+	min-height: fill-available;
+	min-height: -webkit-fill-available;
 	overflow-x: hidden;
 	white-space: nowrap;
 	display: flex;
@@ -185,7 +187,9 @@
 	flex-direction: column;
 	overflow-x: hidden;
 	white-space: nowrap;
-	height: calc(100vh - 365px);
+	min-height: calc(100vh - 365px);
+	min-height: fill-available;
+	min-height: -webkit-fill-available;
 	gap: 30px;
 }
 
