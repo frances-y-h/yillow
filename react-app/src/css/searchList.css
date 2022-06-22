@@ -48,9 +48,7 @@
 	gap: 10px;
 	overflow-x: hidden;
 	white-space: nowrap;
-	min-height: calc(100vh - 215px);
-	min-height: fill-available;
-	min-height: -webkit-fill-available;
+	height: calc(100vh - 215px);
 }
 
 .search-bar .filters {
