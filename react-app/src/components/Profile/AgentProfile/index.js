@@ -90,7 +90,7 @@ const AgentProfile = () => {
 		setLicense_num(agent?.license_num);
 		setBio(agent?.bio);
 		setPhone(agent?.phone);
-	}, []);
+	}, [agent]);
 
 	useEffect(() => {
 		if (bio?.length) {

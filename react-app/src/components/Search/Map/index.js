@@ -115,7 +115,7 @@ const MyMap = withScriptjs(
 			if (!areaParam && props.markers) {
 				fitBounds();
 			}
-		}, [props.markers]);
+		}, [props.markers, areaParam]);
 
 		// Fit bounds on mount, and when the markers change
 		useEffect(() => {

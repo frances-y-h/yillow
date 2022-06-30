@@ -13,7 +13,7 @@ const Reviews = () => {
 
 	useEffect(() => {
 		dispatch(reviewActions.getAllReviews(agent.id));
-	}, [dispatch]);
+	}, [dispatch, agent]);
 
 	return (
 		<div className="agent-rvw-ctrl">

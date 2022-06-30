@@ -64,7 +64,7 @@ const List = ({
 			const param = searchParam.split("-").join(" ");
 			setSearch(param);
 		}
-	}, []);
+	}, [searchParam]);
 
 	useEffect(() => {
 		const filtered = searchList.filter((term) =>

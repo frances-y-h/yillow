@@ -98,11 +98,11 @@ const ApptDetail = ({ appt, past, onClose }) => {
 	useEffect(() => {
 		setToday(appt.date);
 		setHour(appt.time);
-	}, []);
+	}, [appt]);
 
 	useEffect(() => {
 		setHourList(schedule[today]);
-	}, [today]);
+	}, [schedule, today]);
 
 	return (
 		<div className="appt-detail-modal">

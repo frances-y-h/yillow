@@ -15,7 +15,7 @@ const Image = ({ image }) => {
 					<img
 						className="property-img-lg"
 						src={image?.img_url}
-						alt={image?.description}
+						alt="image"
 						onClick={() => setShowModal(false)}
 					/>
 				</Modal>

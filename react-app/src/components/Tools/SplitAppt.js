@@ -15,6 +15,7 @@ export default function SplitAppt(appointments) {
 			return appt;
 		} else {
 			pastAppt.push(appt);
+			return;
 		}
 	});
 
