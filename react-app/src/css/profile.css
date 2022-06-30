@@ -19,7 +19,7 @@
 	font-weight: bold;
 	color: transparent;
 	position: relative;
-	cursor: pointer;
+	/* cursor: pointer; */
 	transition: all 0.5s;
 }
 
@@ -28,11 +28,12 @@
 	color: var(--blue2);
 }
 
+/*
 .agent-profile-photo:hover {
 	color: white;
-	background-color: rgba(0, 0, 0, 0.5); /* Tint color */
+	background-color: rgba(0, 0, 0, 0.5);
 	background-blend-mode: multiply;
-}
+} */
 
 .upload-photo-div {
 	position: absolute;

@@ -92,7 +92,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 		setToday(appt.date);
 		setHour(appt.time);
 		setMessage(appt.message);
-	}, []);
+	}, [appt]);
 
 	useEffect(() => {
 		setHourList(schedule[today]);
@@ -100,7 +100,7 @@ const ApptDetail = ({ appt, past, onClose }) => {
 
 	useEffect(() => {
 		setMaxChar(255 - message.length);
-	});
+	}, [message.length]);
 
 	return (
 		<div className="appt-detail-modal">

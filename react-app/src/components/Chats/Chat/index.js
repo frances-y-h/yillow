@@ -68,7 +68,7 @@ const Chat = () => {
 
 			socket.disconnect();
 		};
-	}, [channelId]);
+	}, [channelId, dispatch]);
 
 	if (channelParam) {
 		const channel = channels[channelId];

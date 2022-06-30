@@ -21,7 +21,7 @@ const Channels = ({ channel }) => {
 		} else {
 			userRef.current.classList.remove("active");
 		}
-	}, [channelParam]);
+	}, [channelParam, channel]);
 
 	if (user.agent) {
 		const image = channel.user_photo || no_photo;

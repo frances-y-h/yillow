@@ -16,8 +16,7 @@ const UploadPhoto = () => {
 
 	const inputRef = useRef();
 
-	const submitPhoto = async (e) => {
-		e.preventDefault();
+	const submitPhoto = async () => {
 		const formData = new FormData();
 		formData.append("image", photo);
 
@@ -41,7 +40,6 @@ const UploadPhoto = () => {
 	};
 
 	const updatePhoto = async (e) => {
-		console.log("Hre");
 		const file = e.target.files[0];
 		setPhoto(file);
 		if (file) {
@@ -49,8 +47,7 @@ const UploadPhoto = () => {
 		}
 	};
 
-	const cancel = (e) => {
-		e.preventDefault();
+	const cancel = () => {
 		setPhoto(null);
 		setSrc("");
 		inputRef.current.value = "";
@@ -62,12 +59,14 @@ const UploadPhoto = () => {
 				<div
 					className="agent-profile-photo"
 					style={{ backgroundImage: `url("${agent.photo}")` }}
-					onClick={() => inputRef.current.click()}
+					onClick={() => {
+						inputRef.current.click();
+					}}
 				>
 					Upload Photo
-					<div className="upload-photo-div">
+					{/* <div className="upload-photo-div">
 						<img src={upload} alt="Upload" />
-					</div>
+					</div> */}
 					{src && (
 						<img className="profile-upload-preview" src={src} alt="Upload" />
 					)}

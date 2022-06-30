@@ -20,7 +20,7 @@ const Appointments = () => {
 				}
 			})
 			.catch((error) => console.log(error));
-	}, [dispatch]);
+	}, [dispatch, user]);
 
 	return <User />;
 };

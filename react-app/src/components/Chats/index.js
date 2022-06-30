@@ -38,7 +38,7 @@ const Chats = () => {
 			);
 			setChannelsArr(arr);
 		}
-	}, [search, channels]);
+	}, [search, channels, user]);
 
 	return (
 		<div className="chat-ctrl">
