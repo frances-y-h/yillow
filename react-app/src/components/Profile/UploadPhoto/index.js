@@ -105,7 +105,8 @@ const UploadPhoto = () => {
 					className="agent-profile-no-photo"
 					onClick={() => inputRef.current.click()}
 				>
-					Upload Photo
+					{/* Upload Photo */}
+					No Photo
 					<div className="upload-photo-div">
 						<img src={upload} alt="Upload" />
 					</div>
