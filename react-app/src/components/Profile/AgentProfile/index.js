@@ -102,7 +102,7 @@ const AgentProfile = () => {
 
 	return (
 		<div className="agent-profile-div">
-			<form className="agent-ctrl" onSubmit={handleSubmit}>
+			<form className="agent-ctrl">
 				<div className="split">
 					<div className="center">
 						<UploadPhoto />
@@ -173,7 +173,7 @@ const AgentProfile = () => {
 							<button type="button" className="btn btn-bl" onClick={undo}>
 								Undo
 							</button>
-							<button type="submit" className="btn">
+							<button type="button" className="btn" onClick={handleSubmit}>
 								Update
 							</button>
 						</div>
