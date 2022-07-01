@@ -107,9 +107,9 @@ const UploadPhoto = () => {
 				>
 					{/* Upload Photo */}
 					No Photo
-					<div className="upload-photo-div">
+					{/* <div className="upload-photo-div">
 						<img src={upload} alt="Upload" />
-					</div>
+					</div> */}
 					{src && (
 						<img className="profile-upload-preview" src={src} alt="Upload" />
 					)}
