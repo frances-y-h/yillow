@@ -1,5 +1,5 @@
 import boto3
-import botocore
+# import botocore
 import os
 import uuid
 
