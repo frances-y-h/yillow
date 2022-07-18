@@ -10,6 +10,9 @@ const Splash = () => {
 	const [searchList, setSearchList] = useState([]);
 	const [searchFiltered, setSearchFiltered] = useState([]);
 	const [error, setError] = useState();
+	const [placeholder, setPlaceholder] = useState(
+		"Enter an address, city, or ZIP code"
+	);
 
 	const searchDivRef = useRef();
 	const searchDDRef = useRef();
@@ -54,9 +57,15 @@ const Splash = () => {
 						<input
 							type="text"
 							className="search-input"
-							placeholder="Enter an address, city, or ZIP code"
+							placeholder={placeholder}
 							value={search}
 							onChange={(e) => setSearch(e.target.value)}
+							onFocus={() =>
+								setPlaceholder('Don\'t know where to start? Try "San Diego"')
+							}
+							onBlur={() =>
+								setPlaceholder("Enter an address, city, or ZIP code")
+							}
 							ref={searchDivRef}
 						/>
 
