@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 import logo from "../../assets/logo-blue.svg";
 import footer from "../../assets/footer-art.svg";
 
@@ -38,10 +40,10 @@ const Footer = () => {
 					Alembic
 				</a>
 			</div>
-			<div className="footer-logo-wrap">
+			<NavLink to="/about" className="footer-logo-wrap">
 				<img className="footer-logo" src={logo} alt="Yillow" /> © 2022 Frances
 				(Huang) Lau
-			</div>
+			</NavLink>
 
 			<img src={footer} alt="Footer" />
 		</footer>
